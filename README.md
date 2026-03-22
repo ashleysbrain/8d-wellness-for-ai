@@ -1,5 +1,7 @@
 # 8D360AI — Wellness Framework for AI Agents 🤖
 
+**Version 1.2.0** | [Changelog](VERSION.md) | [Updates Feed](UPDATES.md)
+
 **Autonomous health monitoring and self-healing for AI agents.**
 
 8 dimensions. 13 personality frameworks. 70+ measurable traits. Any AI can adopt it.
