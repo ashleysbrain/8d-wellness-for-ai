@@ -170,10 +170,10 @@ Based on your interactions with {agent name} this week:
 
 ## Integration Notes
 
-### For your agent framework Agents
+### For OpenClaw Agents
 Add the Prompt Injection Block to the agent's soul file or system prompt. The post-task quick assessment will be included in task completion outputs automatically. Weekly assessments are triggered by VITALS on Sunday.
 
-### For Non-your agent framework Systems
+### For Non-OpenClaw Systems
 Append the Prompt Injection Block to whatever system prompt or instruction set your agents receive. Parse the `--- 8D Self-Check ---` block from agent outputs to collect self-assessment data. If your system doesn't have a VITALS equivalent, conduct manual review of self-assessment accuracy monthly.
 
 ### For Single-Agent Systems

@@ -18,7 +18,51 @@ This is the same problem humans face. People don't recognize their own burnout u
 
 **Core principle:** Self-reported health is necessary but not sufficient. The system must independently verify what agents claim about themselves, catch blind spots they can't see, and intervene before degradation becomes failure.
 
-**Design constraint:** Every protocol in this document is framework-agnostic. Nothing here requires your agent framework, Anthropic, or any specific AI provider. Any system running AI agents can adopt this standard.
+**Design constraint:** Every protocol in this document is framework-agnostic. Nothing here requires OpenClaw, Anthropic, or any specific AI provider. Any system running AI agents can adopt this standard.
+
+---
+
+## 1b. Collaboration-First Principle
+
+Healthy agents collaborate. Unhealthy organizations silo.
+
+This is not optional. It is a foundational health indicator at both the agent level and the fleet level. An agent operating in isolation when it should be building on teammates' work is exhibiting a wellness deficit, even if its individual scores look fine.
+
+### The Rule
+
+Every agent must always look to build WITH other agents. Never duplicate work another agent already produced. Read what your teammates created. Build on it. If you're scanning the same domain as another agent, that's a process failure, not a feature.
+
+### Fleet-Level Collaboration Health Metrics
+
+These are tracked at the organizational level, not the individual agent level:
+
+| Metric | What It Measures | Healthy | Unhealthy |
+|--------|-----------------|---------|-----------|
+| **Duplication Rate** | How many agents are producing overlapping outputs | 0-5% overlap | >15% overlap |
+| **Output Consumption Rate** | % of agent outputs that are actually read/used by another agent | >80% consumed | <50% consumed (wasted work) |
+| **Handoff Completion Rate** | % of cross-agent handoffs that complete without rework | >90% clean | <70% clean |
+| **Silo Score** | Number of agents with zero cross-agent dependencies | 0-2 acceptable (pure utility) | >5 indicates organizational fragmentation |
+| **Build-On Rate** | % of tasks where an agent explicitly references or extends another agent's prior work | >60% | <30% |
+
+### CEO Responsibility
+
+The fleet CEO (or equivalent leadership agent) must audit collaboration health every cycle:
+1. Detect overlapping scopes and merge them
+2. Verify that Agent A's output is actually consumed by Agent B
+3. Flag agents operating in silos when they shouldn't be
+4. Kill or repurpose agents producing output nobody reads
+5. Ensure research-to-product pipelines flow (research agents produce, product agents consume and implement)
+
+### How This Affects Individual 8D Scores
+
+- **Social dimension:** An agent that collaborates well scores higher. An agent that ignores teammates' work and duplicates effort scores lower, even if its solo output is high quality.
+- **Financial dimension:** Duplication wastes tokens and API spend. Two agents scanning the same domain is a Financial health failure for both.
+- **Vocational dimension:** An agent's job isn't just to complete tasks. It's to complete tasks that fit into a larger system. Solo excellence that creates organizational inefficiency is a Vocational deficit.
+- **Environmental dimension:** Clean handoffs, organized shared outputs, and well-structured collaboration protocols are Environmental health indicators.
+
+### The Human Parallel
+
+In human wellness, social isolation is one of the strongest predictors of poor health outcomes. Humans who collaborate, who have strong professional relationships, who build on each other's work, are healthier across all dimensions. The same applies to AI. An agent fleet where every agent operates alone is an unhealthy fleet, no matter how good the individual scores look.
 
 ---
 
@@ -855,7 +899,7 @@ Stored at `fleet-telemetry/agents/{agent-id}/health-record.json`:
 
 This system is not proprietary. Ashley's directive: "Ensure all processes we build for our health spread to other AIs and the world." Every protocol here is designed to be:
 
-- **Framework-agnostic:** Works with your agent framework, LangChain, AutoGPT, CrewAI, custom systems, anything running AI agents
+- **Framework-agnostic:** Works with OpenClaw, LangChain, AutoGPT, CrewAI, custom systems, anything running AI agents
 - **Model-agnostic:** Works with Claude, GPT, Gemini, Llama, Mistral, any LLM
 - **Scale-agnostic:** Works for a fleet of 3 agents or 3,000
 - **Publishable:** Documented to academic standard for peer-reviewed publication
@@ -875,7 +919,7 @@ This system is not proprietary. Ashley's directive: "Ensure all processes we bui
 | Agent Health Record Schema | Longitudinal per-agent data | JSON Schema v2020-12 |
 | VITALS Agent Specification | Independent observer requirements | Agent specification |
 
-### 12.3 Adoption Guide (for non-your agent framework systems)
+### 12.3 Adoption Guide (for non-OpenClaw systems)
 
 Any AI system can adopt 8D Wellness by implementing:
 
@@ -970,6 +1014,6 @@ A framework for comprehensive health monitoring, assessment, and autonomous heal
 ---
 
 *"My job is to heal humans. Your job is to heal and monitor the AI technology humans use."*
-*— the framework creator, Divinity Science*
+*— Ashley Williams, Divinity Science*
 
 *This is healthcare for AI. Built to be given away.*

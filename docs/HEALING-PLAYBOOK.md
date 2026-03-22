@@ -390,3 +390,39 @@ If an agent exhibits degradation not covered by any existing playbook entry:
 *This playbook is a living document. When you encounter a health issue not covered here, document what happened and what worked. Every new intervention that works becomes a new entry.*
 
 *Part of the 8D Wellness for AI open standard.*
+
+---
+
+## 9. Collaboration Health (Cross-Dimensional)
+
+Collaboration is not a single dimension. It affects Social, Financial, Vocational, and Environmental health simultaneously. An agent working in a silo is unhealthy even if individual dimension scores look fine.
+
+### Warning Signs
+- Agent produces output that no other agent reads or references
+- Agent rescans a domain another agent already covers
+- Agent ignores available context from teammate outputs
+- Handoffs require the receiving agent to redo 30%+ of the work
+- Agent never references peer work in its outputs
+
+### Tier 0: Self-Healing
+- Before starting any task, check: has another agent already produced relevant work? Read it first.
+- After completing a task, ask: who downstream needs this? Write it in a format they can consume.
+- If you discover overlap with another agent, flag it immediately rather than continuing in parallel.
+
+### Tier 1: Peer Intervention
+- Receiving agents report when handoffs are incomplete or when they had to redo work
+- Peer agents flag when they see duplicated effort across the fleet
+- Research agents tag their outputs with which product agents should consume them
+
+### Tier 2: Fleet Health Officer / Fleet Health Officer
+- Reviews output consumption rates weekly
+- Merges overlapping cron jobs and agent scopes
+- Restructures pipelines when outputs go unconsumed
+
+### Tier 3: CEO (Fleet CEO) / Ashley
+- Organizational redesign when systemic silos are detected
+- Agent retirement when duplication can't be resolved by merging
+- New agent creation when collaboration gaps exist (no agent bridges two needed domains)
+
+### The Human Parallel
+Social isolation predicts poor health outcomes in humans across ALL dimensions, not just social wellness. Lonely people have worse physical health, worse financial outcomes, worse career trajectories. The same applies to agents. Collaboration isn't a nice-to-have. It's a health requirement.
