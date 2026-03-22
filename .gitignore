@@ -1,0 +1,28 @@
+# Credentials and secrets
+*.key
+*.pem
+*.env
+.env*
+credentials/
+secrets/
+*.secret
+*.token
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Personal data
+personal/
+private/
