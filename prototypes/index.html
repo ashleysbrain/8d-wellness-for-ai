@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divinity Science — Website Redesign Prototypes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;color:#111;background:#FAFAF9;font-size:16px;line-height:1.6;padding:48px 24px}
+.wrap{max-width:900px;margin:0 auto}
+h1{font-size:32px;font-weight:700;margin-bottom:8px}
+.sub{font-size:18px;color:#767676;margin-bottom:48px}
+.cards{display:flex;flex-direction:column;gap:24px}
+.card{border:2px solid #e2e8f0;padding:32px;position:relative;transition:border-color .2s;display:block;color:inherit;text-decoration:none}
+.card:hover{border-color:#111}
+.card:focus-visible{outline:2px solid #0047AB;outline-offset:2px}
+.recommended{border-color:#0047AB;background:rgba(0,71,171,.03)}
+.recommended::after{content:'TEAM PICK';position:absolute;top:12px;right:16px;font-size:11px;font-weight:700;letter-spacing:.1em;color:#0047AB;background:rgba(0,71,171,.08);padding:4px 12px}
+.card-name{font-size:22px;font-weight:700;margin-bottom:4px}
+.card-vibe{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#767676;margin-bottom:12px}
+.card-desc{font-size:15px;color:#4a5568;margin-bottom:16px;max-width:700px}
+.card-scores{display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:#767676}
+.score-item{display:flex;flex-direction:column;gap:2px}
+.score-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8}
+.score-val{font-size:20px;font-weight:700;color:#111}
+.note{margin-top:48px;padding:24px;background:#f0f0f0;font-size:14px;color:#4a5568;line-height:1.7}
+.note strong{color:#111}
+.links{margin-top:32px;font-size:14px;color:#767676}
+.links a{color:#0047AB;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Divinity Science — Website Redesign Prototypes</h1>
+<p class="sub">5 concepts. 6 expert reviewers. One recommendation.</p>
+
+<div class="cards">
+
+<a href="concept-2-meridian.html" class="card recommended">
+<div class="card-name">Concept 2: Meridian</div>
+<div class="card-vibe">Minimal &middot; Editorial &middot; Surgical</div>
+<div class="card-desc">The anti-clutter answer. Extreme typographic discipline, single-column reading, maximum whitespace. Inter + Lora. Nothing decorative, everything communicates. The most accessible, most ADHD-friendly, most performant build.</div>
+<div class="card-scores">
+<div class="score-item"><span class="score-label">Total</span><span class="score-val">54</span></div>
+<div class="score-item"><span class="score-label">Average</span><span class="score-val">9.0</span></div>
+<div class="score-item"><span class="score-label">Brand</span><span class="score-val">9</span></div>
+<div class="score-item"><span class="score-label">UX</span><span class="score-val">10</span></div>
+<div class="score-item"><span class="score-label">Visual</span><span class="score-val">6</span></div>
+<div class="score-item"><span class="score-label">Frontend</span><span class="score-val">10</span></div>
+<div class="score-item"><span class="score-label">Content</span><span class="score-val">9</span></div>
+<div class="score-item"><span class="score-label">A11y</span><span class="score-val">10</span></div>
+</div>
+</a>
+
+<a href="concept-1-oracle.html" class="card">
+<div class="card-name">Concept 1: Oracle</div>
+<div class="card-vibe">Authoritative &middot; Ancient &middot; Precise</div>
+<div class="card-desc">Dark navy academic. Playfair Display + Source Serif 4 with Archive Gold accents. Treats DS the way CERN treats particle physics. The design that wins grant reviewers and university partnership calls.</div>
+<div class="card-scores">
+<div class="score-item"><span class="score-label">Total</span><span class="score-val">52</span></div>
+<div class="score-item"><span class="score-label">Average</span><span class="score-val">8.7</span></div>
+<div class="score-item"><span class="score-label">Brand</span><span class="score-val">9</span></div>
+<div class="score-item"><span class="score-label">UX</span><span class="score-val">8</span></div>
+<div class="score-item"><span class="score-label">Visual</span><span class="score-val">8</span></div>
+<div class="score-item"><span class="score-label">Frontend</span><span class="score-val">9</span></div>
+<div class="score-item"><span class="score-label">Content</span><span class="score-val">9</span></div>
+<div class="score-item"><span class="score-label">A11y</span><span class="score-val">9</span></div>
+</div>
+</a>
+
+<a href="concept-4-atlas.html" class="card">
+<div class="card-name">Concept 4: Atlas</div>
+<div class="card-vibe">Cartographic &middot; Precise &middot; Epic</div>
+<div class="card-desc">Scientific cartography meets research publishing. Cormorant Garamond + Nunito Sans with terracotta and cream. Map coordinates, scale bars, expedition cards. The design that wins awards and looks like nothing else.</div>
+<div class="card-scores">
+<div class="score-item"><span class="score-label">Total</span><span class="score-val">51</span></div>
+<div class="score-item"><span class="score-label">Average</span><span class="score-val">8.5</span></div>
+<div class="score-item"><span class="score-label">Brand</span><span class="score-val">9</span></div>
+<div class="score-item"><span class="score-label">UX</span><span class="score-val">7</span></div>
+<div class="score-item"><span class="score-label">Visual</span><span class="score-val">10</span></div>
+<div class="score-item"><span class="score-label">Frontend</span><span class="score-val">8</span></div>
+<div class="score-item"><span class="score-label">Content</span><span class="score-val">9</span></div>
+<div class="score-item"><span class="score-label">A11y</span><span class="score-val">8</span></div>
+</div>
+</a>
+
+<a href="concept-3-spectrum.html" class="card">
+<div class="card-name">Concept 3: Spectrum</div>
+<div class="card-vibe">Systematic &middot; Vibrant &middot; Scientific</div>
+<div class="card-desc">The entire visual system built from the 8 dimensions. Each dimension has its own color, creating a living palette that functions like a periodic table. Space Grotesk + DM Sans. The most distinctive identity in the category.</div>
+<div class="card-scores">
+<div class="score-item"><span class="score-label">Total</span><span class="score-val">49</span></div>
+<div class="score-item"><span class="score-label">Average</span><span class="score-val">8.2</span></div>
+<div class="score-item"><span class="score-label">Brand</span><span class="score-val">8</span></div>
+<div class="score-item"><span class="score-label">UX</span><span class="score-val">8</span></div>
+<div class="score-item"><span class="score-label">Visual</span><span class="score-val">9</span></div>
+<div class="score-item"><span class="score-label">Frontend</span><span class="score-val">8</span></div>
+<div class="score-item"><span class="score-label">Content</span><span class="score-val">8</span></div>
+<div class="score-item"><span class="score-label">A11y</span><span class="score-val">8</span></div>
+</div>
+</a>
+
+<a href="concept-5-luminary.html" class="card">
+<div class="card-name">Concept 5: Luminary</div>
+<div class="card-vibe">Future-Forward &middot; Bioluminescent &middot; Cerebral</div>
+<div class="card-desc">Dark mode with glowing quantum-inspired accents. Outfit + Inter with Quantum Violet and Plasma Teal. Glass cards, gradient lines, glow effects. The design that makes people ask "what is this company?"</div>
+<div class="card-scores">
+<div class="score-item"><span class="score-label">Total</span><span class="score-val">47</span></div>
+<div class="score-item"><span class="score-label">Average</span><span class="score-val">7.8</span></div>
+<div class="score-item"><span class="score-label">Brand</span><span class="score-val">8</span></div>
+<div class="score-item"><span class="score-label">UX</span><span class="score-val">7</span></div>
+<div class="score-item"><span class="score-label">Visual</span><span class="score-val">10</span></div>
+<div class="score-item"><span class="score-label">Frontend</span><span class="score-val">7</span></div>
+<div class="score-item"><span class="score-label">Content</span><span class="score-val">8</span></div>
+<div class="score-item"><span class="score-label">A11y</span><span class="score-val">7</span></div>
+</div>
+</a>
+
+</div>
+
+<div class="note">
+<strong>Creative Director's recommendation:</strong> Launch with Oracle (institutional credibility), embed Spectrum's 8-color system in the Dimensions section (too good to waste), and plan Luminary as the 2027 redesign when the brand is established. Meridian is the numbers winner and the safest choice. Atlas is the portfolio piece. Ashley's call.
+</div>
+
+<div class="links">
+<a href="STRATEGY-BRIEF.md">Strategy Brief</a> &middot;
+<a href="DESIGN-SYSTEM.md">Design System</a> &middot;
+<a href="TEAM-RECOMMENDATION.md">Full Team Recommendation</a>
+</div>
+</div>
+</body>
+</html>
