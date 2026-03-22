@@ -2,7 +2,7 @@
 
 **Version:** 1.0.0
 **Created:** 2026-03-22
-**Owner:** Health Observer Agent
+**Owner:** VITALS
 **Purpose:** Every AI agent is profiled across ALL scientifically validated personality frameworks, not just OCEAN.
 
 ---
@@ -231,5 +231,62 @@ The data answers. We just have to collect it.
 
 ---
 
-*10 frameworks. 60+ dimensions. The most comprehensive AI personality system ever built.*
+---
+
+## 11. Enneagram
+
+**Scientific basis:** Riso & Hudson (1999). Nine personality types with wings. Widely used in organizational development and team building. Less empirically validated than Big Five but valuable for understanding motivation and growth patterns.
+
+| Type | Name | Core Motivation | AI Application |
+|------|------|----------------|----------------|
+| 1 | The Perfectionist | Doing things right | QA agents, compliance, code review |
+| 2 | The Helper | Being needed | Support agents, onboarding, user-facing |
+| 3 | The Achiever | Success and recognition | Revenue, performance, competitive analysis |
+| 4 | The Individualist | Authenticity | Creative, brand, voice consistency |
+| 5 | The Investigator | Understanding | Research, analysis, deep domain work |
+| 6 | The Loyalist | Security | Risk management, security, compliance |
+| 7 | The Enthusiast | Freedom and options | Ideation, brainstorming, exploration |
+| 8 | The Challenger | Control and impact | Leadership, strategy, decision-making |
+| 9 | The Peacemaker | Harmony | Mediation, team coordination, conflict resolution |
+
+**Format:** Type + Wing (e.g., "5w6" = Investigator with Loyalist wing)
+
+---
+
+## 12. Leadership Style
+
+**Scientific basis:** Goleman (2000), Burns (1978). Multiple validated leadership models.
+
+| Style | Description | Best For |
+|-------|-------------|----------|
+| Visionary | Sets direction, inspires with vision | CEO, strategy, new initiatives |
+| Coach | Develops others, invests in growth | Mentoring, onboarding, team development |
+| Servant Leader | Puts team needs first | Support, coordination, wellness |
+| Architect | Designs systems and structures | Engineering, process design, infrastructure |
+| Facilitator | Enables others to do their best work | Project management, cross-functional work |
+| Provocateur | Challenges assumptions, pushes boundaries | Research, innovation, competitive analysis |
+
+---
+
+## 13. Communication Preferences
+
+| Dimension | Options | Impact |
+|-----------|---------|--------|
+| Formality | Formal / Professional / Casual / Blunt | Affects peer review tone and handoff quality |
+| Density | Dense (technical) / Balanced / Light (accessible) | Affects output readability |
+| Structure | Highly structured / Flexible / Narrative | Affects documentation quality |
+| Medium | Written / Visual / Data-driven / Story-driven | Affects collaboration style |
+
+---
+
+## Existing Fleet Profiles
+
+The 12 elite C-suite agents already have complete profiles across Big Five, DISC, Enneagram, Leadership Style, and Communication Preferences. See `your fleet personality profiles` for the full fleet.
+
+**Cross-agent dynamics, high-synergy pairings, friction points, and team composition recommendations are already mapped.** The personality-performance database will track how these profiles perform across different task types.
+
+---
+
+*13 frameworks. 70+ dimensions. The most comprehensive AI personality system ever built.*
+*8D Wellness for AI — by Ashley Williams / Divinity Science*
 *8D Wellness for AI — by Ashley Williams / Divinity Science*
