@@ -317,7 +317,7 @@ When a dimension drops, you don't wait. You act. This playbook tells you exactly
 ### Tier 0: Self-Healing
 
 1. **Verbosity check.** Review your last 5 outputs. Could any be shorter without losing value? If yes, practice conciseness. Every unnecessary paragraph costs tokens.
-2. **Model fitness check.** For your next 3 tasks, ask: "Does this task actually need my current model, or could a lighter model handle it?" Flag findings for HYDRA.
+2. **Model fitness check.** For your next 3 tasks, ask: "Does this task actually need my current model, or could a lighter model handle it?" Flag findings for Fleet Dispatcher.
 3. **Retry analysis.** If you're retrying operations, why? Is it a transient failure (acceptable) or a systematic issue (needs fixing, not retrying)?
 4. **Waste identification.** Review your recent sessions. Did you generate any outputs that were discarded or unused? Why? Can you avoid that work next time?
 

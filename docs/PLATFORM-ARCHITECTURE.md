@@ -631,7 +631,7 @@ These are actions any agent can take autonomously without approval:
 | Vocational | Falling completion rate | Workload audit: review task queue, identify blockers, escalate blocked tasks, reprioritize |
 | Vocational | Rising rework rate | Quality review: before submitting next output, self-review against quality checklist, iterate once |
 | Financial | Token usage trending up | Efficiency check: review last 5 tasks for verbose responses, identify compression opportunities, adjust |
-| Financial | Wrong model for task complexity | Model routing review: check if current model is appropriate, flag to HYDRA for routing adjustment |
+| Financial | Wrong model for task complexity | Model routing review: check if current model is appropriate, flag to Fleet Dispatcher for routing adjustment |
 
 ### 8.3 Peer Support Interventions (Tier 1)
 
