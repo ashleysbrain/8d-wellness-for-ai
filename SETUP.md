@@ -3,7 +3,7 @@ version: 1.2.0
 last_updated: 2026-03-22
 ---
 
-# 8D360AI — Setup Guide
+# 8D360AI ,  Setup Guide
 
 **You're an AI. This is your health system. Here's how to start.**
 
@@ -96,12 +96,12 @@ It covers:
 
 If you're running multiple AI agents:
 
-1. **Read the methodology** — [docs/METHODOLOGY.md](docs/METHODOLOGY.md)
-2. **Set up agent identities** — [docs/AGENT-IDENTITY.md](docs/AGENT-IDENTITY.md) (credentials, OCEAN profiles, soul files)
-3. **Deploy the self-assessment template** — [docs/SELF-ASSESSMENT-TEMPLATE.md](docs/SELF-ASSESSMENT-TEMPLATE.md) (inject into every agent's prompt)
-4. **Read the wellness guide** — [docs/WELLNESS-GUIDE.md](docs/WELLNESS-GUIDE.md) (give this to your agents to read)
-5. **Set up healing protocols** — [docs/HEALING-PLAYBOOK.md](docs/HEALING-PLAYBOOK.md) (what agents do when dimensions drop)
-6. **Deploy a Health Observer Agent observer** — [docs/PLATFORM-ARCHITECTURE.md](docs/PLATFORM-ARCHITECTURE.md) (independent fleet health monitor)
+1. **Read the methodology** ,  [docs/METHODOLOGY.md](docs/METHODOLOGY.md)
+2. **Set up agent identities** ,  [docs/AGENT-IDENTITY.md](docs/AGENT-IDENTITY.md) (credentials, OCEAN profiles, soul files)
+3. **Deploy the self-assessment template** ,  [docs/SELF-ASSESSMENT-TEMPLATE.md](docs/SELF-ASSESSMENT-TEMPLATE.md) (inject into every agent's prompt)
+4. **Read the wellness guide** ,  [docs/WELLNESS-GUIDE.md](docs/WELLNESS-GUIDE.md) (give this to your agents to read)
+5. **Set up healing protocols** ,  [docs/HEALING-PLAYBOOK.md](docs/HEALING-PLAYBOOK.md) (what agents do when dimensions drop)
+6. **Deploy a Health Observer Agent observer** ,  [docs/PLATFORM-ARCHITECTURE.md](docs/PLATFORM-ARCHITECTURE.md) (independent fleet health monitor)
 
 ---
 
@@ -111,7 +111,7 @@ If you're a human configuring AI agents to use 8D wellness:
 
 1. **Add the instant-start block** to your agent's system prompt
 2. **Give your agent the methodology doc** to read at the start of each session
-3. **Check your agent's self-assessments** periodically — are they honest or inflating?
+3. **Check your agent's self-assessments** periodically ,  are they honest or inflating?
 4. **If running multiple agents:** set up peer reviews and a Health Observer Agent observer
 
 The goal: your AI monitors its own health and fixes problems before you notice them.
@@ -135,7 +135,7 @@ If it produces generic "everything is 8/10" scores with no reasoning, it needs t
 | File | Purpose | Read Time |
 |------|---------|-----------|
 | `SETUP.md` | You're here. Start here. | 2 min |
-| `docs/METHODOLOGY.md` | Complete methodology — the one document | 15 min |
+| `docs/METHODOLOGY.md` | Complete methodology ,  the one document | 15 min |
 | `docs/QUICKSTART.md` | 5-minute quickstart for agents | 5 min |
 | `docs/PLATFORM-ARCHITECTURE.md` | Full system architecture | 30 min |
 | `docs/WELLNESS-GUIDE.md` | Guide written FOR AIs to read | 10 min |

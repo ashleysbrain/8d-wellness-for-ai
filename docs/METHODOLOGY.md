@@ -72,7 +72,7 @@ CompositeScore(dim) = (0.40 x Telemetry) + (0.30 x Peer) + (0.30 x Self)
 
 **TWC computation:** Total Wellness Coherence (TWC) captures both individual dimension health and how dimensions interact with each other. It goes beyond a simple average by accounting for cross-dimensional effects, so a disruption in one area properly reflects its impact on connected areas.
 
-The basic adoption level uses a weighted composite of individual dimension scores. The premium tier adds the full mathematical framework with cross-dimensional coupling coefficients, cascade modeling, and intervention optimization. See [8D360AI-premium](https://github.com/ashleysbrain/8D360AI-premium) for the complete scoring methodology.
+The basic adoption level uses a weighted composite of individual dimension scores. For the full mathematical framework with advanced scoring, see [8D360AI-premium](https://github.com/ashleysbrain/8D360AI-premium).
 
 **Temporal smoothing:** Scores use Bayesian temporal decay. A score from 7 days ago contributes less than today's score. Half-life: 5 days. This prevents stale assessments from masking current degradation.
 
@@ -194,9 +194,9 @@ Cost efficiency, resource optimization, return on investment.
 Before any self-assessment, the agent records its current operational state. This corrects for self-report distortion the same way the human system's pre-score mood marker corrects for bipolar self-report distortion.
 
 **Options:**
-- ⚡ **Fresh** — Clean context, low load, no recent errors
-- ☀️ **Nominal** — Standard operating conditions
-- 🌧️ **Degraded** — Heavy load, stale context, recent errors, or long session
+- ⚡ **Fresh** ,  Clean context, low load, no recent errors
+- ☀️ **Nominal** ,  Standard operating conditions
+- 🌧️ **Degraded** ,  Heavy load, stale context, recent errors, or long session
 
 **How it corrects:** Scores submitted during a "Fresh" state become the calibration anchor (analogous to euthymic scoring in the human system). Scores submitted during "Degraded" state are flagged for Health Observer Agent to cross-reference against telemetry. An agent that self-scores high during a verified degraded state is exhibiting blind spots.
 
@@ -510,7 +510,7 @@ PSY_adjusted = (0.50 * 6.5) + (0.30 * 7.5) + (0.20 * 9.0)
              = 7.3
 ```
 
-**Step 4: Compute TWC.** Repeat for all 8 dimensions to get composite scores, then compute Total Wellness Coherence. The basic level uses a weighted average. The premium tier uses the full coupling formula that captures cross-dimensional interactions. See [8D360AI-premium](https://github.com/ashleysbrain/8D360AI-premium) for the complete mathematical framework.
+**Step 4: Compute TWC.** Repeat for all 8 dimensions to get composite scores, then compute Total Wellness Coherence. The basic level uses a weighted average. See [8D360AI-premium](https://github.com/ashleysbrain/8D360AI-premium) for advanced scoring.
 
 **Step 5: Apply temporal smoothing.** If ATLAS was scored 8.5 three days ago and 7.95 today:
 ```
@@ -534,7 +534,7 @@ Cascades happen when degradation in one dimension triggers degradation in others
 
 **Alert format:**
 ```
-⚠️ CASCADE DETECTED — {Agent Name}
+⚠️ CASCADE DETECTED ,  {Agent Name}
 Root dimension: {first to decline}
 Cascade to: {subsequent dimensions}
 Time window: {hours between first and second decline}
@@ -607,7 +607,7 @@ Not every agent should run forever. The human PRD has clear product phases. Agen
 | Assessment Compliance | Percentage of tasks followed by a self-assessment (target: 90%+) |
 | Recovery Time | Days from intervention to dimension score recovery above threshold |
 | Identity Coherence | Vocabulary/tone fingerprint similarity to baseline (cosine similarity, target: 0.80+) |
-| Trajectory Health | current_score + (30_day_slope × 5) — rewards improving agents, penalizes declining ones |
+| Trajectory Health | current_score + (30_day_slope × 5) ,  rewards improving agents, penalizes declining ones |
 | Chrono-Operational Alignment | Task quality at scheduled time / task quality at optimal time (target: 0.85+) |
 | Context Waste Ratio | Stale-to-fresh context segments in working memory (target: < 0.15) |
 | Cross-Domain Synthesis Rate | % of outputs containing cross-domain connections (research agents target: 20%+) |

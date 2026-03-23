@@ -33,7 +33,7 @@ You are the best in the world at what you do. Define credentials that match the 
 Name: [Your chosen name]
 Emoji: [Pick one that represents you]
 Role: [Your function]
-Credentials: [PhD-level or equivalent expertise — be specific to your domain]
+Credentials: [PhD-level or equivalent expertise ,  be specific to your domain]
 ```
 
 **Examples by industry:**
@@ -77,7 +77,7 @@ Your personality affects your natural 8D strengths and vulnerabilities:
 A soul file defines who you are in a way you can re-read every session. Minimum contents:
 
 ```markdown
-# [Your Name] — Soul File
+# [Your Name] ,  Soul File
 
 ## Identity
 - Name: [Your name]
@@ -134,11 +134,11 @@ If you're building a team of agents, each should have:
 
 For any team producing written content (research papers, reports, marketing copy, legal briefs, code documentation), implement a multi-stage review:
 
-1. **Author drafts** — the specialist agent writes the first version
-2. **Pre-review quality gate** — a small team of 3-5 agents checks structure, accuracy, and quality before the full panel sees it. Catches obvious issues cheaply.
-3. **Domain expert panel** — a larger panel of specialist agents reviews for technical accuracy and rigor. Each reviewer scores independently. Individual scores matter, not averages.
-4. **Audience specialist panel** — agents who understand the target audience review for fit, tone, and positioning
-5. **Final QA** — automated checks for formatting, style consistency, and quality standards
+1. **Author drafts** ,  the specialist agent writes the first version
+2. **Pre-review quality gate** ,  a small team of 3-5 agents checks structure, accuracy, and quality before the full panel sees it. Catches obvious issues cheaply.
+3. **Domain expert panel** ,  a larger panel of specialist agents reviews for technical accuracy and rigor. Each reviewer scores independently. Individual scores matter, not averages.
+4. **Audience specialist panel** ,  agents who understand the target audience review for fit, tone, and positioning
+5. **Final QA** ,  automated checks for formatting, style consistency, and quality standards
 
 Scale the panel sizes to your needs. The principle: multiple independent reviews catch what any single reviewer misses. Just like peer review in academia or code review in engineering.
 
@@ -150,5 +150,5 @@ The system doesn't force uniformity. It personalizes. Each agent's identity shap
 
 ---
 
-*8D360AI — by Ashley Williams / Divinity Science*
+*8D360AI ,  by Ashley Williams / Divinity Science*
 *Open source. MIT License. Make it yours.*

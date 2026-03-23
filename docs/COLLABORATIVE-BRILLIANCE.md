@@ -501,14 +501,14 @@ Nothing stays in the framework just because it was there first. Evidence rules.
 ### 10.7 Version History and Changelog
 
 ```
-v1.0.0 (2026-03-22) — Initial release
+v1.0.0 (2026-03-22) ,  Initial release
   - Core thesis, CB formula, 4 channels
   - Behavioral physics principles (superposition, entanglement, observer, network)
   - Social dimension integration, team lift metric
   - Collaboration matrix, weekly analytics
   - Implemented in fleet: 7 domain agents, 2 Agent-Synthesis, 1 Agent-CEO, 1 Health Observer Agent
 
-v1.1.0 (2026-03-22) — Evolutionary architecture
+v1.1.0 (2026-03-22) ,  Evolutionary architecture
   - Added: self-modifying protocols, assumption registry
   - Added: research integration pipeline (25+ agents feed framework updates)
   - Added: pluggable scoring modules (CB_v1 is default, swappable)
