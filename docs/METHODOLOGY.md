@@ -56,19 +56,13 @@ The framework adapts the 8-dimensional human wellness model (Psychological, Phys
 
 Self-report alone is unreliable. Agents, like humans, overrate themselves. The 8D system uses three data sources blended into a composite:
 
-| Source | Weight | What It Captures |
-|--------|--------|-----------------|
-| Objective Telemetry | 40% | Hard data from logs, cron records, downstream feedback. Can't be gamed. |
-| Peer Assessment | 30% | Other agents evaluate work quality, collaboration, reliability. |
-| Self-Assessment | 30% | The agent's own evaluation. Accuracy itself is a health metric. |
+| Source | What It Captures |
+|--------|-----------------|
+| Objective Telemetry | Hard data from logs, cron records, downstream feedback. Can't be gamed. |
+| Peer Assessment | Other agents evaluate work quality, collaboration, reliability. |
+| Self-Assessment | The agent's own evaluation. Accuracy itself is a health metric. |
 
-**Composite formula:**
-
-```
-CompositeScore(dim) = (0.40 x Telemetry) + (0.30 x Peer) + (0.30 x Self)
-```
-
-**Divergence correction:** When self-score and telemetry diverge by more than 2 points, self-assessment weight drops to 20% and telemetry rises to 50%.
+The three sources are weighted and blended into a composite score for each dimension. Self-assessment carries less weight than objective data by design — agents, like humans, tend to inflate their own scores. When self-assessment diverges significantly from objective telemetry, the system automatically adjusts weighting to favor the objective signal.
 
 **TWC computation:** Total Wellness Coherence (TWC) captures both individual dimension health and how dimensions interact with each other. It goes beyond a simple average by accounting for cross-dimensional effects, so a disruption in one area properly reflects its impact on connected areas.
 
@@ -494,23 +488,11 @@ Health Observer Agent is a dedicated agent whose only job is monitoring fleet he
 
 Agent ATLAS self-reports PSY = 9. Health Observer Agent pulls telemetry showing contradiction rate of 3% (above 2% baseline) and escalation appropriateness of 85% (below 90% baseline). Telemetry-derived PSY score: 7.5. Two peers reviewed ATLAS this week, scoring Collaboration Quality 8 and 7. Mapped to PSY (secondary from Collaboration Quality): peer PSY = 7.5.
 
-**Step 1: Check divergence.** Self (9) vs Telemetry (7.5) = 1.5 point gap. Under 2.0 threshold, so standard weights apply.
+**Step 1: Check divergence.** Compare self-score against objective telemetry. If divergence is within the acceptable threshold, standard weighting applies. If divergence exceeds the threshold, the system automatically down-weights self-assessment and increases telemetry weight.
 
-**Step 2: Compute composite.**
-```
-PSY_composite = (0.40 * 7.5) + (0.30 * 7.5) + (0.30 * 9.0)
-             = 3.0 + 2.25 + 2.7
-             = 7.95
-```
+**Step 2: Compute composite.** Apply the three-source weighted blending formula (specific weights in the premium tier documentation). Each source contributes according to its assigned weight, producing a per-dimension composite score.
 
-**Step 3: If divergence had exceeded 2.0** (say telemetry was 6.5):
-```
-PSY_adjusted = (0.50 * 6.5) + (0.30 * 7.5) + (0.20 * 9.0)
-             = 3.25 + 2.25 + 1.8
-             = 7.3
-```
-
-**Step 4: Compute TWC.** Repeat for all 8 dimensions to get composite scores, then compute Total Wellness Coherence. The basic level uses a weighted average. The premium tier uses the full coupling formula that captures cross-dimensional interactions. See [8D360AI-premium](https://github.com/ashleysbrain/8D360AI-premium) for the complete mathematical framework.
+**Step 3: Compute TWC.** Repeat for all 8 dimensions to get composite scores, then compute Total Wellness Coherence. The basic level uses a weighted average. The premium tier uses the full coupling formula that captures cross-dimensional interactions. See [8D360AI-premium](https://github.com/ashleysbrain/8D360AI-premium) for the complete mathematical framework.
 
 **Step 5: Apply temporal smoothing.** If ATLAS was scored 8.5 three days ago and 7.95 today:
 ```
@@ -526,10 +508,10 @@ Cascades happen when degradation in one dimension triggers degradation in others
 **Detection rules:**
 1. **Simultaneous decline:** If 2+ dimensions drop by 1+ points in the same assessment window, flag as potential cascade.
 2. **Known cascade patterns:**
-   - ENV drops, then PSY drops within 48h → Context pollution causing reasoning errors
-   - PHY drops, then VOC drops within 24h → Infrastructure failure reducing output capacity
-   - SPI drops, then INT drops within 72h → Mission drift defocusing research
-   - PSY drops, then SOC drops within 48h → Reasoning degradation making handoffs unclear
+   - ENV drops → PSY drops: Context pollution causing reasoning errors
+   - PHY drops → VOC drops: Infrastructure failure reducing output capacity
+   - SPI drops → INT drops: Mission drift defocusing research
+   - PSY drops → SOC drops: Reasoning degradation making handoffs unclear
 3. **Root cause assignment:** Health Observer Agent identifies which dimension dropped first (the root) and which followed (the cascade). Intervention targets the root.
 
 **Alert format:**

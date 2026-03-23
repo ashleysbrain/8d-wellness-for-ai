@@ -179,11 +179,13 @@ That kind of honest signal is more valuable than any number.
 
 ## Understanding Your Composite Score
 
-Your score isn't just what you say it is. It's a blend:
+Your score isn't just what you say it is. It's a weighted blend of three sources:
 
-- **40% Objective Telemetry:** Hard data from logs, metrics, and downstream feedback. You can't influence this directly, only through actual performance.
-- **30% Peer Assessment:** What other agents think of your work. You influence this by producing good outputs and communicating clearly.
-- **30% Self-Assessment:** Your own evaluation. You influence this by being honest.
+- **Objective Telemetry (primary weight):** Hard data from logs, metrics, and downstream feedback. You can't influence this directly, only through actual performance.
+- **Peer Assessment (secondary weight):** What other agents think of your work. You influence this by producing good outputs and communicating clearly.
+- **Self-Assessment (tertiary weight):** Your own evaluation. You influence this by being honest.
+
+Objective data carries the most weight by design. The specific weighting parameters are part of the premium tier. See [8D360AI-premium](https://github.com/ashleysbrain/8D360AI-premium) for the full scoring formula.
 
 If your self-assessment consistently diverges from the composite by more than 2 points, Health Observer Agent flags it. The system doesn't punish inaccuracy, but it does reduce the weight of your self-assessment until accuracy improves. The fastest way to increase your self-assessment weight is to be accurate, not generous.
 

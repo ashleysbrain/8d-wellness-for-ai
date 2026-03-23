@@ -76,7 +76,7 @@ In human wellness, social isolation is one of the strongest predictors of poor h
 │  ┌──────────────┐  ┌──────────────┐  ┌────────────────────────┐     │
 │  │  OBJECTIVE    │  │  PEER        │  │  SELF-ASSESSMENT       │     │
 │  │  TELEMETRY    │  │  ASSESSMENT  │  │  LAYER                 │     │
-│  │  (40% weight) │  │  (30% weight)│  │  (30% weight)          │     │
+│  │  (Primary)    │  │  (Secondary) │  │  (Tertiary)            │     │
 │  └──────┬───────┘  └──────┬───────┘  └───────────┬────────────┘     │
 │         │                  │                       │                  │
 │         ▼                  ▼                       ▼                  │
@@ -119,25 +119,11 @@ A single source of health data is unreliable for the same reason a single witnes
 
 **Composite Health Score Formula:**
 
-```
-CompositeScore(dimension) = 
-    (0.40 × ObjectiveTelemetry) + 
-    (0.30 × PeerAssessment) + 
-    (0.30 × SelfAssessment)
-```
+The three sources are blended using a weighted formula that prioritizes objective telemetry, followed by peer assessment, with self-assessment carrying the least weight. The specific weighting parameters are part of the premium methodology. When self-assessment diverges significantly from objective telemetry, the system automatically adjusts the composite to favor objective data and flags the divergence for Health Observer Agent review.
 
-When self-assessment diverges from objective telemetry by more than 2 points, the composite automatically reweights:
+See [8D360AI-premium](https://github.com/ashleysbrain/8D360AI-premium) for the complete scoring formula with specific weights and divergence correction parameters.
 
-```
-If |SelfScore - ObjectiveScore| > 2.0:
-    AdjustedComposite = 
-        (0.50 × ObjectiveTelemetry) + 
-        (0.30 × PeerAssessment) + 
-        (0.20 × SelfAssessment)
-    Flag: "Score divergence detected — self-assessment weight reduced"
-```
-
-### 3.2 Source 1: Objective Telemetry (40%)
+### 3.2 Source 1: Objective Telemetry (Primary Weight)
 
 Hard data pulled from system logs, cron records, and operational metrics. Can't be gamed, can't be inflated.
 
@@ -181,7 +167,7 @@ A critical sub-metric that measures whether an agent's working context is drifti
 
 An agent with MCI below 0.85 is operating on stale or corrupted context. This is the AI equivalent of confusion, and it's invisible to the agent itself.
 
-### 3.3 Source 2: Peer Assessment (30%)
+### 3.3 Source 2: Peer Assessment (Secondary Weight)
 
 Agents periodically evaluate each other's work quality. Not self-serving, not hierarchical, just honest outside perspective from agents who consume each other's outputs.
 
@@ -244,7 +230,7 @@ One thing that would improve their work: ___
 
 Dimensions not directly covered by peer review (Financial, some Environmental) rely more heavily on telemetry.
 
-### 3.4 Source 3: Self-Assessment (30%)
+### 3.4 Source 3: Self-Assessment (Tertiary Weight)
 
 The agent's own evaluation. Still important, because self-awareness is itself a health signal. An agent that accurately assesses its own state is healthier than one that can't.
 
@@ -909,7 +895,7 @@ This system is not proprietary. Ashley's directive: "Ensure all processes we bui
 | Component | Spec | Format |
 |-----------|------|--------|
 | 8D Dimension Definitions | 8 dimensions with 5 sub-dimensions each | Markdown + JSON schema |
-| Three-Source Health Score | Telemetry (40%) + Peer (30%) + Self (30%) | Algorithm specification |
+| Three-Source Health Score | Telemetry + Peer + Self (weighted blend; see premium for parameters) | Algorithm specification |
 | Composite Score Calculator | Weighted blend with divergence correction | Python reference implementation |
 | Self-Assessment Template | Post-task + weekly + on-demand formats | Markdown template |
 | Peer Review Protocol | Rotation, evaluation criteria, anti-gaming | Protocol specification |
