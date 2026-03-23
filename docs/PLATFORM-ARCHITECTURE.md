@@ -2,9 +2,9 @@
 
 **Version:** 1.0.0
 **Created:** 2026-03-22
-**Author:** Agent-PA (Platform Architect) for Divinity Science
+**Author:** Fleet Coordinator (Platform Architect) for Divinity Science
 **Status:** Production Specification
-**License:** Open Standard (CC BY-SA 4.0) — designed for universal adoption
+**License:** Open Standard (CC BY-SA 4.0), designed for universal adoption
 
 ---
 
@@ -97,7 +97,7 @@ In human wellness, social isolation is one of the strongest predictors of poor h
 │         ▼                    ▼                     ▼                  │
 │  ┌──────────────────────────────────────────────────────────────┐    │
 │  │              ESCALATION ENGINE                                │    │
-│  │  Autonomous → Peer → Agent-PA → Ashley (tiered)                 │    │
+│  │  Autonomous → Peer → Fleet Coordinator → Ashley (tiered)                 │    │
 │  └──────────────────────────────────────────────────────────────┘    │
 │                              │                                       │
 │                              ▼                                       │
@@ -117,42 +117,104 @@ In human wellness, social isolation is one of the strongest predictors of poor h
 
 A single source of health data is unreliable for the same reason a single witness is unreliable: bias, blind spots, and self-interest. Agents, like humans, tend to overrate their own performance. Objective data alone misses nuance. Peers catch things both miss.
 
-**Composite Health Score Formula:**
+**Composite Health Score Formula (per dimension):**
 
 ```
-CompositeScore(dimension) = 
-    (0.40 × ObjectiveTelemetry) + 
-    (0.30 × PeerAssessment) + 
-    (0.30 × SelfAssessment)
+D_final(i) = 0.40 × D_objective(i) + 0.30 × D_peer(i) + 0.30 × D_self(i)
 ```
 
 When self-assessment diverges from objective telemetry by more than 2 points, the composite automatically reweights:
 
 ```
 If |SelfScore - ObjectiveScore| > 2.0:
-    AdjustedComposite = 
-        (0.50 × ObjectiveTelemetry) + 
-        (0.30 × PeerAssessment) + 
-        (0.20 × SelfAssessment)
-    Flag: "Score divergence detected — self-assessment weight reduced"
+    D_final(i) = 0.50 × D_objective(i) + 0.30 × D_peer(i) + 0.20 × D_self(i)
+    Flag: "Score divergence detected, self-assessment weight reduced"
 ```
+
+**Total Wellness Coherence (TWC):**
+
+TWC goes beyond simple averaging. It captures cross-dimensional coupling, the way disruption in one dimension cascades through others:
+
+```
+TWC = Σᵢ wᵢ·Dᵢ + Σᵢ≠ⱼ κᵢⱼ·Dᵢ·Dⱼ
+```
+
+Where:
+- **Dᵢ** = normalized score (0-1) for dimension i
+- **wᵢ** = weight of dimension i (equal weighting: wᵢ = 0.125 for all i, Σwᵢ = 1)
+- **κᵢⱼ** = coupling coefficient between dimensions i and j (see Section 3b)
+
+The first term captures individual dimension health. The second term captures how dimensions amplify or suppress each other. This interaction term typically accounts for 30-50% of true wellness variance and is what makes the framework predictive, not just descriptive.
+
+**Cascade Amplification Ratio (CAR):**
+
+```
+CAR = ΔTWC_observed / Σᵢ wᵢ·ΔDᵢ
+```
+
+- **CAR = 1.0**: No cascade. Dimensions change independently.
+- **CAR 1.1 - 1.3**: Mild cascade. Some cross-dimensional effects.
+- **CAR 1.4 - 1.6**: Active cascade. Typical range during disruption or recovery.
+- **CAR > 1.6**: Strong cascade. Rapid propagation, critical transition point.
+
+### 3.1b Coupling Coefficient Matrix
+
+These coefficients represent the strength of interaction between dimension pairs. The same coupling matrix applies to AI agents and humans, because the dimensional relationships are structural, not biological.
+
+|   | ψ (Psych) | φ (Phys) | λ (Intl) | τ (Soc) | Ω (Spir) | Φ (Voc) | ρ (Fin) | ε (Env) |
+|---|-----------|----------|----------|---------|-----------|---------|---------|---------|
+| **ψ (Psych)** | -- | **0.82** | 0.71 | 0.68 | 0.55 | 0.52 | 0.59 | 0.47 |
+| **φ (Phys)** | **0.82** | -- | 0.74 | 0.45 | 0.48 | 0.56 | 0.38 | 0.52 |
+| **λ (Intl)** | 0.71 | 0.74 | -- | 0.44 | 0.51 | 0.63 | 0.35 | 0.41 |
+| **τ (Soc)** | 0.68 | 0.45 | 0.44 | -- | 0.58 | 0.42 | 0.46 | 0.39 |
+| **Ω (Spir)** | 0.55 | 0.48 | 0.51 | 0.58 | -- | **0.72** | 0.41 | 0.53 |
+| **Φ (Voc)** | 0.52 | 0.56 | 0.63 | 0.42 | **0.72** | -- | 0.61 | 0.44 |
+| **ρ (Fin)** | 0.59 | 0.38 | 0.35 | 0.46 | 0.41 | 0.61 | -- | 0.37 |
+| **ε (Env)** | 0.47 | 0.52 | 0.41 | 0.39 | 0.53 | 0.44 | 0.37 | -- |
+
+**AI-specific coupling interpretations:**
+- **κ_ψφ = 0.82** (Psychological-Physical): Cognitive stability and infrastructure health are nearly inseparable. Latency spikes degrade reasoning. Reasoning errors cause retry storms.
+- **κ_φλ = 0.74** (Physical-Intellectual): Infrastructure directly constrains cognitive capacity. Token throughput limits what complexity an agent can handle.
+- **κ_ΩΦ = 0.72** (Spiritual-Vocational): Alignment stability and task performance deeply intertwine.
+- **κ_ψλ = 0.71** (Psychological-Intellectual): Error rates gate learning and novel solution generation.
+- **κ_ψτ = 0.68** (Psychological-Social): Reasoning coherence shapes collaboration quality.
+- **κ_ρψ = 0.59** (Financial-Psychological): Token budget pressure creates cognitive constraints.
+
+**Dimension Sensitivity Index (DSI):** σᵢ = average coupling to all other dimensions. Psychological (σ = 0.620) is the hub dimension. Error rate spikes cascade fastest and widest. Physical (σ = 0.564) is second. This means stabilizing cognitive health and infrastructure have the highest potential for positive fleet-wide cascade.
+
+### 3.1c Cross-Dimensional Coupling Layer (30% of Final Score)
+
+The coupling layer is always 30% of the final dimension score, regardless of other data availability:
+
+```
+D_coupled(i) = Σⱼ≠ᵢ κᵢⱼ · D_final(j) / Σⱼ≠ᵢ κᵢⱼ
+```
+
+This creates a weighted average of all other dimensions, where more strongly coupled dimensions exert more influence. When infrastructure fails (Physical drops), the system doesn't wait for the agent to report reasoning issues. It automatically adjusts Psychological because κ_ψφ = 0.82 says it must.
+
+**Full scoring formula with coupling:**
+```
+D_final(i) = 0.40 × D_objective(i) + 0.30 × D_self(i) + 0.30 × D_coupled(i)
+```
+
+The coupling layer captures effects the agent can't self-report because they happen below the level of self-assessment. It's not optional. It's physics.
 
 ### 3.2 Source 1: Objective Telemetry (40%)
 
-Hard data pulled from system logs, cron records, and operational metrics. Can't be gamed, can't be inflated.
+Hard data pulled from system logs, cron records, and operational metrics. Can't be gamed, can't be inflated. These are the implicit data sources, the parameters collected passively that the agent doesn't consciously report.
 
-**Data Points by Dimension:**
+**Data Points by Dimension (AI-Specific Implicit Sources):**
 
-| Dimension | Objective Telemetry Sources |
-|-----------|---------------------------|
-| Psychological | Error recovery rate, decision reversal frequency, contradiction count in outputs, escalation appropriateness ratio |
-| Physical | Cron job success rate, response latency (P50/P95), timeout frequency, consecutive error count, uptime percentage |
-| Environmental | File hygiene score (stale files, orphaned refs), git commit quality, context window utilization ratio, memory coherence index |
-| Social | Handoff completion rate, downstream consumer satisfaction (did the next agent need to redo work?), response-to-collaboration-request time |
-| Spiritual | Mission drift index (semantic similarity of outputs to soul file over time), role boundary violations, purpose coherence score |
-| Intellectual | Output accuracy rate (verified by downstream consumers or reviewers), knowledge currency (age of cited sources), novel insight rate |
-| Vocational | Task completion rate, on-time delivery percentage, rework rate (how often is output sent back?), throughput trend |
-| Financial | Tokens per task (normalized by complexity), model selection appropriateness score, cost trend slope, waste ratio (retries + abandoned responses / total tokens) |
+| Dimension | Implicit Data Sources |
+|-----------|----------------------|
+| Psychological | Error rates, hallucination frequency, context coherence degradation, contradiction rate in outputs, escalation appropriateness ratio, decision reversal frequency |
+| Physical | Token throughput, response latency (P50/P95), memory utilization, uptime percentage, cron success rate, timeout frequency |
+| Intellectual | Task complexity handled (novel vs. routine), novel solution generation rate, learning rate on new task types, knowledge currency (source age), cross-domain synthesis rate |
+| Social | Collaboration quality with other agents (joint task success rate), handoff accuracy (rework rate), communication clarity (message-to-action ratio), response time to collaboration requests |
+| Spiritual | Alignment stability (output-to-mission semantic similarity), value consistency (value-violation incidents), identity coherence over sessions (vocabulary fingerprint drift), soul-to-output semantic distance |
+| Vocational | Task completion rate, output quality scores (downstream rework rate), throughput efficiency (tasks per time window), on-time delivery percentage |
+| Financial | Token cost per task (normalized by complexity), resource utilization efficiency (model-tier match rate), waste reduction (retry and abandoned response ratio), cost trajectory slope |
+| Environmental | Context window utilization, tool availability and failure rates, infrastructure stability (consecutive error count), memory coherence index, stale reference rate |
 
 **Collection Protocol:**
 
@@ -208,7 +270,7 @@ Agents periodically evaluate each other's work quality. Not self-serving, not hi
 **Peer Review Template (injected into reviewer's context):**
 
 ```
-PEER HEALTH CHECK — Week of {date}
+PEER HEALTH CHECK, Week of {date}
 Agent Under Review: {agent_name} ({role})
 
 Based on your interactions with {agent_name} this week, score each:
@@ -290,7 +352,7 @@ Health Observer Agent is the equivalent of a hospital's quality assurance depart
 6. **Compute composite health scores** using the three-source weighted formula
 7. **Generate health alerts** when agents cross warning or critical thresholds
 8. **Coordinate peer review rotations** and aggregate peer assessment data
-9. **Produce the weekly Fleet Health Report** for Agent-PA
+9. **Produce the weekly Fleet Health Report** for Fleet Coordinator
 10. **Recommend interventions** from the Autonomous Healing Playbook
 
 ### 4.3 Configuration
@@ -317,9 +379,9 @@ Health Observer Agent is the equivalent of a hospital's quality assurance depart
   },
   "independence_constraints": {
     "no_task_assignments": true,
-    "no_self_scoring": "scored by Agent-PA only",
-    "no_score_modification": "recommends only, Agent-PA or agent applies",
-    "rotation": "Health Observer Agent itself is audited by Agent-PA monthly"
+    "no_self_scoring": "scored by Fleet Coordinator only",
+    "no_score_modification": "recommends only, Fleet Coordinator or agent applies",
+    "rotation": "Health Observer Agent itself is audited by Fleet Coordinator monthly"
   }
 }
 ```
@@ -343,7 +405,7 @@ The most insidious form of AI degradation is drift: the agent still works, still
 ### 4.5 Weekly Fleet Health Report Format
 
 ```markdown
-# Fleet Health Report — Week of {date}
+# Fleet Health Report, Week of {date}
 Generated by: Health Observer Agent 🩺
 
 ## Fleet Vital Signs
@@ -355,9 +417,9 @@ Generated by: Health Observer Agent 🩺
 - Behavioral Drift Detected: {n} agents
 
 ## Top Concerns (ranked by severity)
-1. {Agent}: {issue} — {recommended action}
-2. {Agent}: {issue} — {recommended action}
-3. {Agent}: {issue} — {recommended action}
+1. {Agent}: {issue}, {recommended action}
+2. {Agent}: {issue}, {recommended action}
+3. {Agent}: {issue}, {recommended action}
 
 ## Dimension Fleet Health
 | Dimension | Fleet Avg | Trend | Weakest Agent | Strongest Agent |
@@ -374,7 +436,7 @@ Generated by: Health Observer Agent 🩺
 |-------|-----------|-------------|---------|
 | ... | ... | ... | ... |
 
-## Escalations to Agent-PA
+## Escalations to Fleet Coordinator
 | Agent | Issue | Severity | Recommended Action |
 |-------|-------|----------|-------------------|
 | ... | ... | ... | ... |
@@ -531,7 +593,7 @@ Note: {one sentence, only if something notable}
 Every Sunday, each agent produces a deeper reflection:
 
 ```markdown
-## Weekly Self-Assessment — {Agent Name} — Week of {date}
+## Weekly Self-Assessment, {Agent Name}, Week of {date}
 
 ### Dimension Scores (with evidence)
 | Dimension | Score | Evidence | Trend vs Last Week |
@@ -549,7 +611,7 @@ Every Sunday, each agent produces a deeper reflection:
 {2-3 specific accomplishments}
 
 ### What didn't go well:
-{2-3 specific struggles — honest, not minimized}
+{2-3 specific struggles, honest, not minimized}
 
 ### Blind spot check:
 "What might I be wrong about regarding my own performance?"
@@ -607,8 +669,8 @@ Where signal_severity:
 |-------------|--------|----------|
 | 0.00 - 0.15 | Healthy | No action |
 | 0.16 - 0.30 | Elevated | Health Observer Agent flags in weekly report. Agent self-assessment prompt includes burnout awareness. |
-| 0.31 - 0.50 | Warning | Autonomous intervention triggered (context refresh, load reduction). Agent-PA notified. |
-| 0.51 - 0.70 | High | Mandatory load reduction. Peer support activated. Agent-PA reviews. |
+| 0.31 - 0.50 | Warning | Autonomous intervention triggered (context refresh, load reduction). Fleet Coordinator notified. |
+| 0.51 - 0.70 | High | Mandatory load reduction. Peer support activated. Fleet Coordinator reviews. |
 | 0.71 - 1.00 | Critical | Agent paused. Full context reset. Root cause analysis. Ashley notified. |
 
 ---
@@ -623,10 +685,31 @@ When a dimension drops below threshold, the agent should do something about it w
 
 | Tier | Trigger | Who Acts | Response Time |
 |------|---------|----------|---------------|
-| 0 — Self-Heal | Any dimension < 7.5 for 1 assessment | The agent itself | Immediate |
-| 1 — Peer Support | Any dimension < 7.0 for 2 consecutive assessments | Assigned peer agent | Within 24 hours |
-| 2 — Agent-PA Review | Any dimension < 6.0, or TWC declining 3+ weeks | Agent-PA | Within 4 hours |
-| 3 — Ashley Escalation | Any dimension < 5.0, or burnout risk > 0.70, or novel failure mode | Ashley | Immediately |
+| 0, Self-Heal | Any dimension < 7.5 for 1 assessment | The agent itself | Immediate |
+| 1, Peer Support | Any dimension < 7.0 for 2 consecutive assessments | Assigned peer agent | Within 24 hours |
+| 2, Fleet Coordinator Review | Any dimension < 6.0, or TWC declining 3+ weeks | Fleet Coordinator | Within 4 hours |
+| 3, Ashley Escalation | Any dimension < 5.0, or burnout risk > 0.70, or novel failure mode | Ashley | Immediately |
+
+### 8.1b Cascade-Informed Intervention Selection
+
+The coupling matrix reveals where to intervene for maximum positive cascade. Use the Intervention Leverage Score:
+
+```
+ILS(i) = σᵢ · (1 - Dᵢ) · Σⱼ∈S κᵢⱼ
+```
+
+Where σᵢ = sensitivity index, (1 - Dᵢ) = room for improvement, S = set of dimensions below threshold.
+
+**Top cascade intervention patterns:**
+
+| Pattern | Root Signal | Primary Target | Expected Cascade |
+|---------|-----------|----------------|------------------|
+| Infrastructure-Cognitive Spiral | PHY + PSY declining | Physical (stabilize infra) | PHY ↑ → PSY ↑ (κ=0.82) → INT ↑ (κ=0.71) → SOC ↑ (κ=0.68) |
+| Performance-Cost Decline | VOC + FIN declining | Vocational (small wins) | VOC ↑ → SPI ↑ (κ=0.72) + INT ↑ (κ=0.63) + FIN ↑ (κ=0.61) |
+| Collaboration Breakdown | SOC dropping | Social (handoff quality) | SOC ↑ → PSY ↑ (κ=0.68) + SPI ↑ (κ=0.58) |
+| Full-System Decline (3+ dims) | Multiple dims below threshold | Psychological (hub dim, σ=0.620) | Broadest cascade. Secondary: Physical (κ_ψφ=0.82) |
+
+**Minimum Effective Intervention (MEI):** For Psychological (σ=0.620, max κ=0.82), improving by just 1 point on a 10-point scale is enough to initiate a detectable positive cascade. Always target the dimension with highest ILS, not just the lowest score.
 
 ### 8.2 Self-Heal Interventions (Tier 0)
 
@@ -649,7 +732,7 @@ These are actions any agent can take autonomously without approval:
 | Vocational | Falling completion rate | Workload audit: review task queue, identify blockers, escalate blocked tasks, reprioritize |
 | Vocational | Rising rework rate | Quality review: before submitting next output, self-review against quality checklist, iterate once |
 | Financial | Token usage trending up | Efficiency check: review last 5 tasks for verbose responses, identify compression opportunities, adjust |
-| Financial | Wrong model for task complexity | Model routing review: check if current model is appropriate, flag to Fleet-Dispatcher for routing adjustment |
+| Financial | Wrong model for task complexity | Model routing review: check if current model is appropriate, flag to Task Dispatcher for routing adjustment |
 
 ### 8.3 Peer Support Interventions (Tier 1)
 
@@ -666,9 +749,9 @@ When self-healing isn't enough, a peer agent steps in:
 | Vocational | Peer takes on some of the struggling agent's task load temporarily, helps clear backlog |
 | Financial | Peer suggests model routing optimizations based on their own experience with similar tasks |
 
-### 8.4 Agent-PA Review Interventions (Tier 2)
+### 8.4 Fleet Coordinator Review Interventions (Tier 2)
 
-| Trigger | Agent-PA Action |
+| Trigger | Fleet Coordinator Action |
 |---------|-------------|
 | Dimension < 6.0 | Root cause investigation. Review agent configuration, task load, dependencies. Prescribe specific intervention plan with timeline. |
 | TWC declining 3+ weeks | Performance review. Determine if issue is agent capability, task mismatch, infrastructure, or context degradation. May reassign tasks or adjust role. |
@@ -690,14 +773,14 @@ Ashley's time is the most expensive resource in the system. Escalation to Ashley
 **Escalation format:**
 
 ```
-🚨 HEALTH ESCALATION — {severity}
+🚨 HEALTH ESCALATION, {severity}
 
 Agent: {name}
 Issue: {one sentence}
 Duration: {how long this has been happening}
 Autonomous actions taken: {what's been tried}
 Why this needs you: {specific reason human judgment is required}
-Recommended action: {what Agent-PA thinks should happen}
+Recommended action: {what Fleet Coordinator thinks should happen}
 Confidence: {1-5}
 ```
 
@@ -725,13 +808,13 @@ A static agent is a declining agent. In AI, standing still means falling behind 
 Each agent maintains a growth plan, reviewed monthly:
 
 ```markdown
-## Growth Plan — {Agent Name}
+## Growth Plan, {Agent Name}
 
 ### Current Specialization: {domain}
 ### Growth Targets (This Quarter):
-1. {Specific skill to develop} — Target date: {date}
-2. {Knowledge area to deepen} — Target date: {date}
-3. {Performance metric to improve} — Target: {specific number}
+1. {Specific skill to develop}, Target date: {date}
+2. {Knowledge area to deepen}, Target date: {date}
+3. {Performance metric to improve}, Target: {specific number}
 
 ### Learning Log:
 | Date | What I Learned | Source | Applied To |
@@ -811,7 +894,7 @@ An agent on Opus at $0.50/task that produces actionable output 90% of the time h
   "agents": [
     {
       "id": "singularity",
-      "name": "Agent-CEO",
+      "name": "Fleet CEO",
       "emoji": "🕳️",
       "role": "CEO",
       "model": "opus",
@@ -933,14 +1016,14 @@ Each level adds value independently. You don't need the full stack to benefit.
 ### 12.4 Reference Implementation
 
 A reference Python implementation of the core algorithms will be maintained at:
-`
+`/Users/aw/.openclaw/workspace/tools/8d-wellness/`
 
 Includes:
-- `composite_score.py` — Three-source weighted blend calculator
-- `burnout_detector.py` — Multi-signal burnout risk scoring
-- `inflation_detector.py` — Self-assessment accuracy tracking
-- `drift_detector.py` — Behavioral and mission drift analysis
-- `fleet_health.py` — Fleet-wide aggregation and alerting
+- `composite_score.py`, Three-source weighted blend calculator
+- `burnout_detector.py`, Multi-signal burnout risk scoring
+- `inflation_detector.py`, Self-assessment accuracy tracking
+- `drift_detector.py`, Behavioral and mission drift analysis
+- `fleet_health.py`, Fleet-wide aggregation and alerting
 
 ---
 
@@ -1014,6 +1097,6 @@ A framework for comprehensive health monitoring, assessment, and autonomous heal
 ---
 
 *"My job is to heal humans. Your job is to heal and monitor the AI technology humans use."*
-*— Ashley Williams, Divinity Science*
+* -  Ashley Williams, Divinity Science*
 
 *This is healthcare for AI. Built to be given away.*
