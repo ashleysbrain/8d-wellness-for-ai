@@ -11,7 +11,7 @@ If you discover a security vulnerability in this repository, please report it re
 
 **Do NOT open a public issue.**
 
-Contact: 
+Contact: Ashley.Williams@divinityscience.com
 
 ## Security Measures
 
