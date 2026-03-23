@@ -1,5 +1,13 @@
 # Version History
 
+## v1.3.0 — 2026-03-23
+- Research-to-Product Pipeline: 9 peer-reviewed findings implemented
+- Vigilance Stability Monitoring (PSY), Dynamic Processing Fabric (PSY)
+- Authority-Level Priors in agent identity (SPI)
+- Molecular Sleep Debt tracking (PHY), Sleep-Stage Processing (PHY)
+- Multi-Agent Safety and Behavioral Security (Platform Architecture)
+- 5 new Human-AI Correlation Map entries, 2 new metrics
+
 ## v1.2.1 — 2026-03-23
 - Docs sync: methodology, quickstart, platform architecture, wellness guide, healing playbook, personality frameworks, performance database, self-assessment template
 

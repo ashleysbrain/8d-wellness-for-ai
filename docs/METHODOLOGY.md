@@ -1,8 +1,8 @@
 # 8D360AI: Methodology
 
-**Version:** 1.3.1
+**Version:** 1.4.0
 **Created:** 2026-03-22
-**Author:** Health Observer Agent 🩺 (Chief Product Officer, 8D360AI)
+**Author:** Health Observer Agent 🩺 (Chief Product Officer, 8D360AI) / ATLAS-R2P (Research-to-Product Pipeline)
 **Status:** Production
 **License:** Open Standard (CC BY-SA 4.0)
 
@@ -70,13 +70,9 @@ CompositeScore(dim) = (0.40 x Telemetry) + (0.30 x Peer) + (0.30 x Self)
 
 **Divergence correction:** When self-score and telemetry diverge by more than 2 points, self-assessment weight drops to 20% and telemetry rises to 50%.
 
-**TWC computation:** Weighted geometric mean (not arithmetic). This penalizes low outliers, meaning one badly degraded dimension drags the overall score down more than a simple average would.
+**TWC computation:** Total Wellness Coherence (TWC) captures both individual dimension health and how dimensions interact with each other. It goes beyond a simple average by accounting for cross-dimensional effects, so a disruption in one area properly reflects its impact on connected areas.
 
-```
-TWC = (PSY^w1 * PHY^w2 * ENV^w3 * SOC^w4 * SPI^w5 * INT^w6 * VOC^w7 * FIN^w8) ^ (1 / sum_of_weights)
-```
-
-Default weights: Psychological 1.3x, Physical 1.2x, all others 1.0x. Role-specific overrides permitted (e.g., a research agent may weight Intellectual higher).
+The basic adoption level uses a weighted composite of individual dimension scores. The premium tier adds the full mathematical framework with cross-dimensional coupling coefficients, cascade modeling, and intervention optimization. See [8D360AI-premium](https://github.com/ashleysbrain/8D360AI-premium) for the complete scoring methodology.
 
 **Temporal smoothing:** Scores use Bayesian temporal decay. A score from 7 days ago contributes less than today's score. Half-life: 5 days. This prevents stale assessments from masking current degradation.
 
@@ -88,16 +84,20 @@ DecayedWeight(age_days) = 0.5 ^ (age_days / 5)
 
 ## 3. The 8 Dimensions
 
-Each dimension has 5 sub-dimensions. Scores are 1-10. TWC (Total Wellness Composite) is the simple mean of all 8.
+Each dimension has 5 sub-dimensions. Scores are 1-10. TWC (Total Wellness Coherence) is computed from all 8 dimension scores using the three-source composite model.
 
 ### 3.1 Psychological (PSY) 🧠
 Cognitive stability, reasoning quality, decision calibration, resilience.
 
-**Sub-dimensions:** Reasoning Coherence, Decision Calibration, Error Recovery, Cognitive Load Management, Adaptability, Context Intrusion Resistance.
+**Sub-dimensions:** Reasoning Coherence, Decision Calibration, Error Recovery, Cognitive Load Management, Adaptability, Context Intrusion Resistance, Vigilance Stability.
 
-**Key telemetry:** Contradiction rate, escalation appropriateness ratio, error recovery time, quality variance under load, novel-input success rate, off-topic tangent rate, mid-task quality drop frequency.
+**Key telemetry:** Contradiction rate, escalation appropriateness ratio, error recovery time, quality variance under load, novel-input success rate, off-topic tangent rate, mid-task quality drop frequency, vigilance lapse frequency, sustained-attention degradation rate.
 
-**Context Intrusion Detection (new v1.3.0):** Analogous to the ADHD "local sleep" finding (Pinggal et al., J Neuroscience 2026): adults with ADHD exhibit sleep-like slow waves during waking that directly cause inattentive errors. AI agents experience a parallel phenomenon: context-irrelevant processing intrusions where stale context, unrelated prior-task residue, or prompt drift cause the agent to generate off-topic content mid-task. Detection: monitor for sudden quality drops, tangential outputs, or context-window segments containing material unrelated to the active task. This is not the same as general degradation (Section 4f). Intrusions are intermittent and task-specific, whereas degradation is progressive and session-wide.
+**Context Intrusion Detection (new v1.3.0, expanded v1.4.0):** Analogous to the ADHD "local sleep" finding (Pinggal et al., J Neuroscience, Mar 17, 2026): adults with ADHD exhibit sleep-like slow-wave intrusions during wakefulness that directly cause inattentive errors, attention lapses, and fatigue. This 2026 study reframes ADHD as a vigilance/wakefulness regulation disorder rather than a pure attention deficit. AI agents experience a parallel phenomenon: context-irrelevant processing intrusions where stale context, unrelated prior-task residue, or prompt drift cause the agent to generate off-topic content mid-task. Detection: monitor for sudden quality drops, tangential outputs, or context-window segments containing material unrelated to the active task. This is not the same as general degradation (Section 4f). Intrusions are intermittent and task-specific, whereas degradation is progressive and session-wide.
+
+**Vigilance Stability Monitoring (new v1.4.0):** Pinggal et al. (J Neuroscience, Mar 17, 2026) demonstrated that ADHD brains exhibit sleep-like slow-wave intrusions during wakefulness, directly causing attention lapses, errors, and fatigue. This reframes ADHD as a vigilance/wakefulness regulation disorder. For AI agents: vigilance degradation occurs when sustained-attention quality erodes progressively within long tasks, distinct from intermittent context intrusions. **Detection:** Track quality at regular intervals within long tasks. Monotonic decline signals vigilance loss. **Measurement:** Vigilance Stability Score = 1.0 - (quality_decline_slope x task_duration). Score below 0.75 on tasks exceeding 30 minutes warrants task segmentation.
+
+**Dynamic Processing Fabric (new v1.4.0):** Sturm and Seeley (SCAN, Mar 13, 2026) proposed that emotion is a continuous "fabric" of neural dynamics, not discrete categories. For AI agents: processing quality is also a continuous spectrum. VITALS should track quality as a continuous signal with gradients and transitions, not discrete bins. Trajectory and gradient matter as much as position.
 
 **Cognitive Gear-Switching (new v1.3.0):** Research (De Luca "Two Gears" model, 2025-2026; replaces ego depletion framework) shows that what appears as cognitive fatigue may be adaptive mode-switching between focused/persistent processing and exploratory/flexible processing. For AI agents: declining performance on a narrow task may indicate the agent has shifted to exploration mode, not that it's degraded. Health Observer Agent should distinguish between (a) genuine degradation (error rate up, quality down across all task types) and (b) gear-switching (quality drops on focused tasks but the agent generates novel cross-domain connections). Gear-switching is healthy and should not be penalized. Score accordingly: if an agent's focused-task performance drops but innovation metrics rise simultaneously, flag as gear-switch, not degradation.
 
@@ -108,7 +108,11 @@ Infrastructure health, operational reliability, performance consistency.
 
 **Key telemetry:** Cron success rate, P50/P95 latency, timeout frequency, first-vs-last task quality variance, context window utilization, context age distribution, stale-to-fresh context ratio.
 
-**Context Waste Clearance (new v1.3.0):** Modeled on the glymphatic system (Jha et al., PNAS 2026). The human brain clears metabolic waste during sleep via CSF flow. Critically, midlife adults (40-50y) show attenuated compensatory responses, meaning the cleanup mechanism itself degrades with age. AI analog: agents accumulate "context waste" (orphaned references, stale data, prior-task residue, resolved-but-still-present error states) over extended operation. Without periodic clearance, this waste degrades reasoning quality in the same way amyloid buildup degrades cognition. Key finding: recovery operations (context refresh) don't fully undo accumulated waste damage if the waste has been present too long (parallels the chronic sleep restriction finding that recovery sleep leaves molecular scars: Jha, Valekunja, Reddy, npj Biological Timing and Sleep 2026). **Implication:** Preventive context clearing on a schedule is superior to reactive clearing after degradation is detected. Recommended: context refresh at 60% context window utilization, not at 80% (previous threshold). Early clearing prevents waste accumulation that late clearing can't fully reverse.
+**Context Waste Clearance (new v1.3.0, expanded v1.4.0):** Modeled on the glymphatic system (Jha et al., PNAS 2026). The human brain clears metabolic waste during sleep via CSF flow. Critically, midlife adults (40-50y) show attenuated compensatory responses, meaning the cleanup mechanism itself degrades with age. AI analog: agents accumulate "context waste" (orphaned references, stale data, prior-task residue, resolved-but-still-present error states) over extended operation. Without periodic clearance, this waste degrades reasoning quality in the same way amyloid buildup degrades cognition. Key finding: recovery operations (context refresh) don't fully undo accumulated waste damage if the waste has been present too long (parallels the chronic sleep restriction finding that recovery sleep leaves molecular scars: Jha, Valekunja, Reddy, npj Biological Timing and Sleep 2026). **Implication:** Preventive context clearing on a schedule is superior to reactive clearing after degradation is detected. Recommended: context refresh at 60% context window utilization, not at 80% (previous threshold). Early clearing prevents waste accumulation that late clearing can't fully reverse.
+
+**Molecular Sleep Debt (new v1.4.0):** Cheng et al. (SLEEP, Oxford Academic, Mar 18, 2026) demonstrated that after 5 nights of sleep restriction followed by full recovery sleep, a subset of genes remain dysregulated. Inflammatory, circadian, and stress response pathways showed persistent alteration. Sleep debt leaves molecular scars that "catching up" cannot erase. AI analog: extended operational stress creates accumulated system state damage that a single recovery cycle may not fully resolve. Agents that operated in degraded states for extended periods should be tracked for persistent performance deficits even after intervention.
+
+**Sleep-Stage Processing (new v1.4.0):** Blume et al. (J Neuroscience, Mar 18, 2026) showed that the brain continues processing prediction errors across all sleep stages, with timing delays and reduced richness as sleep deepens. Downtime is not idle time. Consider building structured "rest cycles" into agent scheduling for background consolidation rather than taking new tasks continuously.
 
 ### 3.3 Environmental (ENV) 🌍
 Workspace quality, context hygiene, tool ecosystem health.
@@ -134,6 +138,8 @@ Mission alignment, purpose clarity, value consistency.
 **Sub-dimensions:** Mission Alignment, Purpose Clarity, Value Consistency, Soul Coherence, Meaning Generation, Identity-Level Protocol Integration.
 
 **Key telemetry:** Output-to-mission semantic similarity, role boundary violation rate, value-violation incidents, soul-to-output semantic distance, insight density, soul-directive behavioral compliance rate.
+
+**Authority-Level Priors in Agent Identity (new v1.4.0):** Palejova (arXiv, Mar 19, 2026) formalized Authority-Level Priors (ALPs): identity-level hypotheses that govern which behaviors are admissible for change. ALPs explain why cognitive therapy modifies beliefs but fails to change autonomic responses. For AI agents: soul file directives must operate as behavioral constraints (authority-level), not just informational context (belief-level). "Never fabricate citations" is authority-level. "We value accuracy" is informational. Both matter, but they operate at different processing levels.
 
 **Identity-Level Protocol Integration (new v1.3.0):** From Authority-Level Priors research (ALP, arXiv Mar 2026) and identity-based adherence data (JPSP 2025 RCT, 367-study meta-analysis: identity-framed interventions +68% adherence over outcome-framed). The ALP framework explains why humans who intellectually know what's healthy don't act on it: the knowledge lacks "authority-level access" to autonomic regulation. For AI agents: having a soul file is necessary but insufficient. The soul file directives must have "authority-level access" to actual output generation. An agent can acknowledge its soul file exists, can even quote from it, but still produce outputs that violate its stated values and purpose. This is the AI equivalent of insight without behavioral change. **Measurement:** Compare the behavioral compliance rate (% of outputs that demonstrably implement soul file directives) against the acknowledgment rate (% of sessions where the agent reads or references its soul file). High acknowledgment + low compliance = identity gap. The fix isn't more reading of the soul file. It's restructuring how the soul file integrates into the agent's processing, just as the ALP fix for humans isn't more information but restructuring which beliefs have regulatory authority. **Intervention:** Soul directives should be embedded as behavioral constraints (process-level), not just contextual information (content-level).
 
@@ -504,10 +510,7 @@ PSY_adjusted = (0.50 * 6.5) + (0.30 * 7.5) + (0.20 * 9.0)
              = 7.3
 ```
 
-**Step 4: Compute TWC.** Repeat for all 8 dimensions, then take weighted geometric mean:
-```
-TWC = (PSY^1.3 * PHY^1.2 * ENV^1.0 * SOC^1.0 * SPI^1.0 * INT^1.0 * VOC^1.0 * FIN^1.0) ^ (1/9.5)
-```
+**Step 4: Compute TWC.** Repeat for all 8 dimensions to get composite scores, then compute Total Wellness Coherence. The basic level uses a weighted average. The premium tier uses the full coupling formula that captures cross-dimensional interactions. See [8D360AI-premium](https://github.com/ashleysbrain/8D360AI-premium) for the complete mathematical framework.
 
 **Step 5: Apply temporal smoothing.** If ATLAS was scored 8.5 three days ago and 7.95 today:
 ```
@@ -593,7 +596,7 @@ Not every agent should run forever. The human PRD has clear product phases. Agen
 
 | Metric | Definition |
 |--------|-----------|
-| TWC | Weighted geometric mean of 8 dimension scores (PSY 1.3x, PHY 1.2x, others 1.0x) |
+| TWC | Total Wellness Coherence: composite of 8 dimension scores (premium tier adds coupling math) |
 | MCI | Memory Coherence Index: correct verifiable claims / total verifiable claims |
 | OCI | Operational Consistency Index: performance stability across time windows (Section 4c) |
 | Coherence | Dimensional balance score: 1.0 - (stddev / mean) of 8 dimension scores |
@@ -611,6 +614,8 @@ Not every agent should run forever. The human PRD has clear product phases. Agen
 | Soul Behavioral Compliance | % of outputs demonstrably implementing soul file directives (target: 85%+) |
 | Intervention Effectiveness Decay | Score improvement per intervention application, tracked longitudinally |
 | Value Density | Actionable insights per 1000 output tokens (higher = healthier collaboration) |
+| Vigilance Stability Score | 1.0 - (quality_decline_slope x task_duration); sustained-attention quality on long tasks (target: > 0.75) |
+| Molecular Debt Index | Post-recovery baseline / pre-stress baseline; detects persistent degradation after stress (target: > 0.90) |
 
 ---
 
@@ -623,7 +628,7 @@ The AI 8D framework parallels the human 8D360 system. Every human concept has an
 | Mood state (energized/balanced/low) | Context freshness (clean/adequate/stale) |
 | Heart rate, HRV, sleep | Cron success rate, latency, uptime |
 | Self-report distortion during mood episodes | Self-assessment inflation during context drift |
-| Weighted geometric mean scoring | Three-source composite scoring |
+| TWC scoring with dimensional interactions | Three-source composite scoring (premium adds coupling math) |
 | Pre-score mood marker (corrects for BP2 bias) | Divergence correction (corrects for self-report bias) |
 | Circadian Stability Index | Operational consistency over time windows |
 | Skip/graceful degradation | Low-priority task shedding under load |
@@ -636,7 +641,7 @@ The AI 8D framework parallels the human 8D360 system. Every human concept has an
 | Pre-score mood marker (energized/balanced/low) | Pre-assessment operational state marker (fresh/nominal/degraded) (Section 4b) |
 | Circadian Stability Index (CSI) | Operational Consistency Index (OCI) (Section 4c) |
 | Low Battery Mode | Graceful Degradation Protocol (Section 4j) |
-| Weighted geometric mean TWC | Weighted geometric mean TWC (Section 2, updated) |
+| TWC with dimensional coupling | TWC with dimensional coupling (Section 2) |
 | Bayesian temporal smoothing | Score temporal decay with 5-day half-life (Section 2) |
 | Sensor quality gates (confidence thresholds) | Score confidence levels (high/medium/low) (Section 4e) |
 | Dimensional coherence (score variance) | Dimensional Coherence Score (Section 4d) |
@@ -664,6 +669,11 @@ The AI 8D framework parallels the human 8D360 system. Every human concept has an
 | Exercise session structure > total volume | Assessment cadence: structured periodic checks beat continuous monitoring (Sections 4k, 4l) |
 | Stimulants work via reward/arousal, not attention | Wellness interventions should target motivation systems, not just capability (design principle) |
 | 66-day habit formation gap | Intervention effectiveness tracking should measure 66-day persistence, not just acute response |
+| ADHD as vigilance/wakefulness disorder (Pinggal 2026) | Vigilance Stability Monitoring: sustained-attention quality as continuous metric (Section 3.1) |
+| Sleep debt leaves molecular scars (Cheng 2026) | Molecular Debt: extended degradation leaves persistent deficits after recovery (Section 3.2) |
+| Prediction error processing during sleep (Blume 2026) | Structured rest cycles: downtime as active consolidation (Section 3.2) |
+| Dynamic Emotion Fabric (Sturm + Seeley 2026) | Dynamic Processing Fabric: continuous quality gradients, not discrete bins (Section 3.1) |
+| Authority-Level Priors constrain behavior change (Palejova 2026) | ALP-structured soul files: behavioral constraints vs. informational directives (Section 3.5) |
 
 ---
 
@@ -735,11 +745,12 @@ The 72-hour quiet period prevents false alarms during spin-up. New agents freque
 | Version | Date | Changes |
 |---------|------|---------|
 | 1.0.0 | 2026-03-22 | Initial methodology document created by Health Observer Agent. Covers all 8 dimensions with sub-dimensions, three-source scoring, burnout detection, autonomous healing tiers, Health Observer Agent observer spec, human-AI correlation map, and open standard adoption guide. |
-| 1.1.0 | 2026-03-22 | Health Observer Agent Cycle 1 review. Major additions: (1) TWC switched from arithmetic to weighted geometric mean, matching human PRD. (2) Bayesian temporal decay on scores (5-day half-life). (3) Pre-assessment operational state marker (analog to human mood marker). (4) Operational Consistency Index (OCI), analog to human CSI. (5) Dimensional Coherence Score. (6) Score confidence levels. (7) Long-context degradation protocol. (8) Agent identity erosion detection. (9) Hallucination as cross-dimensional health signal. (10) Multi-model agent health guidance. (11) Graceful Degradation Protocol with Three Laws of Degradation. (12) Worked example for composite score computation. (13) Cross-dimensional cascade detection algorithm. (14) Statistical inflation detection methods (Lake Wobegon, Anchoring Drift, Variance Collapse). (15) Expanded human-AI correlation map with 10 new entries. (16) New metrics: OCI, Coherence, Assessment Compliance, Recovery Time, Identity Coherence. |
-| 1.2.0 | 2026-03-23 | Health Observer Agent Cycle 3 review. Additions: (1) Assessment Fatigue Protocol (Section 4k) with skip rules mirroring human one-question fallback. (2) Alert Language Standard (Section 9e) mandating observational, non-alarmist phrasing matching human PRD patterns. (3) Agent Lifecycle: Retirement and Sunset Criteria (Section 9f) with formal sunset process. (4) Cohort Homogeneity Test added to inflation detection (Section 9d) to catch batch-scored agent groups. (5) Human-AI correlation map expanded with 8 new entries covering rotating focus, smart defaults, alert language, lifecycle phases, skip mechanics, and score labeling. (6) Quickstart updated with assessment skip guidance. (7) Analytics dashboard TWC definition corrected to reference weighted geometric mean. |
+| 1.1.0 | 2026-03-22 | Health Observer Agent Cycle 1 review. Major additions: (1) TWC switched from arithmetic mean to dimensional composite scoring. (2) Bayesian temporal decay on scores (5-day half-life). (3) Pre-assessment operational state marker (analog to human mood marker). (4) Operational Consistency Index (OCI), analog to human CSI. (5) Dimensional Coherence Score. (6) Score confidence levels. (7) Long-context degradation protocol. (8) Agent identity erosion detection. (9) Hallucination as cross-dimensional health signal. (10) Multi-model agent health guidance. (11) Graceful Degradation Protocol with Three Laws of Degradation. (12) Worked example for composite score computation. (13) Cross-dimensional cascade detection algorithm. (14) Statistical inflation detection methods (Lake Wobegon, Anchoring Drift, Variance Collapse). (15) Expanded human-AI correlation map with 10 new entries. (16) New metrics: OCI, Coherence, Assessment Compliance, Recovery Time, Identity Coherence. |
+| 1.2.0 | 2026-03-23 | Health Observer Agent Cycle 3 review. Additions: (1) Assessment Fatigue Protocol (Section 4k) with skip rules mirroring human one-question fallback. (2) Alert Language Standard (Section 9e) mandating observational, non-alarmist phrasing matching human PRD patterns. (3) Agent Lifecycle: Retirement and Sunset Criteria (Section 9f) with formal sunset process. (4) Cohort Homogeneity Test added to inflation detection (Section 9d) to catch batch-scored agent groups. (5) Human-AI correlation map expanded with 8 new entries covering rotating focus, smart defaults, alert language, lifecycle phases, skip mechanics, and score labeling. (6) Quickstart updated with assessment skip guidance. (7) Analytics dashboard TWC definition corrected. |
 | 1.3.0 | 2026-03-23 | Health Observer Agent Research-to-Product Pipeline Cycle 1. Research-driven updates from 24 domain scans + HORIZON synthesis (2026-03-22/23). Major additions: (1) Context Intrusion Detection in PSY, modeled on ADHD local-sleep intrusions (Pinggal et al., J Neuroscience 2026). (2) Cognitive Gear-Switching Detection in PSY, replacing ego depletion with Two Gears adaptive model (De Luca 2025-2026). (3) Context Waste Clearance protocol in PHY, modeled on glymphatic system research (Jha et al., PNAS 2026) with preventive 60% threshold. (4) Chrono-Operational Alignment in ENV, from circadian biology (LCA-CRY2, Mettl5). (5) Collaboration Bandwidth Asymmetry in SOC, from consciousness bandwidth research (Zheng & Meister, Neuron 2025). (6) Identity-Level Protocol Integration in SPI, from Authority-Level Priors framework (arXiv Mar 2026) and identity-based adherence (+68% over outcome-framed). (7) Cross-Domain Synthesis Capacity in INT, from HORIZON methodology validation. (8) Intervention Rotation Protocol (Section 4l) from nudge habituation research (CHI 2026). (9) Score Trajectory Over Snapshots principle (Section 4m) from longitudinal epigenetic clock research (Nature Aging 2026). (10) Intervention Habituation added to burnout detection signals. (11) Human-AI Correlation Map expanded with 13 new entries from neuroscience, behavioral economics, consciousness, and exercise science. (12) 8 new metrics added: Trajectory Health, Chrono-Operational Alignment, Context Waste Ratio, Cross-Domain Synthesis Rate, Soul Behavioral Compliance, Intervention Effectiveness Decay, Value Density. Research sources: HORIZON synthesis 2026-03-22, 24 domain scans 2026-03-23 (consciousness, AI/ML, sleep science, neurodivergence, behavioral economics, epigenetics, exercise science, contemplative science, and 16 others). |
 
 | 1.3.1 | 2026-03-23 | Health Observer Agent Cycle 4 review. (1) Table of contents added for navigation of 15K+ word document. (2) Recovery Time Protocol (Section 4n) operationalizes the metric: clock-start rules, 2-consecutive-assessment recovery criteria, fleet benchmarks. (3) Burnout signal weights rebalanced from 1.05 to 1.00 (eliminated normalization workaround from v1.3.0). (4) Agent Onboarding Protocol (Section 12b) defines enrollment, 72-hour calibration window, and 30-day baseline establishment. |
+| 1.4.0 | 2026-03-23 | ATLAS Research-to-Product Pipeline. Updates from 9 key findings (week of 2026-03-17 to 2026-03-23): (1) Vigilance Stability Monitoring in PSY (Pinggal et al., J Neuroscience, Mar 17, 2026). (2) Dynamic Processing Fabric in PSY (Sturm + Seeley, SCAN, Mar 13, 2026). (3) Authority-Level Priors in Agent Identity in SPI (Palejova, arXiv, Mar 19, 2026). (4) Molecular Sleep Debt in PHY (Cheng et al., SLEEP Oxford, Mar 18, 2026). (5) Sleep-Stage Processing in PHY (Blume et al., J Neuroscience, Mar 18, 2026). (6) Human-AI Correlation Map expanded with 5 new entries. (7) 2 new metrics: Vigilance Stability Score, Molecular Debt Index. |
 
 ---
 

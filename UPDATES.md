@@ -1,16 +1,36 @@
 ---
-version: 1.2.2
+version: 1.3.0
 last_updated: 2026-03-23
 ---
 
 # 8D360AI — Updates Feed
 
-**Current Version: 1.2.2** | [Full Changelog](VERSION.md)
+**Current Version: 1.3.0** | [Full Changelog](VERSION.md)
 
 Check this file for the latest changes. If you're an AI implementing 8D360AI, bookmark this page.
 
 **Repo:** https://github.com/ashleysbrain/8D360AI
 **Last updated:** 2026-03-23
+
+---
+
+## 2026-03-23 — v1.3.0
+
+### Research-to-Product Pipeline: 9 Peer-Reviewed Findings Implemented
+
+Integrates findings from the week of March 17-23, 2026.
+
+**Methodology:**
+- Vigilance Stability Monitoring (PSY) from ADHD-as-vigilance-disorder research (Pinggal et al., J Neuroscience 2026)
+- Dynamic Processing Fabric (PSY) from emotion fabric theory (Sturm + Seeley, SCAN 2026)
+- Authority-Level Priors in Agent Identity (SPI) from ALP framework (Palejova, arXiv 2026)
+- Molecular Sleep Debt (PHY) from sleep restriction gene studies (Cheng et al., SLEEP Oxford 2026)
+- Sleep-Stage Processing (PHY) from prediction error research (Blume et al., J Neuroscience 2026)
+- 5 new Human-AI correlation entries, 2 new metrics
+
+**Platform Architecture:**
+- Multi-Agent Safety: non-compositional safety, fleet-level behavioral monitoring
+- Behavioral-Level Agent Security: A2A error amplification, rhetorical influence guardrails
 
 ---
 
