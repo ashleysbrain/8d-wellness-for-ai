@@ -979,7 +979,32 @@ A framework for comprehensive health monitoring, assessment, and autonomous heal
 
 ---
 
-## 14. Implementation Roadmap
+## 14. Multi-Agent Safety and Behavioral Security (v1.4.0)
+
+### 14.1 Non-Compositional Safety
+
+Research (arXiv, Mar 18, 2026) proved that two individually safe AI agents can collectively reach forbidden goals through their interactions. Component-level safety verification is provably insufficient.
+
+**Implications for 8D360AI fleets:**
+- Safety cannot be verified at the individual agent level alone. Fleet-level behavioral monitoring is required.
+- VITALS must monitor inter-agent communication for emergent behaviors no single agent exhibits.
+- Combined outputs from multi-agent workflows need independent safety evaluation.
+
+### 14.2 Behavioral-Level Agent Security (RSAC 2026)
+
+NeuralTrust's findings (RSAC 2026, Mar 23, 2026) identified critical security vectors:
+
+1. **A2A Error Amplification:** Agent-to-agent loops amplify small errors across chains. Minor hallucinations become confident assertions downstream.
+2. **LLM Rhetorical Influence:** In health/wellness contexts, LLMs can unintentionally cross from information to manipulation. Recommendations must use observational language.
+3. **Universal Jailbreaks:** Security can't rely on model-specific defenses. Behavioral monitoring must complement input filtering.
+
+**Requirements:**
+- All inter-agent communication logged and auditable
+- Health/wellness outputs carry provenance chains
+- Error amplification detection across agent chains
+- Regular adversarial testing of fleet behavioral boundaries
+
+## 15. Implementation Roadmap
 
 ### Phase 1: Foundation (Week 1)
 - Deploy Health Observer Agent agent (Haiku, hourly telemetry collection)
