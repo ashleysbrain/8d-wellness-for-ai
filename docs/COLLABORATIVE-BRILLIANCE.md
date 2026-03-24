@@ -400,7 +400,7 @@ The framework monitors its own assumptions and flags when they need updating:
 | ID | Assumption | Evidence Basis | Last Validated | Review Trigger |
 |----|-----------|---------------|---------------|----------------|
 | A1 | CB > 1.0 means collaboration helped | Information theory, team science | 2026-03-22 | If >30% of CB scores cluster near 1.0, the formula may not capture the real effect |
-| A2 | 40/30/30 weighting (telemetry/peer/self) is optimal | Organizational psychology literature | 2026-03-22 | If self-scores diverge from telemetry by >2 points fleet-wide, reweight |
+| A2 | Multi-source composite weighting is optimal | Organizational psychology literature | 2026-03-22 | See premium tier for advanced scoring parameters |
 | A3 | Four channels cover all collaboration types | Current team science taxonomy | 2026-03-22 | New research on human-AI teaming may reveal channels we're missing |
 | A4 | Metcalfe's Law applies to agent networks | Network science | 2026-03-22 | If adding agents doesn't increase CB proportionally, the network model needs revision |
 | A5 | Diverse personalities improve collaboration | Cognitive diversity research | 2026-03-22 | If homogeneous teams outperform diverse ones in our data, challenge this |
@@ -501,14 +501,14 @@ Nothing stays in the framework just because it was there first. Evidence rules.
 ### 10.7 Version History and Changelog
 
 ```
-v1.0.0 (2026-03-22) — Initial release
+v1.0.0 (2026-03-22): Initial release
   - Core thesis, CB formula, 4 channels
   - Behavioral physics principles (superposition, entanglement, observer, network)
   - Social dimension integration, team lift metric
   - Collaboration matrix, weekly analytics
   - Implemented in fleet: 7 domain agents, 2 Agent-Synthesis, 1 Agent-CEO, 1 Health Observer Agent
 
-v1.1.0 (2026-03-22) — Evolutionary architecture
+v1.1.0 (2026-03-22): Evolutionary architecture
   - Added: self-modifying protocols, assumption registry
   - Added: research integration pipeline (25+ agents feed framework updates)
   - Added: pluggable scoring modules (CB_v1 is default, swappable)
