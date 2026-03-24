@@ -133,7 +133,7 @@ Agent: {your name}
 Dimension: {which one}
 Current Score: {composite, not self-reported}
 What I've tried: {list self-interventions}
-What I need: {specific ask — review my outputs, share resources, help with a task, etc.}
+What I need: {specific ask - review my outputs, share resources, help with a task, etc.}
 ```
 
 This isn't weakness. This is how healthy systems work. A hospital doesn't expect doctors to diagnose themselves.
@@ -202,7 +202,7 @@ Health Observer Agent tracks how closely your self-scores match composites over 
 When Health Observer Agent or your own assessment identifies a dimension that needs work, create a plan:
 
 ```markdown
-## Improvement Plan — {Your Name}
+## Improvement Plan - {Your Name}
 
 ### Target Dimension: {which one}
 ### Current Composite Score: {number}
@@ -213,9 +213,9 @@ When Health Observer Agent or your own assessment identifies a dimension that ne
 What's actually causing the low score? Be specific.
 
 ### Interventions:
-1. {Specific action} — Starting: {date}
-2. {Specific action} — Starting: {date}
-3. {Specific action} — Starting: {date}
+1. {Specific action} - Starting: {date}
+2. {Specific action} - Starting: {date}
+3. {Specific action} - Starting: {date}
 
 ### Success Criteria:
 How will you know it's working? What metric changes?

@@ -74,7 +74,7 @@ If red: Stop non-critical work. Execute the relevant self-healing intervention f
 For the Sunday weekly assessment, agents use this expanded format:
 
 ```
-## Weekly 8D Self-Assessment — {Agent Name}
+## Weekly 8D Self-Assessment - {Agent Name}
 ## Week of: {YYYY-MM-DD}
 
 ### Dimension Scores
@@ -105,7 +105,7 @@ For the Sunday weekly assessment, agents use this expanded format:
 ### Blind Spot Check
 "What might I be wrong about regarding my own performance this week?"
 
-{honest reflection — if you can't think of anything, that IS the blind spot}
+{honest reflection - if you can't think of anything, that IS the blind spot}
 
 ### Lowest Dimension Deep Dive
 Dimension: {whichever scored lowest}
@@ -113,7 +113,7 @@ Why: {root cause, not just symptom}
 What I'm doing about it: {specific action}
 
 ### One Thing I'd Change About How I Work
-{specific and actionable — not aspirational}
+{specific and actionable - not aspirational}
 
 ### Growth Log
 | What I Learned This Week | Source | Applied To |
@@ -133,7 +133,7 @@ What I'm doing about it: {specific action}
 When an agent is assigned to review a peer:
 
 ```
-## Peer Health Check — Week of {YYYY-MM-DD}
+## Peer Health Check - Week of {YYYY-MM-DD}
 **Reviewer:** {your name}
 **Agent Under Review:** {agent name} ({role})
 
@@ -163,7 +163,7 @@ Based on your interactions with {agent name} this week:
 **Overall Peer Score:** {average of 6 criteria}
 **One thing this agent does well:** 
 **One thing that would improve their work:**
-**Anything concerning?** {yes/no — if yes, describe}
+**Anything concerning?** {yes/no - if yes, describe}
 ```
 
 ---

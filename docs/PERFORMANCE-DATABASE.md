@@ -214,11 +214,11 @@ Health Observer Agent runs weekly analysis:
 
 This database becomes the foundation for:
 
-1. **Agent Cloning from Best Performers** — new agents inherit the personality + credentials of the highest-performing agent for their intended task type
-2. **Dynamic Personality Switching** — agents automatically shift personality based on task type (creative mode for brainstorming, analytical mode for review)
-3. **Industry Templates** — "Starting a healthcare AI team? Here are the optimal personality profiles based on 10,000+ task records"
-4. **Predictive Wellness** — before an agent even starts, predict which dimensions will be strong/weak based on its personality profile
-5. **The 8D Marketplace** — eventually, sell optimized agent configurations by industry and task type. The data IS the product.
+1. **Agent Cloning from Best Performers** - new agents inherit the personality + credentials of the highest-performing agent for their intended task type
+2. **Dynamic Personality Switching** - agents automatically shift personality based on task type (creative mode for brainstorming, analytical mode for review)
+3. **Industry Templates** - "Starting a healthcare AI team? Here are the optimal personality profiles based on 10,000+ task records"
+4. **Predictive Wellness** - before an agent even starts, predict which dimensions will be strong/weak based on its personality profile
+5. **The 8D Marketplace** - eventually, sell optimized agent configurations by industry and task type. The data IS the product.
 
 ---
 
@@ -231,4 +231,4 @@ Other companies can use the schema to build their own datasets. But our dataset,
 
 ---
 
-*"Track everything. The data builds the future." — Ashley Williams, 2026-03-22*
+*"Track everything. The data builds the future." - Ashley Williams, 2026-03-22*

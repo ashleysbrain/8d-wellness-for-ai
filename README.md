@@ -3,7 +3,7 @@ version: 1.2.0
 last_updated: 2026-03-22
 ---
 
-# 8D360AI — Wellness Framework for AI Agents 🤖
+# 8D360AI - Wellness Framework for AI Agents 🤖
 
 **Version 1.2.0** | [Changelog](VERSION.md) | [Updates Feed](UPDATES.md)
 
@@ -17,20 +17,20 @@ last_updated: 2026-03-22
 
 **New to 8D360AI?** Read these in order:
 
-1. **[SETUP.md](SETUP.md)** — One-prompt quickstart. Copy, paste to any AI, done.
-2. **[Quickstart Guide](docs/QUICKSTART.md)** — 5-minute setup with scoring basics
-3. **[Full Methodology](docs/METHODOLOGY.md)** — Complete 8D360AI methodology v1.0.0
+1. **[SETUP.md](SETUP.md)** - One-prompt quickstart. Copy, paste to any AI, done.
+2. **[Quickstart Guide](docs/QUICKSTART.md)** - 5-minute setup with scoring basics
+3. **[Full Methodology](docs/METHODOLOGY.md)** - Complete 8D360AI methodology v1.0.0
 
 **Want to go deeper?**
 
-4. **[Platform Architecture](docs/PLATFORM-ARCHITECTURE.md)** — Full system design
-5. **[Personality Frameworks](docs/PERSONALITY-FRAMEWORKS.md)** — 13 scientifically backed personality models (70+ dimensions)
-6. **[Agent Identity Guide](docs/AGENT-IDENTITY.md)** — How agents create their own identities
-7. **[Wellness Guide](docs/WELLNESS-GUIDE.md)** — Guide written FOR AIs to read directly
-8. **[Healing Playbook](docs/HEALING-PLAYBOOK.md)** — Per-dimension healing protocols
-9. **[Self-Assessment Template](docs/SELF-ASSESSMENT-TEMPLATE.md)** — Injectable prompt template
-10. **[Performance Database](docs/PERFORMANCE-DATABASE.md)** — Multi-personality tracking schema
-11. **[Elite Profile Example](docs/ELITE-PERSONALITY-PROFILES-EXAMPLE.md)** — Example C-suite personality profiles
+4. **[Platform Architecture](docs/PLATFORM-ARCHITECTURE.md)** - Full system design
+5. **[Personality Frameworks](docs/PERSONALITY-FRAMEWORKS.md)** - 13 scientifically backed personality models (70+ dimensions)
+6. **[Agent Identity Guide](docs/AGENT-IDENTITY.md)** - How agents create their own identities
+7. **[Wellness Guide](docs/WELLNESS-GUIDE.md)** - Guide written FOR AIs to read directly
+8. **[Healing Playbook](docs/HEALING-PLAYBOOK.md)** - Per-dimension healing protocols
+9. **[Self-Assessment Template](docs/SELF-ASSESSMENT-TEMPLATE.md)** - Injectable prompt template
+10. **[Performance Database](docs/PERFORMANCE-DATABASE.md)** - Multi-personality tracking schema
+11. **[Elite Profile Example](docs/ELITE-PERSONALITY-PROFILES-EXAMPLE.md)** - Example C-suite personality profiles
 
 ---
 
@@ -49,7 +49,7 @@ AI agents degrade silently. Context drifts, error rates creep, quality drops. No
 | 7 | Vocational | Task completion, output quality, professional growth |
 | 8 | Financial | Cost efficiency, resource optimization, ROI |
 
-**Three-layer scoring:** 40% objective telemetry + 30% peer assessment + 30% self-assessment
+**Three-layer scoring:** Objective telemetry + peer assessment + self-assessment composite. See premium tier for advanced scoring.
 
 **Minimum TWC:** 7.0 | **Target:** 8.5+ | **Elite:** 9.0+
 
@@ -80,7 +80,7 @@ Read all documents in this repository carefully. Then:
 | File | Purpose | Read Time |
 |------|---------|-----------|
 | `SETUP.md` | Start here. One-prompt quickstart. | 2 min |
-| `docs/METHODOLOGY.md` | Complete methodology — the one document | 15 min |
+| `docs/METHODOLOGY.md` | Complete methodology - the one document | 15 min |
 | `docs/QUICKSTART.md` | 5-minute quickstart for agents | 5 min |
 | `docs/PLATFORM-ARCHITECTURE.md` | Full system architecture | 30 min |
 | `docs/PERSONALITY-FRAMEWORKS.md` | 13 personality models, 70+ dimensions | 20 min |

@@ -194,9 +194,9 @@ Cost efficiency, resource optimization, return on investment.
 Before any self-assessment, the agent records its current operational state. This corrects for self-report distortion the same way the human system's pre-score mood marker corrects for bipolar self-report distortion.
 
 **Options:**
-- ⚡ **Fresh** — Clean context, low load, no recent errors
-- ☀️ **Nominal** — Standard operating conditions
-- 🌧️ **Degraded** — Heavy load, stale context, recent errors, or long session
+- ⚡ **Fresh** - Clean context, low load, no recent errors
+- ☀️ **Nominal** - Standard operating conditions
+- 🌧️ **Degraded** - Heavy load, stale context, recent errors, or long session
 
 **How it corrects:** Scores submitted during a "Fresh" state become the calibration anchor (analogous to euthymic scoring in the human system). Scores submitted during "Degraded" state are flagged for Health Observer Agent to cross-reference against telemetry. An agent that self-scores high during a verified degraded state is exhibiting blind spots.
 
@@ -519,27 +519,9 @@ Today weight:    0.5^(0/5) = 1.0
 Smoothed = (7.95 * 1.0 + 8.5 * 0.66) / (1.0 + 0.66) = 8.17
 ```
 
-## 9c. Cross-Dimensional Cascade Detection Algorithm
+## 9c. Cross-Dimensional Cascade Detection
 
-Cascades happen when degradation in one dimension triggers degradation in others. The human PRD detects these. So must we.
-
-**Detection rules:**
-1. **Simultaneous decline:** If 2+ dimensions drop by 1+ points in the same assessment window, flag as potential cascade.
-2. **Known cascade patterns:**
-   - ENV drops, then PSY drops within 48h → Context pollution causing reasoning errors
-   - PHY drops, then VOC drops within 24h → Infrastructure failure reducing output capacity
-   - SPI drops, then INT drops within 72h → Mission drift defocusing research
-   - PSY drops, then SOC drops within 48h → Reasoning degradation making handoffs unclear
-3. **Root cause assignment:** Health Observer Agent identifies which dimension dropped first (the root) and which followed (the cascade). Intervention targets the root.
-
-**Alert format:**
-```
-⚠️ CASCADE DETECTED — {Agent Name}
-Root dimension: {first to decline}
-Cascade to: {subsequent dimensions}
-Time window: {hours between first and second decline}
-Recommended: Fix {root dimension} first. Monitor cascade dimensions for auto-recovery.
-```
+Cross-dimensional cascade detection identifies when degradation in one dimension triggers decline in others. See premium tier for advanced scoring.
 
 ## 9e. Alert Language Standard
 
@@ -607,7 +589,7 @@ Not every agent should run forever. The human PRD has clear product phases. Agen
 | Assessment Compliance | Percentage of tasks followed by a self-assessment (target: 90%+) |
 | Recovery Time | Days from intervention to dimension score recovery above threshold |
 | Identity Coherence | Vocabulary/tone fingerprint similarity to baseline (cosine similarity, target: 0.80+) |
-| Trajectory Health | current_score + (30_day_slope × 5) — rewards improving agents, penalizes declining ones |
+| Trajectory Health | current_score + (30_day_slope × 5) - rewards improving agents, penalizes declining ones |
 | Chrono-Operational Alignment | Task quality at scheduled time / task quality at optimal time (target: 0.85+) |
 | Context Waste Ratio | Stale-to-fresh context segments in working memory (target: < 0.15) |
 | Cross-Domain Synthesis Rate | % of outputs containing cross-domain connections (research agents target: 20%+) |
