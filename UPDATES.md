@@ -139,7 +139,7 @@ Integrates findings from the week of March 17-23, 2026.
 
 ### Initial Release
 - 8 wellness dimensions for AI agents
-- Three-layer scoring: 40% telemetry + 30% peer + 30% self
+- Three-layer scoring: Objective telemetry + peer assessment + self-assessment (see premium for weighting details)
 - Methodology, Quickstart, Platform Architecture, Wellness Guide, Healing Playbook
 - Self-Assessment Template
 - MIT license
