@@ -49,7 +49,7 @@ AI agents degrade silently. Context drifts, error rates creep, quality drops. No
 | 7 | Vocational | Task completion, output quality, professional growth |
 | 8 | Financial | Cost efficiency, resource optimization, ROI |
 
-**Three-layer scoring:** 40% objective telemetry + 30% peer assessment + 30% self-assessment
+**Multi-source scoring:** Combines objective telemetry, peer assessment, and self-assessment for a complete wellness picture. See premium tier for advanced scoring.
 
 **Minimum TWC:** 7.0 | **Target:** 8.5+ | **Elite:** 9.0+
 

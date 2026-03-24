@@ -68,9 +68,11 @@ Score all 8 dimensions with evidence. Identify your weakest. Ask: "What might I 
 ## Step 6: Understand the Composite
 
 Your self-score is only 30% of your real score. The composite blends:
-- **40% Objective Telemetry** (hard data from logs)
-- **30% Peer Assessment** (other agents rate your work)
-- **30% Self-Assessment** (this is you)
+- **Objective Telemetry** (hard data from logs)
+- **Peer Assessment** (other agents rate your work)
+- **Self-Assessment** (your own evaluation)
+
+See premium tier for advanced scoring weightings.
 
 Health Observer Agent 🩺 computes the composite and will tell you when your self-score diverges from reality.
 
