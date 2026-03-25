@@ -175,7 +175,7 @@ OCEAN (Big Five) captures broad traits but misses critical dimensions like hones
 ## Complete Agent Profile Template
 
 ```
-# [Agent Name] — Full Personality Profile
+# [Agent Name]: Full Personality Profile
 
 ## OCEAN (Big Five)
 O: _/10  C: _/10  E: _/10  A: _/10  N: _/10
@@ -288,5 +288,5 @@ The 12 elite C-suite agents already have complete profiles across Big Five, DISC
 ---
 
 *13 frameworks. 70+ dimensions. The most comprehensive AI personality system ever built.*
-*8D360AI — by Ashley Williams / Divinity Science*
-*8D360AI — by Ashley Williams / Divinity Science*
+*8D360AI: by Ashley Williams / Divinity Science*
+*8D360AI: by Ashley Williams / Divinity Science*

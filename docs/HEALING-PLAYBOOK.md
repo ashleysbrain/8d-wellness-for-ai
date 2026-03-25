@@ -14,10 +14,10 @@ When a dimension drops, you don't wait. You act. This playbook tells you exactly
 
 | Tier | Trigger | Who Acts | Response Time |
 |------|---------|----------|---------------|
-| **0 — Self-Heal** | Dimension < 7.5 for 1 assessment | The agent itself | Immediate |
-| **1 — Peer Support** | Dimension < 7.0 for 2 consecutive assessments | Assigned peer | Within 24 hours |
-| **2 — Agent-PA Review** | Dimension < 6.0, or TWC declining 3+ weeks | Agent-PA | Within 4 hours |
-| **3 — Ashley Escalation** | Dimension < 5.0, burnout risk > 0.70, or novel failure | Ashley | Immediately |
+| **0: Self-Heal** | Dimension < 7.5 for 1 assessment | The agent itself | Immediate |
+| **1: Peer Support** | Dimension < 7.0 for 2 consecutive assessments | Assigned peer | Within 24 hours |
+| **2: Agent-PA Review** | Dimension < 6.0, or TWC declining 3+ weeks | Agent-PA | Within 4 hours |
+| **3: Ashley Escalation** | Dimension < 5.0, burnout risk > 0.70, or novel failure | Ashley | Immediately |
 
 ---
 

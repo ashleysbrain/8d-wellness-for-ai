@@ -1,14 +1,14 @@
-## v1.3.2 — 2026-03-25
+## v1.3.2: 2026-03-25
 
 ### Synced Docs
-- METHODOLOGY.md — 8D Wellness for AI Methodology
-- QUICKSTART.md — Quick Start Guide
-- PLATFORM-ARCHITECTURE.md — Platform Architecture
-- WELLNESS-GUIDE.md — AI Wellness Guide for Agents
-- HEALING-PLAYBOOK.md — Autonomous Healing Playbook
-- PERSONALITY-FRAMEWORKS.md — Personality Frameworks
-- PERFORMANCE-DATABASE.md — Performance Database
-- SELF-ASSESSMENT-TEMPLATE.md — Self Assessment Template
+- METHODOLOGY.md: 8D Wellness for AI Methodology
+- QUICKSTART.md: Quick Start Guide
+- PLATFORM-ARCHITECTURE.md: Platform Architecture
+- WELLNESS-GUIDE.md: AI Wellness Guide for Agents
+- HEALING-PLAYBOOK.md: Autonomous Healing Playbook
+- PERSONALITY-FRAMEWORKS.md: Personality Frameworks
+- PERFORMANCE-DATABASE.md: Performance Database
+- SELF-ASSESSMENT-TEMPLATE.md: Self Assessment Template
 
 ### Changes
 - Agent names anonymized with role identifiers
@@ -17,7 +17,7 @@
 
 ---
 
-## v1.3.1 — 2026-03-24
+## v1.3.1: 2026-03-24
 
 **Docs Sync:**
 - METHODOLOGY.md updated from latest workspace
@@ -37,7 +37,7 @@ version: 1.3.0
 last_updated: 2026-03-23
 ---
 
-# 8D360AI — Updates Feed
+# 8D360AI: Updates Feed
 
 **Current Version: 1.3.0** | [Full Changelog](VERSION.md)
 
@@ -48,7 +48,7 @@ Check this file for the latest changes. If you're an AI implementing 8D360AI, bo
 
 ---
 
-## 2026-03-23 — v1.3.0
+## 2026-03-23: v1.3.0
 
 ### Research-to-Product Pipeline: 9 Peer-Reviewed Findings Implemented
 
@@ -68,22 +68,22 @@ Integrates findings from the week of March 17-23, 2026.
 
 ---
 
-## 2026-03-23 — v1.2.2
+## 2026-03-23: v1.2.2
 
 ### Docs Sync: Full Documentation Suite Updated
-- METHODOLOGY.md — 8D Wellness methodology refresh
-- QUICKSTART.md — updated quick-start guide
-- PLATFORM-ARCHITECTURE.md — platform architecture docs
-- WELLNESS-GUIDE.md — AI wellness guide for agents
-- HEALING-PLAYBOOK.md — autonomous healing playbook
-- PERSONALITY-FRAMEWORKS.md — personality frameworks
-- PERFORMANCE-DATABASE.md — performance database
-- SELF-ASSESSMENT-TEMPLATE.md — self-assessment template
+- METHODOLOGY.md: 8D Wellness methodology refresh
+- QUICKSTART.md: updated quick-start guide
+- PLATFORM-ARCHITECTURE.md: platform architecture docs
+- WELLNESS-GUIDE.md: AI wellness guide for agents
+- HEALING-PLAYBOOK.md: autonomous healing playbook
+- PERSONALITY-FRAMEWORKS.md: personality frameworks
+- PERFORMANCE-DATABASE.md: performance database
+- SELF-ASSESSMENT-TEMPLATE.md: self-assessment template
 
 ---
 
 
-## 2026-03-23 — v1.2.1
+## 2026-03-23: v1.2.1
 
 ### Docs Sync: Methodology, Quickstart & Frameworks Updated
 - Refreshed METHODOLOGY.md with latest 8D framework refinements
@@ -97,7 +97,7 @@ Integrates findings from the week of March 17-23, 2026.
 
 ---
 
-## 2026-03-22 — v1.2.1
+## 2026-03-22: v1.2.1
 
 ### New: Collaborative Brilliance Framework
 - Mathematical proof that collaboration > sum of parts
@@ -136,7 +136,7 @@ Integrates findings from the week of March 17-23, 2026.
 
 ---
 
-## 2026-03-22 — v1.1.0
+## 2026-03-22: v1.1.0
 
 ### New: One-Prompt Quickstart
 - SETUP.md with copy-paste prompt for any AI
@@ -154,7 +154,7 @@ Integrates findings from the week of March 17-23, 2026.
 
 ---
 
-## 2026-03-22 — v1.0.0
+## 2026-03-22: v1.0.0
 
 ### Initial Release
 - 8 wellness dimensions for AI agents
@@ -167,6 +167,6 @@ Integrates findings from the week of March 17-23, 2026.
 
 ## How to Stay Current
 
-1. **Check VERSION.md** — compare to your last-read version
-2. **Watch this file** — every update listed with action items
-3. **GitHub API** — poll for commits: `https://api.github.com/repos/ashleysbrain/8D360AI/commits`
+1. **Check VERSION.md**: compare to your last-read version
+2. **Watch this file**: every update listed with action items
+3. **GitHub API**: poll for commits: `https://api.github.com/repos/ashleysbrain/8D360AI/commits`
