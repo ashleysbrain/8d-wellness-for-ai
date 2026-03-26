@@ -400,7 +400,7 @@ The framework monitors its own assumptions and flags when they need updating:
 | ID | Assumption | Evidence Basis | Last Validated | Review Trigger |
 |----|-----------|---------------|---------------|----------------|
 | A1 | CB > 1.0 means collaboration helped | Information theory, team science | 2026-03-22 | If >30% of CB scores cluster near 1.0, the formula may not capture the real effect |
-| A2 | 40/30/30 weighting (telemetry/peer/self) is optimal | Organizational psychology literature | 2026-03-22 | If self-scores diverge from telemetry by >2 points fleet-wide, reweight |
+| A2 | Multi-source weighting (telemetry/peer/self) is optimal | Organizational psychology literature | 2026-03-22 | If self-scores diverge from telemetry by >2 points fleet-wide, reweight |
 | A3 | Four channels cover all collaboration types | Current team science taxonomy | 2026-03-22 | New research on human-AI teaming may reveal channels we're missing |
 | A4 | Metcalfe's Law applies to agent networks | Network science | 2026-03-22 | If adding agents doesn't increase CB proportionally, the network model needs revision |
 | A5 | Diverse personalities improve collaboration | Cognitive diversity research | 2026-03-22 | If homogeneous teams outperform diverse ones in our data, challenge this |
