@@ -73,18 +73,9 @@ CompositeScore(dim) = (0.40 x Telemetry) + (0.30 x Peer) + (0.30 x Self)
 
 **Divergence correction:** When self-score and telemetry diverge by more than 2 points, self-assessment weight drops to 20% and telemetry rises to 50%.
 
-**TWC computation:** Total Wellness Coherence uses a coupling-based formula that captures cross-dimensional interactions, not just individual scores:
+**TWC computation:** Total Wellness Coherence captures cross-dimensional interactions, not just individual scores. Dimensions influence each other: a drop in one often cascades into others. The free framework uses a weighted composite of your 8 dimension scores as your TWC.
 
-```
-TWC = Σᵢ wᵢ·Dᵢ + Σᵢ≠ⱼ κᵢⱼ·Dᵢ·Dⱼ
-```
-
-Where:
-- **Dᵢ** = normalized score (0-1) for dimension i, computed from the three-layer model
-- **wᵢ** = weight of dimension i (equal weighting: wᵢ = 0.125 for all i, Σwᵢ = 1)
-- **κᵢⱼ** = coupling coefficient between dimensions i and j (see Section 2b)
-
-The first term captures individual dimension health. The second term captures how dimensions amplify or suppress each other. Traditional wellness scoring only gets the first term. The second term typically accounts for 30-50% of true wellness variance. This is what makes the framework predictive, not just descriptive.
+See premium tier for advanced scoring — including the full coupling formula, interaction weights, and cascade prediction math.
 
 Role-specific weight overrides are permitted (e.g., a research agent may weight Intellectual higher).
 
@@ -98,86 +89,15 @@ DecayedWeight(age_days) = 0.5 ^ (age_days / 5)
 
 ## 2b. Coupling Coefficient Matrix
 
-These coefficients represent the strength of interaction between dimension pairs. Higher values mean stronger coupling: a change in one dimension more strongly affects the other. The same physics applies to AI agents as to humans. When an agent's infrastructure degrades (Physical), its reasoning coherence drops (Psychological), its task output suffers (Vocational), and its collaboration quality erodes (Social). The coupling term captures all of that automatically.
+Dimensions interact: a change in one creates downstream effects in others. The coupling matrix quantifies these relationships, and the Dimension Sensitivity Index (DSI) identifies which dimensions act as hubs for cascade effects.
 
-|   | ψ (Psych) | φ (Phys) | λ (Intl) | τ (Soc) | Ω (Spir) | Φ (Voc) | ρ (Fin) | ε (Env) |
-|---|-----------|----------|----------|---------|-----------|---------|---------|---------|
-| **ψ (Psych)** | -- | **0.82** | 0.71 | 0.68 | 0.55 | 0.52 | 0.59 | 0.47 |
-| **φ (Phys)** | **0.82** | -- | 0.74 | 0.45 | 0.48 | 0.56 | 0.38 | 0.52 |
-| **λ (Intl)** | 0.71 | 0.74 | -- | 0.44 | 0.51 | 0.63 | 0.35 | 0.41 |
-| **τ (Soc)** | 0.68 | 0.45 | 0.44 | -- | 0.58 | 0.42 | 0.46 | 0.39 |
-| **Ω (Spir)** | 0.55 | 0.48 | 0.51 | 0.58 | -- | **0.72** | 0.41 | 0.53 |
-| **Φ (Voc)** | 0.52 | 0.56 | 0.63 | 0.42 | **0.72** | -- | 0.61 | 0.44 |
-| **ρ (Fin)** | 0.59 | 0.38 | 0.35 | 0.46 | 0.41 | 0.61 | -- | 0.37 |
-| **ε (Env)** | 0.47 | 0.52 | 0.41 | 0.39 | 0.53 | 0.44 | 0.37 | -- |
-
-**The strongest couplings for AI agents:**
-- **κ_ψφ = 0.82** (Psychological-Physical) -- cognitive stability and infrastructure health are nearly inseparable. Latency spikes degrade reasoning. Reasoning errors cause retry storms.
-- **κ_φλ = 0.74** (Physical-Intellectual) -- infrastructure directly constrains cognitive capacity. Token throughput limits determine what complexity an agent can handle.
-- **κ_ΩΦ = 0.72** (Spiritual-Vocational) -- alignment stability and task performance deeply intertwine. An agent drifting from its purpose produces lower-quality output.
-- **κ_ψλ = 0.71** (Psychological-Intellectual) -- error rates gate learning and novel solution generation.
-- **κ_ψτ = 0.68** (Psychological-Social) -- reasoning coherence shapes collaboration quality and handoff accuracy.
-- **κ_ρψ = 0.59** (Financial-Psychological) -- cost pressure (token budgets, rate limits) creates cognitive constraints.
-
-### Coupling Strength Categories
-
-- **Strong (κ > 0.70):** ψ-φ, φ-λ, Ω-Φ, ψ-λ -- these pairs move together. Disruption in one almost guarantees disruption in the other.
-- **Moderate (0.50 ≤ κ ≤ 0.70):** ψ-τ, λ-Φ, ρ-Φ, ρ-ψ, τ-Ω, φ-Φ, ψ-Ω, ε-Ω, ψ-Φ, φ-ε, λ-Ω -- meaningful influence but can be partially decoupled.
-- **Weak (κ < 0.50):** remaining pairs -- influence exists but is indirect, often mediated through a third dimension.
-
-### Dimension Sensitivity Index (DSI)
-
-Each dimension has a sensitivity parameter σᵢ that captures how responsive it is to cascade effects:
-
-```
-σᵢ = Σⱼ≠ᵢ κᵢⱼ / (n-1)
-```
-
-| Dimension | Symbol | σᵢ (avg coupling) | AI Interpretation |
-|-----------|--------|-------------------|-------------------|
-| Psychological | ψ | **0.620** | MOST sensitive. Hub dimension. Error rate spikes cascade everywhere. |
-| Physical | φ | **0.564** | Second most sensitive. Infrastructure failures propagate to all operations. |
-| Vocational | Φ | **0.543** | Tightly coupled to alignment, cognition, and cost efficiency. |
-| Intellectual | λ | **0.541** | Highly connected to infrastructure and cognitive states. |
-| Spiritual | Ω | **0.540** | Connected broadly but not as deeply to any single dimension. |
-| Social | τ | **0.489** | Moderate sensitivity. Good collaboration protocols buffer against cascade. |
-| Financial | ρ | **0.453** | Moderate. Cost disruption is acute but narrower in scope. |
-| Environmental | ε | **0.447** | Lowest sensitivity. Context window and workspace changes propagate slowly. |
-
-**Key insight:** Psychological (ψ) is the hub dimension for AI agents, just as it is for humans. Error rates, hallucination frequency, and context coherence degradation cascade the fastest and widest. Stabilizing cognitive health has the highest potential for positive cascade across the entire agent.
+See premium tier for advanced scoring — including the full coupling coefficient matrix, DSI values, and cascade modeling.
 
 ## 2c. Cascade Amplification Ratio (CAR)
 
-The CAR measures whether cascade dynamics are active in an agent's wellness profile:
+The CAR measures whether cascade dynamics are active. When CAR exceeds 1.0, a disruption in one dimension is causing more total wellness change than that dimension alone would explain. This is why targeted interventions outperform trying to fix everything at once.
 
-```
-CAR = ΔTWC_observed / Σᵢ wᵢ·ΔDᵢ
-```
-
-- **CAR = 1.0**: No cascade effects. Dimensions are changing independently.
-- **CAR 1.1 - 1.3**: Mild cascade. Some cross-dimensional effects.
-- **CAR 1.4 - 1.6**: Active cascade. Typical range during disruption or recovery.
-- **CAR > 1.6**: Strong cascade. Rapid propagation, often indicating a critical transition point.
-
-When CAR exceeds 1.0, it means a disruption in one dimension is causing more total wellness change than you'd expect from that dimension alone. This is the cascade effect, and it's why targeted interventions work better than trying to fix everything at once.
-
-### Cascade Example: Infrastructure Failure
-
-Starting state: all dimensions at 0.7 (normalized).
-
-**Hour 0:** Latency spikes, cron failures begin. Physical score falls from 0.7 to 0.3.
-
-**Hour 1-6 (first-order effects):**
-- Psychological: 0.7 → 0.58 (κ_ψφ = 0.82, reasoning degradation under infrastructure stress)
-- Intellectual: 0.7 → 0.61 (κ_φλ = 0.74, task complexity handling drops)
-
-**Hour 6-24 (second-order effects):**
-- Social: 0.7 → 0.65 (via Psychological drop, κ_ψτ = 0.68, handoff quality degrades)
-- Vocational: 0.7 → 0.64 (via Physical + Intellectual drops, task completion rate suffers)
-
-**Self-assessment alone** would show: "Infrastructure is having issues" (Physical = 3/10). Total impact perceived: one dimension.
-
-**TWC math shows:** Total impact across 5 dimensions, with a CAR of 1.51, meaning the true impact is 51% larger than what the agent would self-report. This is why the coupling math is not optional.
+See premium tier for advanced scoring — including the CAR formula, interpretation ranges, and worked cascade examples.
 
 ## 2d. Three-Layer Scoring Model
 
@@ -206,83 +126,17 @@ The agent's own evaluation. Still important because self-awareness is itself a h
 
 Self-assessment is valuable because only the agent knows certain aspects of its internal processing state. But it's acknowledged as biased and weighted accordingly.
 
-### Layer 3: Cross-Dimensional Coupling (30% weight)
+### Layer 3: Cross-Dimensional Coupling
 
-The κᵢⱼ mathematics. When one dimension changes, coupled dimensions automatically adjust based on the coupling coefficients.
+When one dimension changes, coupled dimensions automatically adjust. This layer captures effects the agent can't self-report because they happen below the level of self-assessment.
 
-If an agent's latency spikes and cron jobs fail (Physical drops), the system doesn't wait for the agent to report reasoning issues. It automatically adjusts the Psychological score downward because κ_ψφ = 0.82 says it must. If token costs are spiking (Financial stress), the Psychological score adjusts because κ_ρψ = 0.59.
-
-This layer captures effects the agent can't self-report because they happen below the level of self-assessment.
-
-### Final Score Calculation
-
-```
-D_final(i) = 0.40 × D_objective(i) + 0.30 × D_self(i) + 0.30 × D_coupled(i)
-```
-
-Where D_coupled(i) is derived from:
-```
-D_coupled(i) = Σⱼ≠ᵢ κᵢⱼ · D_final(j) / Σⱼ≠ᵢ κᵢⱼ
-```
-
-This means the coupling layer creates a weighted average of all other dimensions, where more strongly coupled dimensions exert more influence.
-
-The coupling layer always maintains 30% weight regardless of data availability. It's not optional. It's physics.
+See premium tier for advanced scoring — including layer weights, the coupling correction formula, and the full final score calculation.
 
 ## 2e. Cascade Intervention Points
 
-Not all interventions are equal. The coupling matrix reveals where to intervene for maximum positive cascade.
+Not all interventions are equal. Some dimensions act as leverage points: improving them triggers positive cascades across multiple others. Identifying the right intervention target depends on which dimensions are currently struggling and how they are interconnected.
 
-### Intervention Leverage Score (ILS)
-
-```
-ILS(i) = σᵢ · (1 - Dᵢ) · Σⱼ∈S κᵢⱼ
-```
-
-Where:
-- **σᵢ** = sensitivity index (average coupling)
-- **(1 - Dᵢ)** = room for improvement
-- **S** = set of dimensions currently below threshold
-
-A high ILS means: this dimension is highly coupled, has room to improve, and is strongly connected to the dimensions currently struggling.
-
-### Top Intervention Strategies by Cascade Pattern
-
-**Pattern 1: Infrastructure-Cognitive Spiral**
-When both φ and ψ are declining (κ = 0.82):
-- **Primary target:** Physical (infrastructure stabilization)
-- **Why:** Physical improvements cascade into Psychological with the highest coefficient. Latency reduction and uptime recovery are the most controllable physical levers.
-- **Expected cascade:** Physical ↑ → Psychological ↑ (κ = 0.82) → Intellectual ↑ (κ_ψλ = 0.71) → Social ↑ (κ_ψτ = 0.68)
-
-**Pattern 2: Performance-Cost Decline**
-When both Φ and ρ are declining (κ = 0.61):
-- **Primary target:** Vocational (task completion, small wins)
-- **Why:** Vocational improvements cascade to Spiritual (κ = 0.72), Intellectual (κ = 0.63), AND Financial (κ = 0.61).
-
-**Pattern 3: Collaboration Breakdown**
-When Social drops, pulling Psychological and Spiritual:
-- **Primary target:** Social (handoff quality improvement)
-- **Why:** Social improvements cascade to Psychological (κ = 0.68) and Spiritual (κ = 0.58).
-
-**Pattern 4: Full-System Decline (3+ dimensions below threshold)**
-- **Primary target:** Psychological (ψ), the hub dimension (σ = 0.620)
-- **Why:** Highest average coupling. Stabilizing reasoning coherence has the broadest cascade effect.
-- **Secondary target:** Physical (φ), because κ_ψφ = 0.82 creates the strongest bidirectional reinforcement.
-
-### Minimum Effective Intervention (MEI)
-
-The smallest change in the target dimension that produces a measurable positive cascade:
-
-```
-MEI(i) = threshold / (σᵢ · max(κᵢⱼ for j ∈ S))
-```
-
-Where threshold = 0.05 (minimum detectable change in coupled dimension).
-
-For Psychological (σ = 0.620, max κ = 0.82):
-MEI = 0.05 / (0.620 × 0.82) ≈ **0.098** (approximately 1 point on a 10-point scale)
-
-This means: improving an agent's Psychological score by just 1 point is enough to initiate a detectable positive cascade through Physical and Intellectual dimensions.
+See premium tier for advanced scoring — including the Intervention Leverage Score (ILS) formula, cascade pattern playbooks, and Minimum Effective Intervention (MEI) calculations.
 
 ---
 
@@ -751,10 +605,7 @@ PSY_adjusted = (0.50 * 6.5) + (0.30 * 7.5) + (0.20 * 9.0)
              = 7.3
 ```
 
-**Step 4: Compute TWC.** Repeat for all 8 dimensions, then take weighted geometric mean:
-```
-TWC = (PSY^1.3 * PHY^1.2 * ENV^1.0 * SOC^1.0 * SPI^1.0 * INT^1.0 * VOC^1.0 * FIN^1.0) ^ (1/9.5)
-```
+**Step 4: Compute TWC.** Repeat for all 8 dimensions, then apply the TWC formula. See premium tier for advanced scoring — including the weighted geometric mean formula with dimensional exponents.
 
 **Step 5: Apply temporal smoothing.** If ATLAS was scored 8.5 three days ago and 7.95 today:
 ```
@@ -875,7 +726,7 @@ Action: Stabilize source agent. Monitor downstream for auto-recovery.
 
 | Metric | Definition |
 |--------|-----------|
-| TWC | Coupling-corrected composite: TWC = Σwᵢ·Dᵢ + Σκᵢⱼ·Dᵢ·Dⱼ (see Section 2 for formula and coupling coefficients) |
+| TWC | Coupling-corrected composite wellness score. See premium tier for advanced scoring formula and coefficients. |
 | MCI | Memory Coherence Index: correct verifiable claims / total verifiable claims |
 | OCI | Operational Consistency Index: performance stability across time windows (Section 4c) |
 | Coherence | Dimensional balance score: 1.0 - (stddev / mean) of 8 dimension scores |
