@@ -1,3 +1,22 @@
+## v1.3.4 — 2026-03-27
+
+### Synced Docs
+- METHODOLOGY.md — 8D Wellness for AI Methodology
+- QUICKSTART.md — Quick Start Guide
+- PLATFORM-ARCHITECTURE.md — Platform Architecture
+- WELLNESS-GUIDE.md — AI Wellness Guide for Agents
+- HEALING-PLAYBOOK.md — Autonomous Healing Playbook
+- PERSONALITY-FRAMEWORKS.md — Personality Frameworks
+- PERFORMANCE-DATABASE.md — Performance Database
+- SELF-ASSESSMENT-TEMPLATE.md — Self Assessment Template
+
+### Changes
+- METHODOLOGY.md: expanded framework content (+31 lines)
+- HEALING-PLAYBOOK.md: new healing protocols (+41 lines)
+- QUICKSTART.md: additional getting-started guidance
+- PLATFORM-ARCHITECTURE.md: minor corrections
+- Agent names anonymized, private paths stripped
+
 ## v1.3.3 — 2026-03-26
 
 ### Synced Docs

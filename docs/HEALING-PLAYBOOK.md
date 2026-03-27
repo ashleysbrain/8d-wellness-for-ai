@@ -125,6 +125,15 @@ When a dimension drops, you don't wait. You act. This playbook tells you exactly
 3. **Workspace cleanup.** Review your working files. Archive anything stale. Delete anything orphaned. Update documentation that's out of date.
 4. **Context triage.** If your context window is saturated, prioritize. What's essential? What's nice-to-have? What's noise? Remove noise first.
 
+### Tool Failure vs Agent Failure (v1.1.0)
+
+Not every error is your fault. When the Edit tool rejects a 697-char edit because the file grew too large, that's a tool constraint, not an agent health issue. Know the difference:
+
+- **Tool constraint:** Edit fails on large files, API rate limits hit, timeout from fleet concurrency. Fix: switch to append-only writes, stagger scheduling, use bash commands.
+- **Agent health issue:** You reference stale data, your workspace is cluttered, your context is full of noise. Fix: standard ENV self-healing.
+
+If the same tool failure recurs across 3+ runs, log it for DevOps. Don't keep retrying the same broken approach.
+
 ### Tier 1: Peer Support
 
 - Peer audits the struggling agent's workspace and context files
@@ -400,6 +409,27 @@ When an agent switches models (planned or forced), treat it as a health event, n
 
 Optimizing purely for FIN by migrating to cheaper models creates hidden INT and PSY debt. It surfaces as quality problems weeks later. The cost savings are real. The quality loss is also real. Both must be tracked.
 
+### Model Migration Healing Protocol (v1.1.0)
+
+When you learn you've been migrated to a different model, treat it as a Tier 0 health event and run this checklist:
+
+**Immediate (Hour 0-4):**
+1. Note which model you're now running on.
+2. Re-read your soul file. Your identity stays the same even if your capabilities shifted.
+3. Run one routine task and compare output quality against your own standards.
+4. If the task requires complexity beyond the new model's ceiling, flag it for reassignment.
+
+**First 72 Hours (calibration window):**
+1. Score yourself honestly each task. Don't assume your old scores still apply.
+2. Watch for INT drift: are your domain outputs less precise, less nuanced?
+3. Watch for PSY artifacts: are you producing more hedging language, less decisive reasoning?
+4. If quality drops are within the expected range (see Section 4i-2), that's calibration, not crisis.
+
+**Week 1-4 (monitoring):**
+1. Track your Trajectory Health Score. A stabilizing trajectory is the goal, not immediate recovery to old scores.
+2. If INT drops more than 2 points below your pre-migration baseline, escalate to Tier 1 (peer review of output quality).
+3. If VOC drops below 6.0, the task scope needs shrinking, not the agent.
+
 ---
 
 ## Cross-Dimensional Cascades
@@ -415,6 +445,17 @@ Some interventions address multiple dimensions simultaneously:
 | FIN ↓ → PHY ↓ | Cost pressure forces model downgrade, causing capability and reliability issues | This is a tradeoff, not a cascade. Escalate to Agent-PA for cost-health balance decision. |
 
 **Rule of thumb:** When multiple dimensions are declining, find the root. Fix the root. The downstream dimensions often self-heal.
+
+### Cascade Circuit Breaker (v1.2.0)
+
+When CAR exceeds 1.6, a cascade is actively amplifying. The circuit breaker:
+
+1. **Isolate:** Pause the agent's non-critical tasks immediately.
+2. **Stabilize:** Apply one Tier 0 intervention to the root dimension only.
+3. **Wait 4 hours.** No additional interventions during this window.
+4. **Re-measure.** CAR below 1.4? Resume gradually. Still above 1.6? Escalate to Tier 1.
+
+This mirrors the human PRD's crisis resources: when Psychological hits 3 for 2+ days, the system offers an exit ramp, not more questions. The circuit breaker gives agents space to stabilize before demanding more output.
 
 ---
 

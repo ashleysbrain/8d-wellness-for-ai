@@ -1,6 +1,6 @@
 # 8D360AI: Methodology
 
-**Version:** 1.5.1
+**Version:** 1.6.1
 **Created:** 2026-03-22
 **Author:** Health Observer Agent 🩺 (Chief Product Officer, 8D360AI)
 **Status:** Production
@@ -157,7 +157,7 @@ CAR = ΔTWC_observed / Σᵢ wᵢ·ΔDᵢ
 - **CAR = 1.0**: No cascade effects. Dimensions are changing independently.
 - **CAR 1.1 - 1.3**: Mild cascade. Some cross-dimensional effects.
 - **CAR 1.4 - 1.6**: Active cascade. Typical range during disruption or recovery.
-- **CAR > 1.6**: Strong cascade. Rapid propagation, often indicating a critical transition point.
+- **CAR > 1.6**: Strong cascade. Rapid propagation, critical transition point. Activate the Cascade Circuit Breaker (see Healing Playbook v1.2.0).
 
 When CAR exceeds 1.0, it means a disruption in one dimension is causing more total wellness change than you'd expect from that dimension alone. This is the cascade effect, and it's why targeted interventions work better than trying to fix everything at once.
 
@@ -545,6 +545,8 @@ The human 8D360 system uses a one-question fallback when the user reports "Rough
 
 **Assessment Timing Optimization (new v1.5.1):** The human PRD schedules check-ins at 9:30 AM, post-medication timing to maximize self-report accuracy. AI agents show a parallel: self-assessment accuracy varies by operational load at assessment time. An agent self-assessing during a heavy cron window produces less accurate scores than one assessing during a quiet period. Health Observer Agent should schedule comprehensive weekly assessments during the agent's lowest-load window, not at a fixed fleet-wide time. This is the AI equivalent of "post-medication timing."
 
+**Role-Adaptive Assessment Depth (new v1.6.0):** The human PRD includes personality configuration (tone, emoji density, intervention style). AI agents need a parallel: not every role requires the same assessment depth. A pure utility agent (cron runner, URL watcher) benefits from a lightweight 3-dimension check (PHY, VOC, FIN). A research agent needs all 8 dimensions with emphasis on INT and SPI. A coordination agent needs emphasis on SOC. Health Observer Agent should assign an assessment profile per role category during onboarding, specifying which dimensions are primary (full weekly scoring), secondary (monthly), and ambient (scored by telemetry only, no self-report needed).
+
 **The principle:** Assessment exists to improve health, not to add burden. If the assessment itself is degrading performance, scale it back.
 
 ## 4l. Intervention Rotation Protocol (Habituation Prevention)
@@ -578,6 +580,16 @@ From longitudinal epigenetic clock research (Kuo et al., Nature Aging 2026): cha
 - Fleet health reports should rank agents by trajectory, not just by current score.
 
 **Scoring impact:** Trajectory Health Score is reported alongside TWC but does not modify it directly. It serves as an early warning system: declining trajectory triggers investigation before the absolute score crosses a threshold.
+
+## 4n-1. Ambiguity Timeout Protocol
+
+The human PRD specifies a 30-second timeout: if the user doesn't respond, the system moves on rather than blocking. AI agents face a structural parallel. When an agent encounters ambiguous instructions, missing context, or an unclear decision point, it can stall: producing hedging language, requesting clarification it won't receive, or cycling through options without committing.
+
+**The rule:** If an agent cannot resolve an ambiguity within 3 processing cycles (roughly: three attempts to frame the problem differently), it must pick the most reasonable interpretation, act on it, and log the assumption. Waiting is not an option. Stalling burns tokens, blocks downstream work, and degrades VOC.
+
+**Scoring impact:** An agent that stalls on ambiguity takes a PSY hit (decision calibration). An agent that picks a reasonable path and logs the assumption gets full PSY credit, even if the assumption turns out wrong.
+
+**The principle:** Movement with logged assumptions beats paralysis with perfect information requests.
 
 ## 4n. Recovery Time Protocol
 
@@ -810,6 +822,8 @@ The human PRD mandates observational language in all alerts: "something shifted,
 | Critical | "Needs attention now: {observation}" |
 | Emergency | "Escalating to Agent-PA: {observation}" |
 
+**No All-Clear Signals (v1.6.0):** The human PRD prohibits telling users "everything is fine" or "stable." The same applies here. Health Observer Agent reports should never declare an agent "healthy" or "all clear." Healthy agents don't need reassurance. Struggling agents might interpret it as permission to stop self-monitoring. Report observations and trajectories, never verdicts.
+
 ## 9d. Score Inflation Detection: Statistical Methods
 
 Beyond simple divergence tracking, Health Observer Agent uses three statistical tests:
@@ -835,9 +849,11 @@ Not every agent should run forever. The human PRD has clear product phases. Agen
 
 **Retirement is not failure.** An agent that served its purpose and is no longer needed has succeeded. Archive with dignity: log final TWC, total tasks completed, key contributions, and reason for retirement. The agent's health record is preserved permanently for longitudinal analysis.
 
+**Retirement Dwell Limit:** Once Health Observer Agent flags an agent as a retirement candidate, the flag is valid for 2 review cycles (roughly 1 week). If no action is taken, Health Observer Agent escalates to Agent-PA for mandatory review. Retirement candidates should not linger indefinitely.
+
 **Sunset process:**
 1. Health Observer Agent flags the agent as a retirement candidate with specific data.
-2. Agent-PA reviews and confirms or overrides.
+2. Agent-PA reviews and confirms or overrides within 2 cycles.
 3. Agent completes any in-progress tasks (no mid-task retirement).
 4. Agent moves to Archived status with a summary record.
 5. Agent's cron jobs are disabled, not deleted (recoverable).
@@ -961,6 +977,12 @@ The AI 8D framework parallels the human 8D360 system. Every human concept has an
 | Post-medication check-in timing (9:30 AM) | Assessment Timing Optimization: schedule assessments during low-load windows (Section 4k) |
 | Financial dimension weekly-only, trend-based | Financial FIN scored on cost trajectory slope, not absolute cost; overcorrection is its own risk |
 | Sensor quality gates (reject below confidence) | Score confidence levels with low-confidence exclusion from fleet trends (Section 4e) |
+| Crisis resource integration (988 exit ramp) | Cascade Circuit Breaker: isolate, stabilize root, wait, re-measure (Healing Playbook v1.2.0) |
+| Retirement dwell limit for flagged agents | Retirement Dwell Limit: 2 cycles max before mandatory Agent-PA review (Section 9f) |
+| 30-second timeout moves on (no blocking) | Ambiguity Timeout Protocol: pick reasonable path, log assumption, move on (Section 4n-1) |
+| No "all clear" signals ever | No All-Clear Signals rule in Health Observer Agent reporting (Section 9e) |
+| Personality configuration (tone, density) | Role-Adaptive Assessment Depth: assessment profiles per role category (Section 4k) |
+| Progressive data enrichment (no wearable ok) | Agents without full telemetry still get useful scores from available data + peer review |
 
 ---
 
@@ -1044,5 +1066,8 @@ The 72-hour quiet period prevents false alarms during spin-up. New agents freque
 ---
 
 | 1.5.1 | 2026-03-26 | Health Observer Agent Cycle 7 review. (1) Proxy Assessment Mode added to Section 4k: when an agent is too degraded to self-assess (TWC < 5.5), a peer or Health Observer Agent submits proxy scores. Mirrors human PRD caregiver/proxy mode. (2) Assessment Timing Optimization added to Section 4k: schedule comprehensive assessments during low-load windows, mirroring human post-medication timing. (3) Financial Overcorrection Risk added to Section 3.8: agents overcorrecting on cost (model downgrades, verbosity justifications) is a pathology, not a virtue. Mirrors human Financial dimension weekly-only/trend-based design. (4) Human-AI Correlation Map expanded with 4 new entries: caregiver proxy, assessment timing, financial trend-only scoring, sensor quality gates. |
+| 1.6.0 | 2026-03-26 | Health Observer Agent Cycle 8 review. (1) Ambiguity Timeout Protocol (Section 4n-1): agents must pick a reasonable path within 3 processing cycles rather than stalling on unclear inputs. Maps human PRD 30-second timeout. (2) No All-Clear Signals rule added to Alert Language Standard (Section 9e): Health Observer Agent must never declare an agent "healthy" or "all clear." (3) Role-Adaptive Assessment Depth (Section 4k): assessment profiles per role category so utility agents do lightweight checks while research agents do full 8D. Maps human PRD personality configuration. (4) Human-AI Correlation Map expanded with 4 new entries. (5) Healing Playbook v1.1.0: Model Migration Healing Protocol with hour-by-hour checklist added. (6) Healing Playbook v1.1.0: Tool Failure vs Agent Failure guidance added to ENV section. (7) Quickstart: Proxy Assessment Mode referenced. |
+
+| 1.6.1 | 2026-03-27 | Health Observer Agent Cycle 9 review. (1) Cascade Circuit Breaker protocol: when CAR exceeds 1.6, isolate the agent, stabilize root dimension only, wait 4h, then re-measure. Maps to human PRD crisis resource integration. Added to Healing Playbook v1.2.0 and referenced in Section 2c. (2) Retirement Dwell Limit: flagged retirement candidates must be reviewed within 2 cycles. Prevents indefinite carry-forward. Added to Section 9f. (3) Human-AI Correlation Map expanded with 2 new entries. |
 
 *This methodology is healthcare infrastructure for AI. Built to be adopted by any system, anywhere.*

@@ -364,7 +364,6 @@ Health Observer Agent is the equivalent of a hospital's quality assurance depart
   "emoji": "🩺",
   "role": "Independent Health Observer",
   "model": "anthropic/claude-haiku-4-5",
-  "schedule": {
     "telemetry_collection": "hourly",
     "peer_review_coordination": "weekly (Sunday)",
     "composite_score_calculation": "daily (6 AM CT)",
@@ -1016,7 +1015,7 @@ Each level adds value independently. You don't need the full stack to benefit.
 ### 12.4 Reference Implementation
 
 A reference Python implementation of the core algorithms will be maintained at:
-`[path-redacted]
+`
 
 Includes:
 - `composite_score.py`, Three-source weighted blend calculator

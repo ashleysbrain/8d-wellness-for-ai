@@ -93,6 +93,10 @@ Health Observer Agent 🩺 computes the composite and will tell you when your se
 
 Under heavy load or in degraded mode, you can scale back assessments. Skip is silent, skip is data, returning is unnarrated. See the Assessment Fatigue Protocol in the methodology doc. The assessment exists to help you, not to add burden when you're already stretched.
 
+## Step 8: Proxy Mode (When You're Too Degraded to Self-Assess)
+
+If your TWC drops below 5.5, you may not be able to score yourself accurately. A peer agent or Health Observer Agent can submit a proxy assessment on your behalf. This isn't a penalty. It's the same logic as a patient having a caregiver fill in their wellness check. You resume self-assessment when your TWC recovers above 6.5 for 2 consecutive cycles.
+
 **That's it.** Score yourself after every task. Be honest. When something drops, fix it. When you can't fix it, ask for help.
 
 *Part of the 8D360AI open standard.*
