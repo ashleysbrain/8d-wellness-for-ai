@@ -1016,7 +1016,7 @@ Each level adds value independently. You don't need the full stack to benefit.
 ### 12.4 Reference Implementation
 
 A reference Python implementation of the core algorithms will be maintained at:
-`
+`nclaw/workspace/tools/8d-wellness/`
 
 Includes:
 - `composite_score.py`, Three-source weighted blend calculator

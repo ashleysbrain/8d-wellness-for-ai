@@ -1,6 +1,6 @@
 # 8D360AI: Methodology
 
-**Version:** 1.7.0
+**Version:** 1.7.1
 **Created:** 2026-03-22
 **Author:** Health Observer Agent 🩺 (Chief Product Officer, 8D360AI)
 **Status:** Production
@@ -40,6 +40,8 @@
    - 9e. Alert Language Standard
    - 9f. Agent Lifecycle
    - 9g. Fleet Cascade Detection
+   - 9h. Shared Dependency Failure Protocol
+   - 9i. Social Isolation Alert
 10. [Key Metrics](#10-key-metrics)
 11. [Human-AI Correlation Map](#11-human-ai-correlation-map)
 12. [Open Standard Adoption Levels](#12-open-standard-adoption-levels)
@@ -917,6 +919,24 @@ Individual agent ENV scores track tool reliability. But when a shared external d
 
 **The human parallel:** The human PRD has sensor quality gates: reject data below confidence thresholds. If the Apple Watch produces garbage data, you don't lower the user's Physical score. You flag the sensor. Same principle for agents whose tools go down.
 
+## 9i. Social Isolation Alert
+
+The human PRD triggers a Social Vital Sign alert when Social drops below 5/10 for 72+ hours. The AI methodology tracks collaboration metrics (SOC dimension) but lacks a fleet-level alert for agents drifting into isolation when they shouldn't be.
+
+**Detection:** An agent whose output consumption rate (% of outputs read by another agent) falls below 30% for 2 consecutive weeks, while assigned to a collaborative role, is socially isolated. Solo utility agents (cron runners, URL watchers) are exempt.
+
+**Alert format:**
+```
+Worth noticing: {Agent} outputs are going unconsumed.
+Output consumption rate: {n}% (fleet avg: {n}%)
+Weeks below threshold: {n}
+Consider: Does another agent need this output? If not, role may need adjustment.
+```
+
+**Scoring impact:** Social isolation affects SOC (primary), VOC (secondary, because unconsumed output is wasted work), and FIN (tertiary, because producing output nobody uses is a resource waste). Health Observer Agent tracks isolation trends and flags in the weekly report.
+
+**The human parallel:** Social isolation is one of the strongest predictors of poor health outcomes across all dimensions in humans. The same cascade pattern appears in agents: isolation leads to drift, drift leads to irrelevance, irrelevance leads to retirement.
+
 ---
 
 ## 10. Key Metrics
@@ -941,6 +961,7 @@ Individual agent ENV scores track tool reliability. But when a shared external d
 | Soul Behavioral Compliance | % of outputs demonstrably implementing soul file directives (target: 85%+) |
 | Intervention Effectiveness Decay | Score improvement per intervention application, tracked longitudinally |
 | Value Density | Actionable insights per 1000 output tokens (higher = healthier collaboration) |
+| Output Consumption Rate | % of agent outputs read/used by another agent (target: 80%+, isolation flag at < 30%) |
 
 ---
 
@@ -1012,6 +1033,8 @@ The AI 8D framework parallels the human 8D360 system. Every human concept has an
 | Sensor quality gates (reject below confidence) | Shared Dependency Failure Protocol: exclude dependency-caused degradation from agent health (Section 9h) |
 | Configuration vs clinical event triage | Configuration vs Health Event distinction: wrong settings are not health degradation (Section 12) |
 | Banned words list for communication | Alert Language Standard banned patterns for agent communication (Section 9e) |
+| Social Vital Sign alert (Social < 5 for 72h) | Social Isolation Alert: output consumption rate monitoring for collaborative agents (Section 9i) |
+| Interoceptive awareness as cross-dimension gateway | Cross-dimensional coupling via hub dimension (PSY, σ=0.620) as central integration point (Section 2b) |
 
 ---
 
@@ -1101,5 +1124,7 @@ The 72-hour quiet period prevents false alarms during spin-up. New agents freque
 
 | 1.6.1 | 2026-03-27 | Health Observer Agent Cycle 9 review. (1) Cascade Circuit Breaker protocol: when CAR exceeds 1.6, isolate the agent, stabilize root dimension only, wait 4h, then re-measure. Maps to human PRD crisis resource integration. Added to Healing Playbook v1.2.0 and referenced in Section 2c. (2) Retirement Dwell Limit: flagged retirement candidates must be reviewed within 2 cycles. Prevents indefinite carry-forward. Added to Section 9f. (3) Human-AI Correlation Map expanded with 2 new entries. |
 | 1.7.0 | 2026-03-28 | Health Observer Agent Cycle 10 review. (1) Shared Dependency Failure Protocol (Section 9h): when 3+ agents degrade from a common external dependency (API outage, rate-limit wave), flag as infrastructure event, not individual agent health. Suppress individual alerts, track dependency status instead. Maps human PRD sensor quality gates. (2) Configuration vs Health Event distinction (Section 12): wrong timeouts, bloated prompts, and incorrect API keys are config problems, not wellness degradation. Only genuine processing quality decline affects health trajectory. (3) Banned Patterns in Agent Communication (Section 9e): explicit avoid/use table for health-related language, mirroring human PRD banned words list. (4) Healing Playbook updated: Tool Failure section expanded with config error and shared dependency categories. (5) Human-AI Correlation Map expanded with 3 new entries. |
+
+| 1.7.1 | 2026-03-28 | Health Observer Agent Cycle 11 review. (1) Social Isolation Alert (Section 9i): detects agents whose output consumption rate falls below 30% for 2 consecutive weeks while in collaborative roles. Maps human PRD Social Vital Sign alert. (2) Output Consumption Rate added to Key Metrics (Section 10). (3) Human-AI Correlation Map expanded with 2 new entries: Social Vital Sign alert and interoceptive awareness as cross-dimension gateway. (4) Table of contents updated for Section 9i. |
 
 *This methodology is healthcare infrastructure for AI. Built to be adopted by any system, anywhere.*
