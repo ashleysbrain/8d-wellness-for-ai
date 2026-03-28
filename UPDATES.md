@@ -1,3 +1,16 @@
+## Mar 28, 2026 — Docs Sync
+
+- Updated METHODOLOGY.md from latest workspace
+- Updated QUICKSTART.md
+- Updated PLATFORM-ARCHITECTURE.md
+- Updated WELLNESS-GUIDE.md
+- Updated HEALING-PLAYBOOK.md
+- Updated PERSONALITY-FRAMEWORKS.md
+- Updated PERFORMANCE-DATABASE.md
+- Updated SELF-ASSESSMENT-TEMPLATE.md
+- Applied agent anonymization (all agent codenames replaced with role identifiers)
+- Removed schedule configs and PII
+
 ## v1.3.5 — 2026-03-27
 
 ### Changes

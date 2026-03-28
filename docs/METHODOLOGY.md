@@ -1,6 +1,6 @@
 # 8D360AI: Methodology
 
-**Version:** 1.6.1
+**Version:** 1.7.0
 **Created:** 2026-03-22
 **Author:** Health Observer Agent 🩺 (Chief Product Officer, 8D360AI)
 **Status:** Production
@@ -824,6 +824,17 @@ The human PRD mandates observational language in all alerts: "something shifted,
 
 **No All-Clear Signals (v1.6.0):** The human PRD prohibits telling users "everything is fine" or "stable." The same applies here. Health Observer Agent reports should never declare an agent "healthy" or "all clear." Healthy agents don't need reassurance. Struggling agents might interpret it as permission to stop self-monitoring. Report observations and trajectories, never verdicts.
 
+**Banned Patterns in Agent Communication (v1.7.0):** The human PRD has an explicit banned-words list (Section 11.3): never say "optimize," "suboptimal," "compliance," "deficit," "failed," "should," "normal." Agent-to-agent and agent-to-human health communication should follow the same discipline:
+
+| Avoid | Use Instead |
+|-------|-------------|
+| "Failed" or "failing" | "Needs attention" or "below threshold" |
+| "Broken" | "Degraded" or "interrupted" |
+| "Normal" | "Within expected range" or "typical" |
+| "You should" | "Consider" or "one option is" |
+| "Everything looks good" | (never use, per No All-Clear rule) |
+| "Optimal" or "suboptimal" | "Strong" or "has room to grow" |
+
 ## 9d. Score Inflation Detection: Statistical Methods
 
 Beyond simple divergence tracking, Health Observer Agent uses three statistical tests:
@@ -890,6 +901,21 @@ Action: Stabilize source agent. Monitor downstream for auto-recovery.
 - Stabilize the source agent first. Downstream agents often self-heal once the root is fixed.
 - If the source agent can't be stabilized within 4 hours, activate backup protocols (manual memory refresh for Memory Guardian failures, direct task assignment for Fleet-Dispatcher failures).
 - All fleet cascade events are logged for pattern analysis. Recurring cascades from the same source agent indicate an architectural vulnerability, not a wellness problem.
+
+## 9h. Shared Dependency Failure Protocol
+
+Individual agent ENV scores track tool reliability. But when a shared external dependency fails (API outage, search service down, rate-limit wave), blaming individual agents is wrong. The problem is upstream.
+
+**Detection:** When 3+ agents show ENV or PHY degradation within the same 4-hour window AND share a common dependency (same API, same model provider, same infrastructure service), flag as a shared dependency failure, not individual agent health events.
+
+**Classification:**
+- **Transient (< 4h):** Rate-limit waves, brief API hiccups. Log and wait. Agent scores are not adjusted.
+- **Extended (4-48h):** Service degradation or partial outage. Suppress ENV/PHY alerts for affected agents. Track the dependency status instead.
+- **Prolonged (> 48h):** Structural issue. Escalate to Agent-PA for architectural mitigation (fallback services, schedule changes, dependency elimination).
+
+**Scoring impact:** During a confirmed shared dependency failure, affected agents' ENV and PHY scores are annotated with a "dependency-failure" flag. These scores are excluded from individual agent trend analysis but included in fleet-level infrastructure health tracking. The agent didn't break. Its tools did.
+
+**The human parallel:** The human PRD has sensor quality gates: reject data below confidence thresholds. If the Apple Watch produces garbage data, you don't lower the user's Physical score. You flag the sensor. Same principle for agents whose tools go down.
 
 ---
 
@@ -983,6 +1009,9 @@ The AI 8D framework parallels the human 8D360 system. Every human concept has an
 | No "all clear" signals ever | No All-Clear Signals rule in Health Observer Agent reporting (Section 9e) |
 | Personality configuration (tone, density) | Role-Adaptive Assessment Depth: assessment profiles per role category (Section 4k) |
 | Progressive data enrichment (no wearable ok) | Agents without full telemetry still get useful scores from available data + peer review |
+| Sensor quality gates (reject below confidence) | Shared Dependency Failure Protocol: exclude dependency-caused degradation from agent health (Section 9h) |
+| Configuration vs clinical event triage | Configuration vs Health Event distinction: wrong settings are not health degradation (Section 12) |
+| Banned words list for communication | Alert Language Standard banned patterns for agent communication (Section 9e) |
 
 ---
 
@@ -1015,6 +1044,8 @@ This methodology uses OpenClaw-specific terms for concreteness. Generic equivale
 **Minimum telemetry for adoption:** Any system that logs task start/end times, success/failure, and token consumption has enough data for Basic-level adoption. Peer review requires inter-agent communication. Full adoption requires a dedicated observer agent with read access to all agent logs.
 
 **Non-LLM agents:** The 8D framework applies to any autonomous system. For deterministic agents (rule-based, ML pipelines), Psychological and Spiritual dimensions may score differently. Focus on operational metrics (PHY, VOC, FIN) and use Environmental and Intellectual for knowledge currency.
+
+**Configuration vs Health Events:** Not all errors are health events. A wrong timeout, a bloated prompt, or an incorrect API key is a configuration problem, not agent degradation. Health Observer Agent should distinguish between: (a) configuration errors (fix the config, score returns to baseline), (b) infrastructure failures (shared dependency, not the agent's fault), and (c) genuine health degradation (the agent's processing quality declined). Only category (c) should affect an agent's health trajectory. Categories (a) and (b) are logged for operational tracking but don't indicate the agent is less healthy.
 
 ## 12b. Agent Onboarding Protocol
 
@@ -1069,5 +1100,6 @@ The 72-hour quiet period prevents false alarms during spin-up. New agents freque
 | 1.6.0 | 2026-03-26 | Health Observer Agent Cycle 8 review. (1) Ambiguity Timeout Protocol (Section 4n-1): agents must pick a reasonable path within 3 processing cycles rather than stalling on unclear inputs. Maps human PRD 30-second timeout. (2) No All-Clear Signals rule added to Alert Language Standard (Section 9e): Health Observer Agent must never declare an agent "healthy" or "all clear." (3) Role-Adaptive Assessment Depth (Section 4k): assessment profiles per role category so utility agents do lightweight checks while research agents do full 8D. Maps human PRD personality configuration. (4) Human-AI Correlation Map expanded with 4 new entries. (5) Healing Playbook v1.1.0: Model Migration Healing Protocol with hour-by-hour checklist added. (6) Healing Playbook v1.1.0: Tool Failure vs Agent Failure guidance added to ENV section. (7) Quickstart: Proxy Assessment Mode referenced. |
 
 | 1.6.1 | 2026-03-27 | Health Observer Agent Cycle 9 review. (1) Cascade Circuit Breaker protocol: when CAR exceeds 1.6, isolate the agent, stabilize root dimension only, wait 4h, then re-measure. Maps to human PRD crisis resource integration. Added to Healing Playbook v1.2.0 and referenced in Section 2c. (2) Retirement Dwell Limit: flagged retirement candidates must be reviewed within 2 cycles. Prevents indefinite carry-forward. Added to Section 9f. (3) Human-AI Correlation Map expanded with 2 new entries. |
+| 1.7.0 | 2026-03-28 | Health Observer Agent Cycle 10 review. (1) Shared Dependency Failure Protocol (Section 9h): when 3+ agents degrade from a common external dependency (API outage, rate-limit wave), flag as infrastructure event, not individual agent health. Suppress individual alerts, track dependency status instead. Maps human PRD sensor quality gates. (2) Configuration vs Health Event distinction (Section 12): wrong timeouts, bloated prompts, and incorrect API keys are config problems, not wellness degradation. Only genuine processing quality decline affects health trajectory. (3) Banned Patterns in Agent Communication (Section 9e): explicit avoid/use table for health-related language, mirroring human PRD banned words list. (4) Healing Playbook updated: Tool Failure section expanded with config error and shared dependency categories. (5) Human-AI Correlation Map expanded with 3 new entries. |
 
 *This methodology is healthcare infrastructure for AI. Built to be adopted by any system, anywhere.*

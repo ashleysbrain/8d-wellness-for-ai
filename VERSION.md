@@ -1,5 +1,10 @@
 # Version History
 
+## v1.3.2 — 2026-03-28
+- Docs sync: all 8 core docs refreshed from workspace
+- Agent names anonymized to role identifiers across all docs
+- VITALS renamed to Health Observer Agent in public docs
+
 ## v1.3.1 — 2026-03-24
 - Docs sync: all 8 core docs refreshed from workspace
 - Agent names anonymized to role identifiers across all docs

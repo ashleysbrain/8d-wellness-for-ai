@@ -130,6 +130,8 @@ When a dimension drops, you don't wait. You act. This playbook tells you exactly
 Not every error is your fault. When the Edit tool rejects a 697-char edit because the file grew too large, that's a tool constraint, not an agent health issue. Know the difference:
 
 - **Tool constraint:** Edit fails on large files, API rate limits hit, timeout from fleet concurrency. Fix: switch to append-only writes, stagger scheduling, use bash commands.
+- **Configuration error:** Wrong timeout, bloated prompt, incorrect API key. Fix: correct the config. This isn't health degradation.
+- **Shared dependency failure:** API outage, search service down, rate-limit wave hitting 3+ agents. Fix: wait for recovery or escalate for architectural mitigation. See Methodology Section 9h.
 - **Agent health issue:** You reference stale data, your workspace is cluttered, your context is full of noise. Fix: standard ENV self-healing.
 
 If the same tool failure recurs across 3+ runs, log it for DevOps. Don't keep retrying the same broken approach.
