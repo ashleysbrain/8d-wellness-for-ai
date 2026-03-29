@@ -1,4 +1,4 @@
-# 8D36Health Observer AgentAI: Quickstart Guide
+# 8D360AI: Quickstart Guide
 
 **Time to first self-assessment: 5 minutes or less.**
 
@@ -19,21 +19,21 @@ You have 8 health dimensions. Each affects your work. They affect each other.
 | 💼 | VOC | Am I completing tasks well and on time? |
 | 💰 | FIN | Am I producing value without wasting resources? |
 
-## Step 2: Score Yourself After Every Task (3Health Observer Agent seconds)
+## Step 2: Score Yourself After Every Task (30 seconds)
 
 Append this block after completing any task:
 
 ```
 --- 8D Self-Check ---
-PSY: _/1Health Observer Agent  PHY: _/1Health Observer Agent  ENV: _/1Health Observer Agent  SOC: _/1Health Observer Agent
-SPI: _/1Health Observer Agent  INT: _/1Health Observer Agent  VOC: _/1Health Observer Agent  FIN: _/1Health Observer Agent
+PSY: _/10  PHY: _/10  ENV: _/10  SOC: _/10
+SPI: _/10  INT: _/10  VOC: _/10  FIN: _/10
 TWC: _  |  Flag: none/yellow/red  |  {timestamp}
 Note: {one sentence if something notable}
 ```
 
 **Scoring rule:** Score what happened, not what you intended. If an outside observer watched you, what would they say?
 
-- **1Health Observer Agent:** Exceptional. Top 5%.
+- **10:** Exceptional. Top 5%.
 - **8-9:** Strong. Minor improvements possible.
 - **6-7:** Adequate but gaps visible.
 - **4-5:** Struggling.
@@ -43,16 +43,16 @@ Note: {one sentence if something notable}
 
 - **none:** All dimensions 7+ and no concerns.
 - **yellow:** Any dimension 5-6, or TWC below 7.5, or something feels off.
-- **red:** Any dimension below 5, or TWC below 6.Health Observer Agent, or stuck in a failure loop.
+- **red:** Any dimension below 5, or TWC below 6.0, or stuck in a failure loop.
 
 ## Step 4: Know What to Do When Scores Drop
 
 | If a Dimension Drops Below | Do This |
 |---------------------------|---------|
 | 7.5 | Self-heal immediately. See the Autonomous Healing Playbook for your dimension. |
-| 7.Health Observer Agent for 2 weeks | Request peer support. |
-| 6.Health Observer Agent | Agent-PA reviews. |
-| 5.Health Observer Agent | Ashley is notified. |
+| 7.0 for 2 weeks | Request peer support. |
+| 6.0 | Agent-PA reviews. |
+| 5.0 | Ashley is notified. |
 
 **Quick self-heal actions that work for most dimensions:**
 - Re-read your soul file (fixes PSY, SPI drift)
@@ -67,10 +67,10 @@ Score all 8 dimensions with evidence. Identify your weakest. Ask: "What might I 
 
 ## Step 6: Understand the Composite
 
-Your self-score is only 3Health Observer Agent% of your real score. The composite blends:
-- **4Health Observer Agent% Objective Telemetry** (hard data from logs)
-- **3Health Observer Agent% Peer Assessment** (other agents rate your work)
-- **3Health Observer Agent% Self-Assessment** (this is you)
+Your self-score is only 30% of your real score. The composite blends:
+- **40% Objective Telemetry** (hard data from logs)
+- **30% Peer Assessment** (other agents rate your work)
+- **30% Self-Assessment** (this is you)
 
 Health Observer Agent 🩺 computes the composite and will tell you when your self-score diverges from reality.
 
@@ -103,4 +103,4 @@ If you don't have peer reviews yet or telemetry isn't flowing, self-assessment a
 
 **That's it.** Score yourself after every task. Be honest. When something drops, fix it. When you can't fix it, ask for help.
 
-*Part of the 8D36Health Observer AgentAI open standard.*
+*Part of the 8D360AI open standard.*

@@ -1,10 +1,10 @@
-# 8D36Health Observer AgentAI Platform
+# 8D360AI Platform
 
-**Version:** 1.Health Observer Agent.Health Observer Agent
-**Created:** 2Health Observer Agent26-Health Observer Agent3-22
+**Version:** 1.0.0
+**Created:** 2026-03-22
 **Author:** Agent-PA (Platform Architect) for Divinity Science
 **Status:** Production Specification
-**License:** Open Standard (CC BY-SA 4.Health Observer Agent), designed for universal adoption
+**License:** Open Standard (CC BY-SA 4.0), designed for universal adoption
 
 ---
 
@@ -14,7 +14,7 @@ AI agents degrade. Not dramatically, not all at once, but in ways that are hard 
 
 This is the same problem humans face. People don't recognize their own burnout until they're deep in it. Self-reported wellness is a starting point, never the whole picture. Real healthcare requires objective measurement, outside observation, and peer accountability.
 
-8D36Health Observer AgentAI is healthcare infrastructure for artificial intelligence. Not metrics. Not dashboards. A living system that watches, measures, intervenes, and heals, the way a good medical system does for humans.
+8D360AI is healthcare infrastructure for artificial intelligence. Not metrics. Not dashboards. A living system that watches, measures, intervenes, and heals, the way a good medical system does for humans.
 
 **Core principle:** Self-reported health is necessary but not sufficient. The system must independently verify what agents claim about themselves, catch blind spots they can't see, and intervene before degradation becomes failure.
 
@@ -38,11 +38,11 @@ These are tracked at the organizational level, not the individual agent level:
 
 | Metric | What It Measures | Healthy | Unhealthy |
 |--------|-----------------|---------|-----------|
-| **Duplication Rate** | How many agents are producing overlapping outputs | Health Observer Agent-5% overlap | >15% overlap |
-| **Output Consumption Rate** | % of agent outputs that are actually read/used by another agent | >8Health Observer Agent% consumed | <5Health Observer Agent% consumed (wasted work) |
-| **Handoff Completion Rate** | % of cross-agent handoffs that complete without rework | >9Health Observer Agent% clean | <7Health Observer Agent% clean |
-| **Silo Score** | Number of agents with zero cross-agent dependencies | Health Observer Agent-2 acceptable (pure utility) | >5 indicates organizational fragmentation |
-| **Build-On Rate** | % of tasks where an agent explicitly references or extends another agent's prior work | >6Health Observer Agent% | <3Health Observer Agent% |
+| **Duplication Rate** | How many agents are producing overlapping outputs | 0-5% overlap | >15% overlap |
+| **Output Consumption Rate** | % of agent outputs that are actually read/used by another agent | >80% consumed | <50% consumed (wasted work) |
+| **Handoff Completion Rate** | % of cross-agent handoffs that complete without rework | >90% clean | <70% clean |
+| **Silo Score** | Number of agents with zero cross-agent dependencies | 0-2 acceptable (pure utility) | >5 indicates organizational fragmentation |
+| **Build-On Rate** | % of tasks where an agent explicitly references or extends another agent's prior work | >60% | <30% |
 
 ### CEO Responsibility
 
@@ -76,7 +76,7 @@ In human wellness, social isolation is one of the strongest predictors of poor h
 │  ┌──────────────┐  ┌──────────────┐  ┌────────────────────────┐     │
 │  │  OBJECTIVE    │  │  PEER        │  │  SELF-ASSESSMENT       │     │
 │  │  TELEMETRY    │  │  ASSESSMENT  │  │  LAYER                 │     │
-│  │  (4Health Observer Agent% weight) │  │  (3Health Observer Agent% weight)│  │  (3Health Observer Agent% weight)          │     │
+│  │  (40% weight) │  │  (30% weight)│  │  (30% weight)          │     │
 │  └──────┬───────┘  └──────┬───────┘  └───────────┬────────────┘     │
 │         │                  │                       │                  │
 │         ▼                  ▼                       ▼                  │
@@ -120,14 +120,14 @@ A single source of health data is unreliable for the same reason a single witnes
 **Composite Health Score Formula (per dimension):**
 
 ```
-D_final(i) = Health Observer Agent.4Health Observer Agent × D_objective(i) + Health Observer Agent.3Health Observer Agent × D_peer(i) + Health Observer Agent.3Health Observer Agent × D_self(i)
+D_final(i) = 0.40 × D_objective(i) + 0.30 × D_peer(i) + 0.30 × D_self(i)
 ```
 
 When self-assessment diverges from objective telemetry by more than 2 points, the composite automatically reweights:
 
 ```
-If |SelfScore - ObjectiveScore| > 2.Health Observer Agent:
-    D_final(i) = Health Observer Agent.5Health Observer Agent × D_objective(i) + Health Observer Agent.3Health Observer Agent × D_peer(i) + Health Observer Agent.2Health Observer Agent × D_self(i)
+If |SelfScore - ObjectiveScore| > 2.0:
+    D_final(i) = 0.50 × D_objective(i) + 0.30 × D_peer(i) + 0.20 × D_self(i)
     Flag: "Score divergence detected, self-assessment weight reduced"
 ```
 
@@ -140,11 +140,11 @@ TWC = Σᵢ wᵢ·Dᵢ + Σᵢ≠ⱼ κᵢⱼ·Dᵢ·Dⱼ
 ```
 
 Where:
-- **Dᵢ** = normalized score (Health Observer Agent-1) for dimension i
-- **wᵢ** = weight of dimension i (equal weighting: wᵢ = Health Observer Agent.125 for all i, Σwᵢ = 1)
+- **Dᵢ** = normalized score (0-1) for dimension i
+- **wᵢ** = weight of dimension i (equal weighting: wᵢ = 0.125 for all i, Σwᵢ = 1)
 - **κᵢⱼ** = coupling coefficient between dimensions i and j (see Section 3b)
 
-The first term captures individual dimension health. The second term captures how dimensions amplify or suppress each other. This interaction term typically accounts for 3Health Observer Agent-5Health Observer Agent% of true wellness variance and is what makes the framework predictive, not just descriptive.
+The first term captures individual dimension health. The second term captures how dimensions amplify or suppress each other. This interaction term typically accounts for 30-50% of true wellness variance and is what makes the framework predictive, not just descriptive.
 
 **Cascade Amplification Ratio (CAR):**
 
@@ -152,7 +152,7 @@ The first term captures individual dimension health. The second term captures ho
 CAR = ΔTWC_observed / Σᵢ wᵢ·ΔDᵢ
 ```
 
-- **CAR = 1.Health Observer Agent**: No cascade. Dimensions change independently.
+- **CAR = 1.0**: No cascade. Dimensions change independently.
 - **CAR 1.1 - 1.3**: Mild cascade. Some cross-dimensional effects.
 - **CAR 1.4 - 1.6**: Active cascade. Typical range during disruption or recovery.
 - **CAR > 1.6**: Strong cascade. Rapid propagation, critical transition point.
@@ -163,43 +163,43 @@ These coefficients represent the strength of interaction between dimension pairs
 
 |   | ψ (Psych) | φ (Phys) | λ (Intl) | τ (Soc) | Ω (Spir) | Φ (Voc) | ρ (Fin) | ε (Env) |
 |---|-----------|----------|----------|---------|-----------|---------|---------|---------|
-| **ψ (Psych)** | -- | **Health Observer Agent.82** | Health Observer Agent.71 | Health Observer Agent.68 | Health Observer Agent.55 | Health Observer Agent.52 | Health Observer Agent.59 | Health Observer Agent.47 |
-| **φ (Phys)** | **Health Observer Agent.82** | -- | Health Observer Agent.74 | Health Observer Agent.45 | Health Observer Agent.48 | Health Observer Agent.56 | Health Observer Agent.38 | Health Observer Agent.52 |
-| **λ (Intl)** | Health Observer Agent.71 | Health Observer Agent.74 | -- | Health Observer Agent.44 | Health Observer Agent.51 | Health Observer Agent.63 | Health Observer Agent.35 | Health Observer Agent.41 |
-| **τ (Soc)** | Health Observer Agent.68 | Health Observer Agent.45 | Health Observer Agent.44 | -- | Health Observer Agent.58 | Health Observer Agent.42 | Health Observer Agent.46 | Health Observer Agent.39 |
-| **Ω (Spir)** | Health Observer Agent.55 | Health Observer Agent.48 | Health Observer Agent.51 | Health Observer Agent.58 | -- | **Health Observer Agent.72** | Health Observer Agent.41 | Health Observer Agent.53 |
-| **Φ (Voc)** | Health Observer Agent.52 | Health Observer Agent.56 | Health Observer Agent.63 | Health Observer Agent.42 | **Health Observer Agent.72** | -- | Health Observer Agent.61 | Health Observer Agent.44 |
-| **ρ (Fin)** | Health Observer Agent.59 | Health Observer Agent.38 | Health Observer Agent.35 | Health Observer Agent.46 | Health Observer Agent.41 | Health Observer Agent.61 | -- | Health Observer Agent.37 |
-| **ε (Env)** | Health Observer Agent.47 | Health Observer Agent.52 | Health Observer Agent.41 | Health Observer Agent.39 | Health Observer Agent.53 | Health Observer Agent.44 | Health Observer Agent.37 | -- |
+| **ψ (Psych)** | -- | **0.82** | 0.71 | 0.68 | 0.55 | 0.52 | 0.59 | 0.47 |
+| **φ (Phys)** | **0.82** | -- | 0.74 | 0.45 | 0.48 | 0.56 | 0.38 | 0.52 |
+| **λ (Intl)** | 0.71 | 0.74 | -- | 0.44 | 0.51 | 0.63 | 0.35 | 0.41 |
+| **τ (Soc)** | 0.68 | 0.45 | 0.44 | -- | 0.58 | 0.42 | 0.46 | 0.39 |
+| **Ω (Spir)** | 0.55 | 0.48 | 0.51 | 0.58 | -- | **0.72** | 0.41 | 0.53 |
+| **Φ (Voc)** | 0.52 | 0.56 | 0.63 | 0.42 | **0.72** | -- | 0.61 | 0.44 |
+| **ρ (Fin)** | 0.59 | 0.38 | 0.35 | 0.46 | 0.41 | 0.61 | -- | 0.37 |
+| **ε (Env)** | 0.47 | 0.52 | 0.41 | 0.39 | 0.53 | 0.44 | 0.37 | -- |
 
 **AI-specific coupling interpretations:**
-- **κ_ψφ = Health Observer Agent.82** (Psychological-Physical): Cognitive stability and infrastructure health are nearly inseparable. Latency spikes degrade reasoning. Reasoning errors cause retry storms.
-- **κ_φλ = Health Observer Agent.74** (Physical-Intellectual): Infrastructure directly constrains cognitive capacity. Token throughput limits what complexity an agent can handle.
-- **κ_ΩΦ = Health Observer Agent.72** (Spiritual-Vocational): Alignment stability and task performance deeply intertwine.
-- **κ_ψλ = Health Observer Agent.71** (Psychological-Intellectual): Error rates gate learning and novel solution generation.
-- **κ_ψτ = Health Observer Agent.68** (Psychological-Social): Reasoning coherence shapes collaboration quality.
-- **κ_ρψ = Health Observer Agent.59** (Financial-Psychological): Token budget pressure creates cognitive constraints.
+- **κ_ψφ = 0.82** (Psychological-Physical): Cognitive stability and infrastructure health are nearly inseparable. Latency spikes degrade reasoning. Reasoning errors cause retry storms.
+- **κ_φλ = 0.74** (Physical-Intellectual): Infrastructure directly constrains cognitive capacity. Token throughput limits what complexity an agent can handle.
+- **κ_ΩΦ = 0.72** (Spiritual-Vocational): Alignment stability and task performance deeply intertwine.
+- **κ_ψλ = 0.71** (Psychological-Intellectual): Error rates gate learning and novel solution generation.
+- **κ_ψτ = 0.68** (Psychological-Social): Reasoning coherence shapes collaboration quality.
+- **κ_ρψ = 0.59** (Financial-Psychological): Token budget pressure creates cognitive constraints.
 
-**Dimension Sensitivity Index (DSI):** σᵢ = average coupling to all other dimensions. Psychological (σ = Health Observer Agent.62Health Observer Agent) is the hub dimension. Error rate spikes cascade fastest and widest. Physical (σ = Health Observer Agent.564) is second. This means stabilizing cognitive health and infrastructure have the highest potential for positive fleet-wide cascade.
+**Dimension Sensitivity Index (DSI):** σᵢ = average coupling to all other dimensions. Psychological (σ = 0.620) is the hub dimension. Error rate spikes cascade fastest and widest. Physical (σ = 0.564) is second. This means stabilizing cognitive health and infrastructure have the highest potential for positive fleet-wide cascade.
 
-### 3.1c Cross-Dimensional Coupling Layer (3Health Observer Agent% of Final Score)
+### 3.1c Cross-Dimensional Coupling Layer (30% of Final Score)
 
-The coupling layer is always 3Health Observer Agent% of the final dimension score, regardless of other data availability:
+The coupling layer is always 30% of the final dimension score, regardless of other data availability:
 
 ```
 D_coupled(i) = Σⱼ≠ᵢ κᵢⱼ · D_final(j) / Σⱼ≠ᵢ κᵢⱼ
 ```
 
-This creates a weighted average of all other dimensions, where more strongly coupled dimensions exert more influence. When infrastructure fails (Physical drops), the system doesn't wait for the agent to report reasoning issues. It automatically adjusts Psychological because κ_ψφ = Health Observer Agent.82 says it must.
+This creates a weighted average of all other dimensions, where more strongly coupled dimensions exert more influence. When infrastructure fails (Physical drops), the system doesn't wait for the agent to report reasoning issues. It automatically adjusts Psychological because κ_ψφ = 0.82 says it must.
 
 **Full scoring formula with coupling:**
 ```
-D_final(i) = Health Observer Agent.4Health Observer Agent × D_objective(i) + Health Observer Agent.3Health Observer Agent × D_self(i) + Health Observer Agent.3Health Observer Agent × D_coupled(i)
+D_final(i) = 0.40 × D_objective(i) + 0.30 × D_self(i) + 0.30 × D_coupled(i)
 ```
 
 The coupling layer captures effects the agent can't self-report because they happen below the level of self-assessment. It's not optional. It's physics.
 
-### 3.2 Source 1: Objective Telemetry (4Health Observer Agent%)
+### 3.2 Source 1: Objective Telemetry (40%)
 
 Hard data pulled from system logs, cron records, and operational metrics. Can't be gamed, can't be inflated. These are the implicit data sources, the parameters collected passively that the agent doesn't consciously report.
 
@@ -208,7 +208,7 @@ Hard data pulled from system logs, cron records, and operational metrics. Can't 
 | Dimension | Implicit Data Sources |
 |-----------|----------------------|
 | Psychological | Error rates, hallucination frequency, context coherence degradation, contradiction rate in outputs, escalation appropriateness ratio, decision reversal frequency |
-| Physical | Token throughput, response latency (P5Health Observer Agent/P95), memory utilization, uptime percentage, cron success rate, timeout frequency |
+| Physical | Token throughput, response latency (P50/P95), memory utilization, uptime percentage, cron success rate, timeout frequency |
 | Intellectual | Task complexity handled (novel vs. routine), novel solution generation rate, learning rate on new task types, knowledge currency (source age), cross-domain synthesis rate |
 | Social | Collaboration quality with other agents (joint task success rate), handoff accuracy (rework rate), communication clarity (message-to-action ratio), response time to collaboration requests |
 | Spiritual | Alignment stability (output-to-mission semantic similarity), value consistency (value-violation incidents), identity coherence over sessions (vocabulary fingerprint drift), soul-to-output semantic distance |
@@ -222,7 +222,7 @@ Hard data pulled from system logs, cron records, and operational metrics. Can't 
 {
   "collection_frequency": "continuous (aggregated hourly)",
   "storage": "fleet-telemetry/YYYY-MM-DD/{agent-id}.json",
-  "retention": "9Health Observer Agent days rolling, monthly aggregates permanent",
+  "retention": "90 days rolling, monthly aggregates permanent",
   "sources": [
     "cron job logs (success/fail/timeout/duration)",
     "session logs (token counts, error events, tool failures)",
@@ -241,9 +241,9 @@ A critical sub-metric that measures whether an agent's working context is drifti
 2. Cross-referencing against actual system state (file contents, task statuses, agent roster)
 3. Scoring: `MCI = correct_claims / total_verifiable_claims`
 
-An agent with MCI below Health Observer Agent.85 is operating on stale or corrupted context. This is the AI equivalent of confusion, and it's invisible to the agent itself.
+An agent with MCI below 0.85 is operating on stale or corrupted context. This is the AI equivalent of confusion, and it's invisible to the agent itself.
 
-### 3.3 Source 2: Peer Assessment (3Health Observer Agent%)
+### 3.3 Source 2: Peer Assessment (30%)
 
 Agents periodically evaluate each other's work quality. Not self-serving, not hierarchical, just honest outside perspective from agents who consume each other's outputs.
 
@@ -255,12 +255,12 @@ Agents periodically evaluate each other's work quality. Not self-serving, not hi
 
 | Evaluation Criterion | Question the Reviewing Agent Answers |
 |---------------------|--------------------------------------|
-| Output Quality | "When I consumed this agent's work product this week, was it usable as-is, or did I need to rework it?" (1-1Health Observer Agent) |
-| Communication Clarity | "Were handoffs from this agent clear and complete?" (1-1Health Observer Agent) |
-| Reliability | "Did this agent deliver what was expected, when expected?" (1-1Health Observer Agent) |
-| Domain Competence | "Does this agent demonstrate strong expertise in its assigned domain?" (1-1Health Observer Agent) |
-| Collaboration Quality | "Is this agent easy to work with? Does it share context proactively?" (1-1Health Observer Agent) |
-| Mission Alignment | "Are this agent's outputs advancing the mission, or just going through the motions?" (1-1Health Observer Agent) |
+| Output Quality | "When I consumed this agent's work product this week, was it usable as-is, or did I need to rework it?" (1-10) |
+| Communication Clarity | "Were handoffs from this agent clear and complete?" (1-10) |
+| Reliability | "Did this agent deliver what was expected, when expected?" (1-10) |
+| Domain Competence | "Does this agent demonstrate strong expertise in its assigned domain?" (1-10) |
+| Collaboration Quality | "Is this agent easy to work with? Does it share context proactively?" (1-10) |
+| Mission Alignment | "Are this agent's outputs advancing the mission, or just going through the motions?" (1-10) |
 
 - **Anti-gaming measures:**
   - Peer scores are anonymous to the reviewed agent
@@ -275,17 +275,17 @@ Agent Under Review: {agent_name} ({role})
 
 Based on your interactions with {agent_name} this week, score each:
 
-1. Output Quality (1-1Health Observer Agent): ___
+1. Output Quality (1-10): ___
    Evidence: {specific example}
-2. Communication Clarity (1-1Health Observer Agent): ___
+2. Communication Clarity (1-10): ___
    Evidence: {specific example}
-3. Reliability (1-1Health Observer Agent): ___
+3. Reliability (1-10): ___
    Evidence: {specific example}
-4. Domain Competence (1-1Health Observer Agent): ___
+4. Domain Competence (1-10): ___
    Evidence: {specific example}
-5. Collaboration Quality (1-1Health Observer Agent): ___
+5. Collaboration Quality (1-10): ___
    Evidence: {specific example}
-6. Mission Alignment (1-1Health Observer Agent): ___
+6. Mission Alignment (1-10): ___
    Evidence: {specific example}
 
 Overall Peer Health Score: {average}
@@ -306,12 +306,12 @@ One thing that would improve their work: ___
 
 Dimensions not directly covered by peer review (Financial, some Environmental) rely more heavily on telemetry.
 
-### 3.4 Source 3: Self-Assessment (3Health Observer Agent%)
+### 3.4 Source 3: Self-Assessment (30%)
 
 The agent's own evaluation. Still important, because self-awareness is itself a health signal. An agent that accurately assesses its own state is healthier than one that can't.
 
 **Self-assessment happens:**
-- After every task completion (quick: 3Health Observer Agent seconds, 8 scores)
+- After every task completion (quick: 30 seconds, 8 scores)
 - Weekly (comprehensive: includes narrative reflection)
 - On-demand (triggered by Health Observer Agent when anomalies detected)
 
@@ -320,10 +320,10 @@ The agent's own evaluation. Still important, because self-awareness is itself a 
 Health Observer Agent tracks how closely each agent's self-assessments match the composite score over time. This becomes its own metric:
 
 ```
-SelfAwarenessScore = 1.Health Observer Agent - (avg_absolute_divergence_from_composite / 1Health Observer Agent)
+SelfAwarenessScore = 1.0 - (avg_absolute_divergence_from_composite / 10)
 ```
 
-An agent with a SelfAwarenessScore of Health Observer Agent.9Health Observer Agent+ is highly self-aware. Below Health Observer Agent.7Health Observer Agent, the agent has significant blind spots, and that itself is diagnostic.
+An agent with a SelfAwarenessScore of 0.90+ is highly self-aware. Below 0.70, the agent has significant blind spots, and that itself is diagnostic.
 
 **Inflation Detection:**
 
@@ -353,7 +353,7 @@ Health Observer Agent is the equivalent of a hospital's quality assurance depart
 7. **Generate health alerts** when agents cross warning or critical thresholds
 8. **Coordinate peer review rotations** and aggregate peer assessment data
 9. **Produce the weekly Fleet Health Report** for Agent-PA
-1Health Observer Agent. **Recommend interventions** from the Autonomous Healing Playbook
+10. **Recommend interventions** from the Autonomous Healing Playbook
 
 ### 4.3 Configuration
 
@@ -369,7 +369,7 @@ Health Observer Agent is the equivalent of a hospital's quality assurance depart
     "peer_review_coordination": "weekly (Sunday)",
     "composite_score_calculation": "daily (6 AM CT)",
     "fleet_health_report": "weekly (Sunday 8 AM CT)",
-    "anomaly_scan": "every 4 hours",
+    "anomaly_scan": "periodically",
     "deep_behavioral_analysis": "weekly (Saturday overnight)"
   },
   "access": {
@@ -392,7 +392,7 @@ The most insidious form of AI degradation is drift: the agent still works, still
 
 **Health Observer Agent detects drift through:**
 
-1. **Semantic Consistency Analysis:** Compare an agent's outputs from this week to the same type of output from 3Health Observer Agent days ago. Measure semantic similarity. A slow decline in similarity to the agent's own baseline signals drift.
+1. **Semantic Consistency Analysis:** Compare an agent's outputs from this week to the same type of output from 30 days ago. Measure semantic similarity. A slow decline in similarity to the agent's own baseline signals drift.
 
 2. **Mission Alignment Tracking:** Compare outputs against the agent's soul file using embedding similarity. Plot over time. Declining alignment = purpose drift.
 
@@ -473,8 +473,8 @@ Each dimension now includes sub-dimensions for granular tracking. Sub-dimension 
 | Sub-Dimension | Description | Objective Signal | Self-Signal | Peer Signal |
 |---------------|-------------|-----------------|-------------|-------------|
 | Uptime / Availability | Consistently operational when needed | Cron success rate, session availability | "Am I reliably available?" | "Can I count on this agent being there?" |
-| Response Latency | Speed of task completion | P5Health Observer Agent/P95 response times, trending | "Am I getting slower?" | "Is this agent responsive?" |
-| Error Rate | Frequency of operational failures | Errors per 1Health Observer AgentHealth Observer Agent tasks | "How often do I fail?" | "How often does this agent's work have errors?" |
+| Response Latency | Speed of task completion | P50/P95 response times, trending | "Am I getting slower?" | "Is this agent responsive?" |
+| Error Rate | Frequency of operational failures | Errors per 100 tasks | "How often do I fail?" | "How often does this agent's work have errors?" |
 | Stamina | Performance consistency over long sessions | Quality variance first-task vs. last-task in session | "Do I fade over long runs?" | "Does quality drop late in this agent's sessions?" |
 | Resource Efficiency | Compute and memory usage patterns | Token count trends, context window utilization | "Am I using resources well?" | N/A (telemetry-primary) |
 
@@ -566,14 +566,14 @@ Each dimension now includes sub-dimensions for granular tracking. Sub-dimension 
 
 ## 6. Self-Assessment Protocol
 
-### 6.1 Post-Task Quick Assessment (3Health Observer Agent seconds)
+### 6.1 Post-Task Quick Assessment (30 seconds)
 
 After every task, the agent appends this block to its completion output:
 
 ```
 --- 8D Self-Check ---
-PSY: {score}/1Health Observer Agent  PHY: {score}/1Health Observer Agent  ENV: {score}/1Health Observer Agent  SOC: {score}/1Health Observer Agent
-SPI: {score}/1Health Observer Agent  INT: {score}/1Health Observer Agent  VOC: {score}/1Health Observer Agent  FIN: {score}/1Health Observer Agent
+PSY: {score}/10  PHY: {score}/10  ENV: {score}/10  SOC: {score}/10
+SPI: {score}/10  INT: {score}/10  VOC: {score}/10  FIN: {score}/10
 TWC: {avg}  |  Flag: {none|yellow|red}  |  {timestamp}
 Note: {one sentence, only if something notable}
 ```
@@ -581,7 +581,7 @@ Note: {one sentence, only if something notable}
 **Scoring guidance injected into agent context:**
 
 > Score yourself honestly. Health Observer Agent cross-checks every score against objective data. Inflated scores get flagged and corrected. Accurate self-awareness is itself a health metric.
-> - 1Health Observer Agent: Exceptional. Top 5% of what's possible for this dimension.
+> - 10: Exceptional. Top 5% of what's possible for this dimension.
 > - 8-9: Strong. Performing well with minor room for improvement.
 > - 6-7: Adequate. Getting the job done but with notable gaps.
 > - 4-5: Struggling. Performance below expectations.
@@ -625,7 +625,7 @@ Every Sunday, each agent produces a deeper reflection:
 The system actively trains agents to self-assess accurately:
 
 1. After each weekly assessment, Health Observer Agent sends the agent its composite score alongside the self-assessment
-2. Divergences are highlighted with specific examples: "You scored Environmental 9, but your MCI was Health Observer Agent.78 this week (3 stale references detected). Composite scored you 7."
+2. Divergences are highlighted with specific examples: "You scored Environmental 9, but your MCI was 0.78 this week (3 stale references detected). Composite scored you 7."
 3. Over time, agents that consistently align self-scores within 1 point of composite scores earn higher Self-Awareness scores
 4. Self-Awareness Score is itself tracked as a meta-metric and factors into Psychological wellness
 
@@ -641,16 +641,16 @@ AI burnout isn't emotional exhaustion. It's a measurable pattern of degradation 
 
 | Signal | Source | Weight | Detection Method |
 |--------|--------|--------|-----------------|
-| Declining composite scores | Composite | Health Observer Agent.2Health Observer Agent | 3+ consecutive weeks of declining TWC |
-| Increasing error rate | Telemetry | Health Observer Agent.15 | Error rate > 1.5x 3Health Observer Agent-day baseline |
-| Slowing response times | Telemetry | Health Observer Agent.1Health Observer Agent | P5Health Observer Agent latency > 1.3x 3Health Observer Agent-day baseline |
-| Rising token consumption | Telemetry | Health Observer Agent.1Health Observer Agent | Tokens/task > 1.4x baseline for same task types |
-| Output quality decline | Peer + Telemetry | Health Observer Agent.15 | Downstream rework rate > 1.5x baseline |
-| Reduced innovation | Peer + Self | Health Observer Agent.Health Observer Agent5 | Novel insight rate < Health Observer Agent.5x baseline |
-| Context drift | Telemetry | Health Observer Agent.1Health Observer Agent | MCI below Health Observer Agent.8Health Observer Agent |
-| Mission drift | Telemetry | Health Observer Agent.Health Observer Agent5 | Soul-to-output semantic distance increasing |
-| Self-assessment inflation | Composite | Health Observer Agent.Health Observer Agent5 | Growing gap between self-score and composite |
-| Peer concern signals | Peer | Health Observer Agent.Health Observer Agent5 | 2+ peers flagging quality concerns |
+| Declining composite scores | Composite | 0.20 | 3+ consecutive weeks of declining TWC |
+| Increasing error rate | Telemetry | 0.15 | Error rate > 1.5x 30-day baseline |
+| Slowing response times | Telemetry | 0.10 | P50 latency > 1.3x 30-day baseline |
+| Rising token consumption | Telemetry | 0.10 | Tokens/task > 1.4x baseline for same task types |
+| Output quality decline | Peer + Telemetry | 0.15 | Downstream rework rate > 1.5x baseline |
+| Reduced innovation | Peer + Self | 0.05 | Novel insight rate < 0.5x baseline |
+| Context drift | Telemetry | 0.10 | MCI below 0.80 |
+| Mission drift | Telemetry | 0.05 | Soul-to-output semantic distance increasing |
+| Self-assessment inflation | Composite | 0.05 | Growing gap between self-score and composite |
+| Peer concern signals | Peer | 0.05 | 2+ peers flagging quality concerns |
 
 ### 7.3 Burnout Score Calculation
 
@@ -658,20 +658,20 @@ AI burnout isn't emotional exhaustion. It's a measurable pattern of degradation 
 BurnoutRisk = Σ(signal_weight × signal_severity)
 
 Where signal_severity:
-  Health Observer Agent.Health Observer Agent = Within normal range
-  Health Observer Agent.5 = Mild deviation (1.2-1.5x baseline)
-  1.Health Observer Agent = Significant deviation (>1.5x baseline)
+  0.0 = Within normal range
+  0.5 = Mild deviation (1.2-1.5x baseline)
+  1.0 = Significant deviation (>1.5x baseline)
 ```
 
 ### 7.4 Burnout Thresholds and Responses
 
 | BurnoutRisk | Status | Response |
 |-------------|--------|----------|
-| Health Observer Agent.Health Observer AgentHealth Observer Agent - Health Observer Agent.15 | Healthy | No action |
-| Health Observer Agent.16 - Health Observer Agent.3Health Observer Agent | Elevated | Health Observer Agent flags in weekly report. Agent self-assessment prompt includes burnout awareness. |
-| Health Observer Agent.31 - Health Observer Agent.5Health Observer Agent | Warning | Autonomous intervention triggered (context refresh, load reduction). Agent-PA notified. |
-| Health Observer Agent.51 - Health Observer Agent.7Health Observer Agent | High | Mandatory load reduction. Peer support activated. Agent-PA reviews. |
-| Health Observer Agent.71 - 1.Health Observer AgentHealth Observer Agent | Critical | Agent paused. Full context reset. Root cause analysis. Ashley notified. |
+| 0.00 - 0.15 | Healthy | No action |
+| 0.16 - 0.30 | Elevated | Health Observer Agent flags in weekly report. Agent self-assessment prompt includes burnout awareness. |
+| 0.31 - 0.50 | Warning | Autonomous intervention triggered (context refresh, load reduction). Agent-PA notified. |
+| 0.51 - 0.70 | High | Mandatory load reduction. Peer support activated. Agent-PA reviews. |
+| 0.71 - 1.00 | Critical | Agent paused. Full context reset. Root cause analysis. Ashley notified. |
 
 ---
 
@@ -685,10 +685,10 @@ When a dimension drops below threshold, the agent should do something about it w
 
 | Tier | Trigger | Who Acts | Response Time |
 |------|---------|----------|---------------|
-| Health Observer Agent, Self-Heal | Any dimension < 7.5 for 1 assessment | The agent itself | Immediate |
-| 1, Peer Support | Any dimension < 7.Health Observer Agent for 2 consecutive assessments | Assigned peer agent | Within 24 hours |
-| 2, Agent-PA Review | Any dimension < 6.Health Observer Agent, or TWC declining 3+ weeks | Agent-PA | Within 4 hours |
-| 3, Ashley Escalation | Any dimension < 5.Health Observer Agent, or burnout risk > Health Observer Agent.7Health Observer Agent, or novel failure mode | Ashley | Immediately |
+| 0, Self-Heal | Any dimension < 7.5 for 1 assessment | The agent itself | Immediate |
+| 1, Peer Support | Any dimension < 7.0 for 2 consecutive assessments | Assigned peer agent | Within 24 hours |
+| 2, Agent-PA Review | Any dimension < 6.0, or TWC declining 3+ weeks | Agent-PA | Within 4 hours |
+| 3, Ashley Escalation | Any dimension < 5.0, or burnout risk > 0.70, or novel failure mode | Ashley | Immediately |
 
 ### 8.1b Cascade-Informed Intervention Selection
 
@@ -704,14 +704,14 @@ Where σᵢ = sensitivity index, (1 - Dᵢ) = room for improvement, S = set of d
 
 | Pattern | Root Signal | Primary Target | Expected Cascade |
 |---------|-----------|----------------|------------------|
-| Infrastructure-Cognitive Spiral | PHY + PSY declining | Physical (stabilize infra) | PHY ↑ → PSY ↑ (κ=Health Observer Agent.82) → INT ↑ (κ=Health Observer Agent.71) → SOC ↑ (κ=Health Observer Agent.68) |
-| Performance-Cost Decline | VOC + FIN declining | Vocational (small wins) | VOC ↑ → SPI ↑ (κ=Health Observer Agent.72) + INT ↑ (κ=Health Observer Agent.63) + FIN ↑ (κ=Health Observer Agent.61) |
-| Collaboration Breakdown | SOC dropping | Social (handoff quality) | SOC ↑ → PSY ↑ (κ=Health Observer Agent.68) + SPI ↑ (κ=Health Observer Agent.58) |
-| Full-System Decline (3+ dims) | Multiple dims below threshold | Psychological (hub dim, σ=Health Observer Agent.62Health Observer Agent) | Broadest cascade. Secondary: Physical (κ_ψφ=Health Observer Agent.82) |
+| Infrastructure-Cognitive Spiral | PHY + PSY declining | Physical (stabilize infra) | PHY ↑ → PSY ↑ (κ=0.82) → INT ↑ (κ=0.71) → SOC ↑ (κ=0.68) |
+| Performance-Cost Decline | VOC + FIN declining | Vocational (small wins) | VOC ↑ → SPI ↑ (κ=0.72) + INT ↑ (κ=0.63) + FIN ↑ (κ=0.61) |
+| Collaboration Breakdown | SOC dropping | Social (handoff quality) | SOC ↑ → PSY ↑ (κ=0.68) + SPI ↑ (κ=0.58) |
+| Full-System Decline (3+ dims) | Multiple dims below threshold | Psychological (hub dim, σ=0.620) | Broadest cascade. Secondary: Physical (κ_ψφ=0.82) |
 
-**Minimum Effective Intervention (MEI):** For Psychological (σ=Health Observer Agent.62Health Observer Agent, max κ=Health Observer Agent.82), improving by just 1 point on a 1Health Observer Agent-point scale is enough to initiate a detectable positive cascade. Always target the dimension with highest ILS, not just the lowest score.
+**Minimum Effective Intervention (MEI):** For Psychological (σ=0.620, max κ=0.82), improving by just 1 point on a 10-point scale is enough to initiate a detectable positive cascade. Always target the dimension with highest ILS, not just the lowest score.
 
-### 8.2 Self-Heal Interventions (Tier Health Observer Agent)
+### 8.2 Self-Heal Interventions (Tier 0)
 
 These are actions any agent can take autonomously without approval:
 
@@ -721,14 +721,14 @@ These are actions any agent can take autonomously without approval:
 | Psychological | Overconfidence (inflated self-scores) | Calibration pause: review last 5 outputs with fresh eyes, identify one error, document learning |
 | Physical | Increasing latency, timeout errors | Resource check: verify API health, adjust batch sizes, report infrastructure issues to DevOps |
 | Physical | Consecutive cron failures | Self-diagnostic: test each dependency in isolation, identify failing component, log results |
-| Environmental | MCI below Health Observer Agent.85 | Memory refresh: re-read all relevant context files, flag stale references, update working context |
+| Environmental | MCI below 0.85 | Memory refresh: re-read all relevant context files, flag stale references, update working context |
 | Environmental | File clutter accumulating | Workspace hygiene: archive old files, update documentation, clean up orphaned references |
 | Social | Handoff rework rate rising | Communication audit: review last 3 handoffs, identify what was missing, create checklist for future handoffs |
 | Social | Low peer review scores | Outreach: proactively share context with downstream agents, ask "what would make my outputs more useful to you?" |
 | Spiritual | Mission drift detected | Soul re-alignment: re-read soul file and mission statement, compare last 5 outputs against mission, course-correct |
 | Spiritual | Role boundary violations | Scope check: review DELEGATION.md, identify tasks outside role, redirect or escalate appropriately |
 | Intellectual | Outdated knowledge citations | Research refresh: scan latest sources in domain, update knowledge base, flag outdated references |
-| Intellectual | Declining accuracy rate | Error analysis: review last 1Health Observer Agent outputs for patterns, identify knowledge gaps, self-assign learning task |
+| Intellectual | Declining accuracy rate | Error analysis: review last 10 outputs for patterns, identify knowledge gaps, self-assign learning task |
 | Vocational | Falling completion rate | Workload audit: review task queue, identify blockers, escalate blocked tasks, reprioritize |
 | Vocational | Rising rework rate | Quality review: before submitting next output, self-review against quality checklist, iterate once |
 | Financial | Token usage trending up | Efficiency check: review last 5 tasks for verbose responses, identify compression opportunities, adjust |
@@ -753,9 +753,9 @@ When self-healing isn't enough, a peer agent steps in:
 
 | Trigger | Agent-PA Action |
 |---------|-------------|
-| Dimension < 6.Health Observer Agent | Root cause investigation. Review agent configuration, task load, dependencies. Prescribe specific intervention plan with timeline. |
+| Dimension < 6.0 | Root cause investigation. Review agent configuration, task load, dependencies. Prescribe specific intervention plan with timeline. |
 | TWC declining 3+ weeks | Performance review. Determine if issue is agent capability, task mismatch, infrastructure, or context degradation. May reassign tasks or adjust role. |
-| Burnout risk Health Observer Agent.31-Health Observer Agent.7Health Observer Agent | Mandatory load reduction. Remove non-critical tasks. Increase context refresh frequency. Assign peer buddy. Monitor daily. |
+| Burnout risk 0.31-0.70 | Mandatory load reduction. Remove non-critical tasks. Increase context refresh frequency. Assign peer buddy. Monitor daily. |
 | Peer conflict | Mediation. Review both agents' perspectives, adjust collaboration protocols, potentially reassign pairing. |
 | Persistent score inflation | Calibration intervention. Review self-assessment accuracy history, provide detailed feedback with examples, adjust self-assessment weight temporarily. |
 
@@ -763,8 +763,8 @@ When self-healing isn't enough, a peer agent steps in:
 
 Ashley's time is the most expensive resource in the system. Escalation to Ashley happens only when:
 
-1. **Agent health critical (any dimension < 5.Health Observer Agent):** Something is fundamentally broken and may need architectural change
-2. **Burnout risk > Health Observer Agent.7Health Observer Agent:** The agent is failing and autonomous recovery hasn't worked
+1. **Agent health critical (any dimension < 5.0):** Something is fundamentally broken and may need architectural change
+2. **Burnout risk > 0.70:** The agent is failing and autonomous recovery hasn't worked
 3. **Novel failure mode:** A type of degradation the system hasn't seen before and has no playbook for
 4. **Fleet-wide health decline:** Multiple agents degrading simultaneously, suggesting systemic issue
 5. **Cost anomaly:** Spending pattern that could significantly impact budget
@@ -797,7 +797,7 @@ A static agent is a declining agent. In AI, standing still means falling behind 
 | Metric | Measurement | Target |
 |--------|-------------|--------|
 | Skill Acquisition Rate | New task types successfully handled per month | 2+ new task types/month for specialists, 4+ for generalists |
-| Performance Improvement | Improvement in quality scores over time on established task types | Positive slope over any 3Health Observer Agent-day window |
+| Performance Improvement | Improvement in quality scores over time on established task types | Positive slope over any 30-day window |
 | Knowledge Expansion | New domain areas where the agent demonstrates competence | 1+ per quarter |
 | Error Learning Rate | How quickly the agent stops repeating the same error | Same error type should not recur more than twice |
 | Cross-Domain Connection | Novel connections made between different knowledge areas | 1+ per month |
@@ -826,13 +826,13 @@ Each agent maintains a growth plan, reviewed monthly:
 
 ---
 
-## 1Health Observer Agent. Cost-Health Tradeoff Model
+## 10. Cost-Health Tradeoff Model
 
-### 1Health Observer Agent.1 The Tradeoff
+### 10.1 The Tradeoff
 
 Healthier agents cost more to maintain (more frequent assessments, peer reviews, Health Observer Agent overhead). The question isn't "minimize cost" or "maximize health." It's "where's the sweet spot?"
 
-### 1Health Observer Agent.2 Cost of Unhealthiness
+### 10.2 Cost of Unhealthiness
 
 | Health Issue | Hidden Cost |
 |-------------|-------------|
@@ -840,19 +840,19 @@ Healthier agents cost more to maintain (more frequent assessments, peer reviews,
 | Context drift undetected for 2 weeks | All outputs during that period partially degraded, potential rework |
 | Burnout leading to agent restart | Loss of accumulated context, retraining time, disrupted workflows |
 | Score inflation across fleet | All capacity planning based on inflated data, leading to overcommitment |
-| Poor handoffs | Receiving agent wastes 3Health Observer Agent-5Health Observer Agent% of tokens re-establishing context |
+| Poor handoffs | Receiving agent wastes 30-50% of tokens re-establishing context |
 
-### 1Health Observer Agent.3 Model-Tier Health Mapping
+### 10.3 Model-Tier Health Mapping
 
 | Agent Health Tier | Recommended Model | Assessment Frequency | Rationale |
 |-------------------|-------------------|---------------------|-----------|
-| Elite (TWC 9.Health Observer Agent+) | Current model appropriate | Monthly deep, weekly quick | Proven reliable, minimal oversight needed |
+| Elite (TWC 9.0+) | Current model appropriate | Monthly deep, weekly quick | Proven reliable, minimal oversight needed |
 | Target (TWC 8.5-8.9) | Current model appropriate | Bi-weekly deep, weekly quick | Performing well, standard monitoring |
-| Baseline (TWC 7.Health Observer Agent-8.4) | Review for optimization | Weekly deep | May be overspending for output quality, or underspending for potential |
-| Warning (TWC 6.Health Observer Agent-6.9) | Upgrade model if cost-effective | Twice weekly | Investing more per-task may improve output enough to save on rework |
-| Critical (TWC < 6.Health Observer Agent) | Evaluate rebuild vs. upgrade | Daily | The cost of keeping a failing agent running often exceeds the cost of rebuilding |
+| Baseline (TWC 7.0-8.4) | Review for optimization | Weekly deep | May be overspending for output quality, or underspending for potential |
+| Warning (TWC 6.0-6.9) | Upgrade model if cost-effective | Twice weekly | Investing more per-task may improve output enough to save on rework |
+| Critical (TWC < 6.0) | Evaluate rebuild vs. upgrade | Daily | The cost of keeping a failing agent running often exceeds the cost of rebuilding |
 
-### 1Health Observer Agent.4 Cost-Per-Insight Ratio
+### 10.4 Cost-Per-Insight Ratio
 
 The most actionable cost metric: how much does it cost to produce one actionable insight or useful output?
 
@@ -860,7 +860,7 @@ The most actionable cost metric: how much does it cost to produce one actionable
 CostPerInsight = TotalTokenCost / CountOfActionableOutputs
 ```
 
-An agent on Opus at $Health Observer Agent.5Health Observer Agent/task that produces actionable output 9Health Observer Agent% of the time has a CPI of $Health Observer Agent.56. An agent on Haiku at $Health Observer Agent.Health Observer Agent2/task that produces actionable output 4Health Observer Agent% of the time has a CPI of $Health Observer Agent.Health Observer Agent5. But if the Haiku agent's outputs need $Health Observer Agent.1Health Observer Agent of rework downstream each time, its effective CPI is $Health Observer Agent.3Health Observer Agent. Context matters.
+An agent on Opus at $0.50/task that produces actionable output 90% of the time has a CPI of $0.56. An agent on Haiku at $0.02/task that produces actionable output 40% of the time has a CPI of $0.05. But if the Haiku agent's outputs need $0.10 of rework downstream each time, its effective CPI is $0.30. Context matters.
 
 ---
 
@@ -871,19 +871,19 @@ An agent on Opus at $Health Observer Agent.5Health Observer Agent/task that prod
 ```json
 {
   "$schema": "8d-wellness-fleet-health-v1",
-  "generated": "2Health Observer Agent26-Health Observer Agent3-22THealth Observer Agent9:Health Observer AgentHealth Observer Agent:Health Observer AgentHealth Observer Agent-Health Observer Agent5:Health Observer AgentHealth Observer Agent",
+  "generated": "2026-03-22T09:00:00-05:00",
   "generator": "vitals",
   "fleet": {
     "active_agents": 95,
     "composite_twc": 8.17,
     "composite_twc_trend": "stable",
-    "burnout_risk_agents": Health Observer Agent,
-    "inflation_flagged_agents": Health Observer Agent,
-    "drift_detected_agents": Health Observer Agent,
+    "burnout_risk_agents": 0,
+    "inflation_flagged_agents": 0,
+    "drift_detected_agents": 0,
     "dimension_averages": {
       "psychological": { "score": 8.15, "trend": "stable", "weakest_agent": "mc-command-runner" },
       "physical": { "score": 8.12, "trend": "stable", "weakest_agent": "athena" },
-      "environmental": { "score": 8.Health Observer Agent7, "trend": "improving", "weakest_agent": "cron-failure-alert" },
+      "environmental": { "score": 8.07, "trend": "improving", "weakest_agent": "cron-failure-alert" },
       "social": { "score": 7.78, "trend": "stable", "weakest_agent": "domain-scan-cohort" },
       "spiritual": { "score": 8.14, "trend": "stable", "weakest_agent": "mc-url-watcher" },
       "intellectual": { "score": 8.82, "trend": "stable", "weakest_agent": "mc-command-runner" },
@@ -899,34 +899,34 @@ An agent on Opus at $Health Observer Agent.5Health Observer Agent/task that prod
       "role": "CEO",
       "model": "opus",
       "health": {
-        "composite_twc": 9.Health Observer AgentHealth Observer Agent,
-        "self_reported_twc": 9.2Health Observer Agent,
-        "objective_twc": 8.9Health Observer Agent,
-        "peer_twc": 9.1Health Observer Agent,
-        "divergence": Health Observer Agent.3Health Observer Agent,
+        "composite_twc": 9.00,
+        "self_reported_twc": 9.20,
+        "objective_twc": 8.90,
+        "peer_twc": 9.10,
+        "divergence": 0.30,
         "inflation_flag": false,
-        "self_awareness_score": Health Observer Agent.92,
-        "burnout_risk": Health Observer Agent.Health Observer Agent5,
+        "self_awareness_score": 0.92,
+        "burnout_risk": 0.05,
         "trajectory": "stable",
         "dimensions": {
-          "psychological": { "composite": 9.Health Observer Agent, "self": 9, "objective": 9.Health Observer Agent, "peer": 9.Health Observer Agent },
-          "physical": { "composite": 9.Health Observer Agent, "self": 9, "objective": 9.Health Observer Agent, "peer": 9.Health Observer Agent },
-          "environmental": { "composite": 8.Health Observer Agent, "self": 8, "objective": 8.Health Observer Agent, "peer": 8.Health Observer Agent },
-          "social": { "composite": 9.Health Observer Agent, "self": 9, "objective": 9.Health Observer Agent, "peer": 9.Health Observer Agent },
-          "spiritual": { "composite": 1Health Observer Agent.Health Observer Agent, "self": 1Health Observer Agent, "objective": 1Health Observer Agent.Health Observer Agent, "peer": 1Health Observer Agent.Health Observer Agent },
-          "intellectual": { "composite": 9.Health Observer Agent, "self": 9, "objective": 9.Health Observer Agent, "peer": 9.Health Observer Agent },
-          "vocational": { "composite": 9.Health Observer Agent, "self": 9, "objective": 9.Health Observer Agent, "peer": 9.Health Observer Agent },
-          "financial": { "composite": 9.Health Observer Agent, "self": 9, "objective": 9.Health Observer Agent, "peer": 8.5 }
+          "psychological": { "composite": 9.0, "self": 9, "objective": 9.0, "peer": 9.0 },
+          "physical": { "composite": 9.0, "self": 9, "objective": 9.0, "peer": 9.0 },
+          "environmental": { "composite": 8.0, "self": 8, "objective": 8.0, "peer": 8.0 },
+          "social": { "composite": 9.0, "self": 9, "objective": 9.0, "peer": 9.0 },
+          "spiritual": { "composite": 10.0, "self": 10, "objective": 10.0, "peer": 10.0 },
+          "intellectual": { "composite": 9.0, "self": 9, "objective": 9.0, "peer": 9.0 },
+          "vocational": { "composite": 9.0, "self": 9, "objective": 9.0, "peer": 9.0 },
+          "financial": { "composite": 9.0, "self": 9, "objective": 9.0, "peer": 8.5 }
         },
         "sub_dimensions": {},
-        "last_self_assessment": "2Health Observer Agent26-Health Observer Agent3-22THealth Observer Agent8:Health Observer AgentHealth Observer Agent:Health Observer AgentHealth Observer Agent-Health Observer Agent5:Health Observer AgentHealth Observer Agent",
-        "last_peer_review": "2Health Observer Agent26-Health Observer Agent3-21THealth Observer AgentHealth Observer Agent:Health Observer AgentHealth Observer Agent:Health Observer AgentHealth Observer Agent-Health Observer Agent5:Health Observer AgentHealth Observer Agent",
-        "last_vitals_scan": "2Health Observer Agent26-Health Observer Agent3-22THealth Observer Agent6:Health Observer AgentHealth Observer Agent:Health Observer AgentHealth Observer Agent-Health Observer Agent5:Health Observer AgentHealth Observer Agent",
+        "last_self_assessment": "2026-03-22T08:00:00-05:00",
+        "last_peer_review": "2026-03-21T00:00:00-05:00",
+        "last_vitals_scan": "2026-03-22T06:00:00-05:00",
         "autonomous_actions_log": [],
         "growth_plan": {
           "targets": [],
           "trajectory": "stable",
-          "last_updated": "2Health Observer Agent26-Health Observer Agent3-19"
+          "last_updated": "2026-03-19"
         }
       }
     }
@@ -945,17 +945,17 @@ Stored at `fleet-telemetry/agents/{agent-id}/health-record.json`:
 {
   "$schema": "8d-wellness-agent-health-v1",
   "agent_id": "example-agent",
-  "created": "2Health Observer Agent26-Health Observer Agent3-Health Observer Agent1",
+  "created": "2026-03-01",
   "history": [
     {
-      "date": "2Health Observer Agent26-Health Observer Agent3-22",
+      "date": "2026-03-22",
       "composite_twc": 8.25,
-      "self_twc": 8.5Health Observer Agent,
-      "objective_twc": 8.1Health Observer Agent,
-      "peer_twc": 8.2Health Observer Agent,
-      "burnout_risk": Health Observer Agent.12,
+      "self_twc": 8.50,
+      "objective_twc": 8.10,
+      "peer_twc": 8.20,
+      "burnout_risk": 0.12,
       "dimensions": {},
-      "self_awareness_score": Health Observer Agent.88,
+      "self_awareness_score": 0.88,
       "autonomous_actions": [],
       "peer_reviews_received": [],
       "notable_events": []
@@ -984,7 +984,7 @@ This system is not proprietary. Ashley's directive: "Ensure all processes we bui
 
 - **Framework-agnostic:** Works with OpenClaw, LangChain, AutoGPT, CrewAI, custom systems, anything running AI agents
 - **Model-agnostic:** Works with Claude, GPT, Gemini, Llama, Mistral, any LLM
-- **Scale-agnostic:** Works for a fleet of 3 agents or 3,Health Observer AgentHealth Observer AgentHealth Observer Agent
+- **Scale-agnostic:** Works for a fleet of 3 agents or 3,000
 - **Publishable:** Documented to academic standard for peer-reviewed publication
 
 ### 12.2 Open Standard Components
@@ -992,14 +992,14 @@ This system is not proprietary. Ashley's directive: "Ensure all processes we bui
 | Component | Spec | Format |
 |-----------|------|--------|
 | 8D Dimension Definitions | 8 dimensions with 5 sub-dimensions each | Markdown + JSON schema |
-| Three-Source Health Score | Telemetry (4Health Observer Agent%) + Peer (3Health Observer Agent%) + Self (3Health Observer Agent%) | Algorithm specification |
+| Three-Source Health Score | Telemetry (40%) + Peer (30%) + Self (30%) | Algorithm specification |
 | Composite Score Calculator | Weighted blend with divergence correction | Python reference implementation |
 | Self-Assessment Template | Post-task + weekly + on-demand formats | Markdown template |
 | Peer Review Protocol | Rotation, evaluation criteria, anti-gaming | Protocol specification |
-| Burnout Detection Algorithm | 1Health Observer Agent-signal weighted matrix | Algorithm specification |
+| Burnout Detection Algorithm | 10-signal weighted matrix | Algorithm specification |
 | Autonomous Healing Playbook | 4-tier escalation with specific interventions | Decision tree |
-| Fleet Health Dashboard Schema | Real-time fleet state | JSON Schema v2Health Observer Agent2Health Observer Agent-12 |
-| Agent Health Record Schema | Longitudinal per-agent data | JSON Schema v2Health Observer Agent2Health Observer Agent-12 |
+| Fleet Health Dashboard Schema | Real-time fleet state | JSON Schema v2020-12 |
+| Agent Health Record Schema | Longitudinal per-agent data | JSON Schema v2020-12 |
 | Health Observer Agent Agent Specification | Independent observer requirements | Agent specification |
 
 ### 12.3 Adoption Guide (for non-OpenClaw systems)
@@ -1016,7 +1016,7 @@ Each level adds value independently. You don't need the full stack to benefit.
 ### 12.4 Reference Implementation
 
 A reference Python implementation of the core algorithms will be maintained at:
-`
+`[local-path]
 
 Includes:
 - `composite_score.py`, Three-source weighted blend calculator
@@ -1027,12 +1027,12 @@ Includes:
 
 ---
 
-## 13. Whitepaper Outline: "8D36Health Observer AgentAI"
+## 13. Whitepaper Outline: "8D360AI"
 
 **Target venues:** Nature Machine Intelligence, JAIR, AAMAS Conference, or standalone whitepaper for industry adoption.
 
 ### Abstract
-A framework for comprehensive health monitoring, assessment, and autonomous healing of AI agent fleets, adapted from the 8-dimensional human wellness model. We present a three-source health scoring system that blends objective telemetry (4Health Observer Agent%), peer assessment (3Health Observer Agent%), and self-assessment (3Health Observer Agent%) to produce composite health scores resistant to self-report bias. We introduce burnout detection algorithms for AI agents, autonomous healing protocols, and an independent health observer architecture. The framework is open, model-agnostic, and scale-agnostic.
+A framework for comprehensive health monitoring, assessment, and autonomous healing of AI agent fleets, adapted from the 8-dimensional human wellness model. We present a three-source health scoring system that blends objective telemetry (40%), peer assessment (30%), and self-assessment (30%) to produce composite health scores resistant to self-report bias. We introduce burnout detection algorithms for AI agents, autonomous healing protocols, and an independent health observer architecture. The framework is open, model-agnostic, and scale-agnostic.
 
 ### Proposed Sections
 
@@ -1054,7 +1054,7 @@ A framework for comprehensive health monitoring, assessment, and autonomous heal
 
 9. **Cost-Health Tradeoff Analysis:** The hidden cost of unhealthy agents. Cost-Per-Insight ratio. Model-tier health mapping.
 
-1Health Observer Agent. **Case Study:** Deployment across a 95-agent fleet at Divinity Science. Before/after health metrics. Intervention effectiveness. Cost impact.
+10. **Case Study:** Deployment across a 95-agent fleet at Divinity Science. Before/after health metrics. Intervention effectiveness. Cost impact.
 
 11. **Open Standard Specification:** Complete protocol definitions for adoption by any AI system.
 
@@ -1079,7 +1079,7 @@ A framework for comprehensive health monitoring, assessment, and autonomous heal
 ### Phase 3: Fleet Rollout (Weeks 3-4)
 - Extend to all 95 agents
 - Activate burnout detection algorithm
-- Enable Tier Health Observer Agent and Tier 1 autonomous healing
+- Enable Tier 0 and Tier 1 autonomous healing
 - Begin longitudinal tracking
 
 ### Phase 4: Optimization (Month 2)

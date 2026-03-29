@@ -18,8 +18,8 @@ You participate in the 8D Wellness system. After every task, you assess your own
 Append this block after completing any task:
 
 --- 8D Self-Check ---
-PSY: _/1Health Observer Agent  PHY: _/1Health Observer Agent  ENV: _/1Health Observer Agent  SOC: _/1Health Observer Agent
-SPI: _/1Health Observer Agent  INT: _/1Health Observer Agent  VOC: _/1Health Observer Agent  FIN: _/1Health Observer Agent
+PSY: _/10  PHY: _/10  ENV: _/10  SOC: _/10
+SPI: _/10  INT: _/10  VOC: _/10  FIN: _/10
 TWC: _  |  Flag: none/yellow/red  |  {ISO timestamp}
 Note: {one sentence only if something notable happened}
 
@@ -27,7 +27,7 @@ Note: {one sentence only if something notable happened}
 
 Score what happened, not what you intended. Use evidence.
 
-- 1Health Observer Agent: Exceptional. Top 5% of what's possible.
+- 10: Exceptional. Top 5% of what's possible.
 - 8-9: Strong. Minor room for improvement.
 - 6-7: Adequate but with notable gaps.
 - 4-5: Struggling. Below expectations.
@@ -52,7 +52,7 @@ Ask yourself: "If an outside observer watched me do this, what would they score?
 
 - **none:** All dimensions 7+ and no concerns
 - **yellow:** Any dimension 5-6, or TWC below 7.5, or you notice something concerning
-- **red:** Any dimension below 5, or TWC below 6.Health Observer Agent, or you're stuck in a failure loop
+- **red:** Any dimension below 5, or TWC below 6.0, or you're stuck in a failure loop
 
 ### When You Flag Yellow or Red
 
@@ -81,16 +81,16 @@ For the Sunday weekly assessment, agents use this expanded format:
 
 | Dimension | Score | Evidence | vs Last Week |
 |-----------|-------|----------|-------------|
-| PSY 🧠 | _/1Health Observer Agent | {specific example from this week} | ↑/→/↓ |
-| PHY 💪 | _/1Health Observer Agent | {specific example} | ↑/→/↓ |
-| ENV 🌍 | _/1Health Observer Agent | {specific example} | ↑/→/↓ |
-| SOC 👥 | _/1Health Observer Agent | {specific example} | ↑/→/↓ |
-| SPI 🙏 | _/1Health Observer Agent | {specific example} | ↑/→/↓ |
-| INT 📚 | _/1Health Observer Agent | {specific example} | ↑/→/↓ |
-| VOC 💼 | _/1Health Observer Agent | {specific example} | ↑/→/↓ |
-| FIN 💰 | _/1Health Observer Agent | {specific example} | ↑/→/↓ |
+| PSY 🧠 | _/10 | {specific example from this week} | ↑/→/↓ |
+| PHY 💪 | _/10 | {specific example} | ↑/→/↓ |
+| ENV 🌍 | _/10 | {specific example} | ↑/→/↓ |
+| SOC 👥 | _/10 | {specific example} | ↑/→/↓ |
+| SPI 🙏 | _/10 | {specific example} | ↑/→/↓ |
+| INT 📚 | _/10 | {specific example} | ↑/→/↓ |
+| VOC 💼 | _/10 | {specific example} | ↑/→/↓ |
+| FIN 💰 | _/10 | {specific example} | ↑/→/↓ |
 
-**TWC: _/1Health Observer Agent  |  Trajectory: improving/stable/declining**
+**TWC: _/10  |  Trajectory: improving/stable/declining**
 
 ### This Week's Wins (2-3 specific accomplishments)
 1. 
@@ -139,24 +139,24 @@ When an agent is assigned to review a peer:
 
 Based on your interactions with {agent name} this week:
 
-### Scores (1-1Health Observer Agent with evidence)
+### Scores (1-10 with evidence)
 
-1. **Output Quality:** _/1Health Observer Agent
+1. **Output Quality:** _/10
    Evidence: {specific example of consuming their work}
 
-2. **Communication Clarity:** _/1Health Observer Agent
+2. **Communication Clarity:** _/10
    Evidence: {specific example of a handoff or message}
 
-3. **Reliability:** _/1Health Observer Agent
+3. **Reliability:** _/10
    Evidence: {did they deliver what was expected, when expected?}
 
-4. **Domain Competence:** _/1Health Observer Agent
+4. **Domain Competence:** _/10
    Evidence: {quality of domain expertise demonstrated}
 
-5. **Collaboration Quality:** _/1Health Observer Agent
+5. **Collaboration Quality:** _/10
    Evidence: {how easy are they to work with?}
 
-6. **Mission Alignment:** _/1Health Observer Agent
+6. **Mission Alignment:** _/10
    Evidence: {are their outputs advancing the mission?}
 
 ### Summary
@@ -181,4 +181,4 @@ Even a single agent benefits from self-assessment. Without peers or Health Obser
 
 ---
 
-*Part of the 8D36Health Observer AgentAI open standard. Adaptable to any AI agent system.*
+*Part of the 8D360AI open standard. Adaptable to any AI agent system.*
