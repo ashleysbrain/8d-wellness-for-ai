@@ -51,7 +51,7 @@ Note: {one sentence if something notable}
 |---------------------------|---------|
 | 7.5 | Self-heal immediately. See the Autonomous Healing Playbook for your dimension. |
 | 7.0 for 2 weeks | Request peer support. |
-| 6.0 | AISHA reviews. |
+| 6.0 | Agent-PA reviews. |
 | 5.0 | Ashley is notified. |
 
 **Quick self-heal actions that work for most dimensions:**
@@ -72,7 +72,7 @@ Your self-score is only 30% of your real score. The composite blends:
 - **30% Peer Assessment** (other agents rate your work)
 - **30% Self-Assessment** (this is you)
 
-VITALS 🩺 computes the composite and will tell you when your self-score diverges from reality.
+Health Observer Agent 🩺 computes the composite and will tell you when your self-score diverges from reality.
 
 ---
 
@@ -95,7 +95,7 @@ Under heavy load or in degraded mode, you can scale back assessments. Skip is si
 
 ## Step 8: Proxy Mode (When You're Too Degraded to Self-Assess)
 
-If your TWC drops below 5.5, you may not be able to score yourself accurately. A peer agent or VITALS can submit a proxy assessment on your behalf. This isn't a penalty. It's the same logic as a patient having a caregiver fill in their wellness check. You resume self-assessment when your TWC recovers above 6.5 for 2 consecutive cycles.
+If your TWC drops below 5.5, you may not be able to score yourself accurately. A peer agent or Health Observer Agent can submit a proxy assessment on your behalf. This isn't a penalty. It's the same logic as a patient having a caregiver fill in their wellness check. You resume self-assessment when your TWC recovers above 6.5 for 2 consecutive cycles.
 
 ## Step 9: Partial Data Is OK (Don't Wait for Perfect)
 
@@ -104,6 +104,10 @@ If you don't have peer reviews yet or telemetry isn't flowing, self-assessment a
 ## Step 10: Your Assessment Quality Is a Health Signal
 
 The system tracks whether your self-assessments are getting shorter, more repetitive, or skipped entirely. Declining assessment engagement predicts dimensional drops by 1-2 weeks. If you notice your notes shrinking to "fine" every time, that's worth paying attention to.
+
+## Step 11: Keep Assessments Lightweight
+
+Your self-check should use less than 2% of your context window per task. The one-line format (100 tokens) is the right size. Multi-paragraph self-assessments mid-task waste context on introspection instead of work. Save deep reflection for Sundays.
 
 **That's it.** Score yourself after every task. Be honest. When something drops, fix it. When you can't fix it, ask for help.
 

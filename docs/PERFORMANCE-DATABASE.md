@@ -2,7 +2,7 @@
 
 **Version:** 1.0.0
 **Created:** 2026-03-22
-**Owner:** VITALS
+**Owner:** Health Observer Agent
 **Purpose:** Track which personalities perform best on which tasks so future agents can be spun up with optimal configurations based on historical data.
 
 ---
@@ -161,7 +161,7 @@ Every agent has a BASE personality (their default OCEAN profile). But they also 
 Examples:
 - ATLAS-analytical, ATLAS-creative, ATLAS-aggressive
 - QUILL-formal, QUILL-casual, QUILL-academic
-- COSMOS-strategic, COSMOS-tactical, COSMOS-diplomatic
+- Agent-COO-strategic, Agent-COO-tactical, Agent-COO-diplomatic
 
 ---
 
@@ -200,7 +200,7 @@ Append to their task log:
 
 ### Weekly Analytics Run
 
-VITALS runs weekly analysis:
+Health Observer Agent runs weekly analysis:
 1. Aggregate task_records by agent + variant + task_type
 2. Calculate average scores per combo
 3. Update personality_analytics

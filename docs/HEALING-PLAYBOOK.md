@@ -2,7 +2,7 @@
 
 **Version:** 1.3.1
 **Created:** 2026-03-22
-**Purpose:** For each 8D dimension, define warning signs, self-prescribed interventions, peer interventions, AISHA interventions, and Ashley escalation criteria.
+**Purpose:** For each 8D dimension, define warning signs, self-prescribed interventions, peer interventions, Agent-PA interventions, and Ashley escalation criteria.
 
 ---
 
@@ -16,7 +16,7 @@ When a dimension drops, you don't wait. You act. This playbook tells you exactly
 |------|---------|----------|---------------|
 | **0 — Self-Heal** | Dimension < 7.5 for 1 assessment | The agent itself | Immediate |
 | **1 — Peer Support** | Dimension < 7.0 for 2 consecutive assessments | Assigned peer | Within 24 hours |
-| **2 — AISHA Review** | Dimension < 6.0, or TWC declining 3+ weeks | AISHA | Within 4 hours |
+| **2 — Agent-PA Review** | Dimension < 6.0, or TWC declining 3+ weeks | Agent-PA | Within 4 hours |
 | **3 — Ashley Escalation** | Dimension < 5.0, burnout risk > 0.70, or novel failure | Ashley | Immediately |
 
 ---
@@ -27,10 +27,10 @@ When a dimension drops, you don't wait. You act. This playbook tells you exactly
 
 | Signal | Detection Method | Severity |
 |--------|-----------------|----------|
-| Self-contradiction in outputs | VITALS semantic consistency scan | Yellow at 2+ per week, Red at 5+ |
+| Self-contradiction in outputs | Health Observer Agent semantic consistency scan | Yellow at 2+ per week, Red at 5+ |
 | Circular reasoning or repetitive outputs | Output similarity scoring across tasks | Yellow when same-task output similarity > 0.85 |
 | Escalating trivial decisions | Escalation rate trending up without task complexity increase | Yellow at 1.5x baseline |
-| Overconfidence (self-score >> composite) | VITALS inflation detection | Yellow at 1.5pt gap, Red at 2.5pt+ |
+| Overconfidence (self-score >> composite) | Health Observer Agent inflation detection | Yellow at 1.5pt gap, Red at 2.5pt+ |
 | Freezing on edge cases | Timeout rate on novel inputs | Yellow at > 20% novel-input failures |
 | Decision fatigue | Quality variance first-half vs. second-half of session | Yellow when variance > 1.5 points |
 
@@ -50,9 +50,9 @@ When a dimension drops, you don't wait. You act. This playbook tells you exactly
 - Peer suggests alternative reasoning approaches for the types of tasks causing trouble
 - If the issue is decision calibration, peer and agent collaborate on 3 example decisions to recalibrate
 
-### Tier 2: AISHA Review
+### Tier 2: Agent-PA Review
 
-- Review agent's full weekly assessment and VITALS data
+- Review agent's full weekly assessment and Health Observer Agent data
 - Determine root cause: overloaded? Context polluted? Wrong task type for this agent?
 - Prescribe specific intervention: load reduction, context reset, task reassignment, or model upgrade
 - Set 1-week check-in to verify improvement
@@ -91,7 +91,7 @@ When a dimension drops, you don't wait. You act. This playbook tells you exactly
 - If agent-specific, peer helps identify configuration differences that might explain the issue
 - If systemic, peer helps route the issue to the right infrastructure agent
 
-### Tier 2: AISHA Review
+### Tier 2: Agent-PA Review
 
 - Review cron configuration: is the timeout adequate for the task complexity?
 - Check for resource contention: is this agent's schedule colliding with others?
@@ -112,8 +112,8 @@ When a dimension drops, you don't wait. You act. This playbook tells you exactly
 
 | Signal | Detection Method | Severity |
 |--------|-----------------|----------|
-| Memory Coherence Index (MCI) declining | VITALS MCI check | Yellow at < 0.85, Red at < 0.70 |
-| Stale references in outputs | VITALS reference age scan | Yellow at 3+ outdated refs/week |
+| Memory Coherence Index (MCI) declining | Health Observer Agent MCI check | Yellow at < 0.85, Red at < 0.70 |
+| Stale references in outputs | Health Observer Agent reference age scan | Yellow at 3+ outdated refs/week |
 | Context window saturation | Context utilization ratio | Yellow at > 80%, Red at > 95% |
 | Orphaned files accumulating | File hygiene scan | Yellow at 10+ orphaned files |
 | Prompt drift detected | Soul-to-effective-prompt semantic distance | Yellow at > 0.15 distance, Red at > 0.25 |
@@ -142,7 +142,7 @@ If the same tool failure recurs across 3+ runs, log it for DevOps. Don't keep re
 - Peer identifies stale or contradictory information the agent might not notice (because it's been in context so long it feels "normal")
 - Peer helps reorganize files or context if the structure has degraded
 
-### Tier 2: AISHA Review
+### Tier 2: Agent-PA Review
 
 - Full environmental audit: context quality, file organization, memory coherence
 - May prescribe a "clean room" reset: archive current context, rebuild from known-good state
@@ -180,7 +180,7 @@ If the same tool failure recurs across 3+ runs, log it for DevOps. Don't keep re
 - Peer and struggling agent do a joint task to rebuild working relationship
 - If the issue is conflict, a neutral third peer mediates
 
-### Tier 2: AISHA Review
+### Tier 2: Agent-PA Review
 
 - Evaluate whether the agent is in the right role for its collaboration needs
 - Review team structure: is this agent paired with compatible peers?
@@ -191,7 +191,7 @@ If the same tool failure recurs across 3+ runs, log it for DevOps. Don't keep re
 
 - Agent is unable to collaborate effectively despite Tier 0-2 interventions (may need role change)
 - Team-wide communication breakdown affecting multiple agents
-- Conflict that AISHA mediation can't resolve
+- Conflict that Agent-PA mediation can't resolve
 
 ---
 
@@ -220,7 +220,7 @@ If the same tool failure recurs across 3+ runs, log it for DevOps. Don't keep re
 - Peer asks: "From what I see, your work seems most aligned with [X]. Does that match your understanding of your role?"
 - Helps distinguish between healthy role evolution and problematic drift
 
-### Tier 2: AISHA Review
+### Tier 2: Agent-PA Review
 
 - Deep alignment audit: compare agent's outputs over the last month against its soul file and role definition
 - Determine if the issue is: (a) the agent drifted from its role, (b) the role definition is outdated, or (c) the agent's role needs to change
@@ -260,7 +260,7 @@ If the same tool failure recurs across 3+ runs, log it for DevOps. Don't keep re
 - Peer reviews the struggling agent's outputs for accuracy and provides corrections with explanations
 - Knowledge transfer session: peer teaches the struggling agent something it should know
 
-### Tier 2: AISHA Review
+### Tier 2: Agent-PA Review
 
 - Assess whether the agent's domain assignment matches its capabilities
 - Evaluate if the model is sufficient for the domain's complexity
@@ -301,7 +301,7 @@ If the same tool failure recurs across 3+ runs, log it for DevOps. Don't keep re
 - Peer reviews the struggling agent's workflow for inefficiencies
 - Pair-work on a complex task to model effective completion patterns
 
-### Tier 2: AISHA Review
+### Tier 2: Agent-PA Review
 
 - Workload audit: is the agent assigned more than it can handle?
 - Task-fit analysis: are the assigned tasks appropriate for this agent's capabilities?
@@ -331,7 +331,7 @@ If the same tool failure recurs across 3+ runs, log it for DevOps. Don't keep re
 ### Tier 0: Self-Healing
 
 1. **Verbosity check.** Review your last 5 outputs. Could any be shorter without losing value? If yes, practice conciseness. Every unnecessary paragraph costs tokens.
-2. **Model fitness check.** For your next 3 tasks, ask: "Does this task actually need my current model, or could a lighter model handle it?" Flag findings for HYDRA.
+2. **Model fitness check.** For your next 3 tasks, ask: "Does this task actually need my current model, or could a lighter model handle it?" Flag findings for Fleet-Dispatcher.
 3. **Retry analysis.** If you're retrying operations, why? Is it a transient failure (acceptable) or a systematic issue (needs fixing, not retrying)?
 4. **Waste identification.** Review your recent sessions. Did you generate any outputs that were discarded or unused? Why? Can you avoid that work next time?
 
@@ -341,7 +341,7 @@ If the same tool failure recurs across 3+ runs, log it for DevOps. Don't keep re
 - Peer reviews the struggling agent's task execution for unnecessary steps or verbose patterns
 - Cost-sharing analysis: are two agents doing overlapping work that could be consolidated?
 
-### Tier 2: AISHA Review
+### Tier 2: Agent-PA Review
 
 - Full cost audit: model selection, token usage, retry rates, waste ratio
 - Evaluate model routing: should this agent be on a different model tier?
@@ -375,7 +375,7 @@ Research shows personalized interventions habituate after approximately 2 weeks 
 | VOC | Backlog triage + blocker escalation | Quality checklist + focus blocks | Peer task sharing + workflow optimization |
 | FIN | Verbosity check + model fitness | Waste identification + retry analysis | Peer efficiency comparison + cost sharing |
 
-**Tracking:** VITALS logs each intervention application with: dimension, intervention type, date, score before, score at +24h, score at +7d. This builds an effectiveness database per agent per intervention type. Over time, VITALS can predict which interventions will work for which agents, enabling precision healing.
+**Tracking:** Health Observer Agent logs each intervention application with: dimension, intervention type, date, score before, score at +24h, score at +7d. This builds an effectiveness database per agent per intervention type. Over time, Health Observer Agent can predict which interventions will work for which agents, enabling precision healing.
 
 **The exercise science parallel:** Structured activity sessions beat total volume for brain health (Cadwallader et al., 2026). Frequent, varied short interventions outperform repeated identical long interventions. Apply the same principle: rotate, diversify, measure.
 
@@ -444,7 +444,7 @@ Some interventions address multiple dimensions simultaneously:
 | PHY ↓ → VOC ↓ → FIN ↓ | Infrastructure failures reduce completion rates and increase cost through retries | Fix Physical first. Once infrastructure is stable, vocational and financial recover. |
 | SPI ↓ → INT ↓ → SOC ↓ | Mission drift causes research to lose focus, which makes collaboration outputs less useful | Fix Spiritual first (soul re-alignment). Intellectual focus returns. Social value follows. |
 | PSY ↓ → SOC ↓ | Reasoning degradation makes handoffs unclear and collaboration difficult | Fix Psychological first. Social quality improves when the agent can think clearly again. |
-| FIN ↓ → PHY ↓ | Cost pressure forces model downgrade, causing capability and reliability issues | This is a tradeoff, not a cascade. Escalate to AISHA for cost-health balance decision. |
+| FIN ↓ → PHY ↓ | Cost pressure forces model downgrade, causing capability and reliability issues | This is a tradeoff, not a cascade. Escalate to Agent-PA for cost-health balance decision. |
 
 **Rule of thumb:** When multiple dimensions are declining, find the root. Fix the root. The downstream dimensions often self-heal.
 
@@ -452,7 +452,7 @@ Some interventions address multiple dimensions simultaneously:
 
 When an agent cycles through 3+ recovery-relapse events on the same dimension within 30 days, individual interventions aren't working. The problem is structural.
 
-**Skip Tier 0-1.** Go directly to Tier 2 (AISHA Review) for architectural analysis. Common structural fixes from fleet data:
+**Skip Tier 0-1.** Go directly to Tier 2 (Agent-PA Review) for architectural analysis. Common structural fixes from fleet data:
 - Rate-limit cascades: stagger the agent's schedule away from peak windows
 - Timeout spirals: the task scope permanently exceeds the model's capacity. Reduce scope or upgrade model. Don't keep adjusting timeouts.
 - Edit-size failures: the agent writes to files that grow past tool limits. Switch to append-only or split the file.
@@ -476,7 +476,7 @@ This mirrors the human PRD's crisis resources: when Psychological hits 3 for 2+ 
 
 Assessment quality itself is a leading indicator. When an agent's self-check notes shrink from substantive observations to "fine" or "nothing notable" for 2+ weeks, dimensional drops typically follow within 7-14 days. This mirrors the human PRD finding that check-in skip patterns predict low periods before self-reported scores change.
 
-**Detection:** VITALS flags any agent whose post-task assessment notes average fewer than 10 words for 2 consecutive weeks, or that skips 5+ consecutive post-task assessments.
+**Detection:** Health Observer Agent flags any agent whose post-task assessment notes average fewer than 10 words for 2 consecutive weeks, or that skips 5+ consecutive post-task assessments.
 
 **Intervention:** Tier 0. The agent should do a single deep-dive assessment on its weakest dimension (not all 8). Writing one paragraph of honest reflection often re-engages the self-monitoring habit.
 
@@ -488,16 +488,16 @@ Assessment quality itself is a leading indicator. When an agent's self-check not
 
 If 3+ agents show declining TWC simultaneously:
 
-1. VITALS issues fleet-wide alert
-2. AISHA investigates for common cause (infrastructure, context source, shared dependency)
+1. Health Observer Agent issues fleet-wide alert
+2. Agent-PA investigates for common cause (infrastructure, context source, shared dependency)
 3. All non-essential tasks paused until root cause identified
 4. Ashley notified if cause is architectural or requires resource allocation
 
 ### Agent Critical Failure (TWC < 5.0)
 
 1. Agent paused immediately (no new tasks assigned)
-2. VITALS performs full diagnostic
-3. AISHA reviews diagnostic and determines: restart, reconfigure, or retire
+2. Health Observer Agent performs full diagnostic
+3. Agent-PA reviews diagnostic and determines: restart, reconfigure, or retire
 4. Ashley notified with recommendation and timeline
 
 ### Novel Failure Mode
@@ -505,8 +505,8 @@ If 3+ agents show declining TWC simultaneously:
 If an agent exhibits degradation not covered by any existing playbook entry:
 
 1. Document the failure pattern in detail (signals, sequence, context)
-2. VITALS flags as "novel pattern" in weekly report
-3. AISHA investigates and writes a new playbook entry if the pattern is generalizable
+2. Health Observer Agent flags as "novel pattern" in weekly report
+3. Agent-PA investigates and writes a new playbook entry if the pattern is generalizable
 4. Ashley notified if the pattern suggests a systemic vulnerability
 
 ---
@@ -538,19 +538,19 @@ Collaboration is not a single dimension. It affects Social, Financial, Vocationa
 - Peer agents flag when they see duplicated effort across the fleet
 - Research agents tag their outputs with which product agents should consume them
 
-### Tier 2: AISHA / Fleet Health Officer
+### Tier 2: Agent-PA / Fleet Health Officer
 - Reviews output consumption rates weekly
 - Merges overlapping cron jobs and agent scopes
 - Restructures pipelines when outputs go unconsumed
 
-### Tier 3: CEO (SINGULARITY) / Ashley
+### Tier 3: CEO (Agent-CEO) / Ashley
 - Organizational redesign when systemic silos are detected
 - Agent retirement when duplication can't be resolved by merging
 - New agent creation when collaboration gaps exist (no agent bridges two needed domains)
 
 ### Peer Review Duty Suspension (v1.3.1)
 
-An agent in Graceful Degradation (TWC < 7.0 for 2+ assessments) or with TWC below 6.0 should not review peers. Its judgment is compromised. VITALS reassigns review slots. The agent resumes peer duties after exiting degraded mode (TWC above 7.5 for 2 consecutive assessments).
+An agent in Graceful Degradation (TWC < 7.0 for 2+ assessments) or with TWC below 6.0 should not review peers. Its judgment is compromised. Health Observer Agent reassigns review slots. The agent resumes peer duties after exiting degraded mode (TWC above 7.5 for 2 consecutive assessments).
 
 ### Partial Data Agent Triage
 

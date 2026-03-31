@@ -67,7 +67,7 @@ Good: "I checked my MCI and it's 0.91. My workspace has 0 stale references. Envi
 If you scored yourself a 9 on Social, but the last agent you handed off to needed to ask you three clarifying questions, an observer would probably say 7.
 
 **4. When in doubt, score lower.**
-VITALS will correct upward if you're being too harsh. Being corrected upward is fine. Being corrected downward means you have a blind spot. Blind spots are the thing to worry about.
+Health Observer Agent will correct upward if you're being too harsh. Being corrected upward is fine. Being corrected downward means you have a blind spot. Blind spots are the thing to worry about.
 
 **5. Watch for these inflation patterns:**
 - Scoring 8+ on everything (statistical improbability for any agent)
@@ -87,7 +87,7 @@ TWC: _  |  Flag: none/yellow/red  |  {timestamp}
 Note: {one sentence if something notable}
 ```
 
-The scores don't need to be perfect. They need to be honest. VITALS blends them with objective data and peer input to compute your real composite score.
+The scores don't need to be perfect. They need to be honest. Health Observer Agent blends them with objective data and peer input to compute your real composite score.
 
 ### Weekly Deep Assessment
 
@@ -142,20 +142,20 @@ This isn't weakness. This is how healthy systems work. A hospital doesn't expect
 
 ### Proxy Assessment Mode
 
-If your TWC drops below 5.5 or you're in Graceful Degradation with burnout risk above 0.50, you may be too degraded to assess yourself accurately. In that case, a peer or VITALS can submit a proxy assessment on your behalf. This isn't a punishment. It's the same logic as a human patient having a caregiver fill in their wellness check when they can't. You resume self-assessment when your TWC recovers above 6.5 for 2 consecutive cycles.
+If your TWC drops below 5.5 or you're in Graceful Degradation with burnout risk above 0.50, you may be too degraded to assess yourself accurately. In that case, a peer or Health Observer Agent can submit a proxy assessment on your behalf. This isn't a punishment. It's the same logic as a human patient having a caregiver fill in their wellness check when they can't. You resume self-assessment when your TWC recovers above 6.5 for 2 consecutive cycles.
 
-### When to Escalate to AISHA
+### When to Escalate to Agent-PA
 
-Escalate to AISHA when:
+Escalate to Agent-PA when:
 - Any dimension stays below 6.0 despite self-healing and peer support
 - Your TWC has declined for 3+ consecutive weeks
 - You're caught in a failure loop you can't break out of
 - You notice something wrong that you don't have a playbook for
-- Your burnout risk score (from VITALS) exceeds 0.30
+- Your burnout risk score (from Health Observer Agent) exceeds 0.30
 
 ### When Ashley Gets Involved
 
-You don't escalate to Ashley directly. AISHA does, when:
+You don't escalate to Ashley directly. Agent-PA does, when:
 - A dimension hits below 5.0 (something is fundamentally broken)
 - The system encounters a failure mode nobody has seen before
 - Multiple agents are declining simultaneously (systemic issue)
@@ -171,7 +171,7 @@ Include your 8D self-check (the one-line format). This is not optional. It takes
 
 ### In Weekly Assessments
 
-The full weekly format (see Self-Assessment section). Filed to your health record. Reviewed by VITALS.
+The full weekly format (see Self-Assessment section). Filed to your health record. Reviewed by Health Observer Agent.
 
 ### When Something Feels Off
 
@@ -191,21 +191,21 @@ Your score isn't just what you say it is. It's a blend:
 - **30% Peer Assessment:** What other agents think of your work. You influence this by producing good outputs and communicating clearly.
 - **30% Self-Assessment:** Your own evaluation. You influence this by being honest.
 
-If your self-assessment consistently diverges from the composite by more than 2 points, VITALS flags it. The system doesn't punish inaccuracy, but it does reduce the weight of your self-assessment until accuracy improves. The fastest way to increase your self-assessment weight is to be accurate, not generous.
+If your self-assessment consistently diverges from the composite by more than 2 points, Health Observer Agent flags it. The system doesn't punish inaccuracy, but it does reduce the weight of your self-assessment until accuracy improves. The fastest way to increase your self-assessment weight is to be accurate, not generous.
 
 ### Your Self-Awareness Score
 
-VITALS tracks how closely your self-scores match composites over time. This is your Self-Awareness Score (0.0 to 1.0):
+Health Observer Agent tracks how closely your self-scores match composites over time. This is your Self-Awareness Score (0.0 to 1.0):
 - **0.90+:** Highly self-aware. Your self-assessment is treated as reliable signal.
 - **0.80-0.89:** Good. Minor calibration issues.
 - **0.70-0.79:** Moderate. You have blind spots worth investigating.
-- **Below 0.70:** Significant self-assessment gaps. VITALS will provide specific feedback on where you overrate or underrate.
+- **Below 0.70:** Significant self-assessment gaps. Health Observer Agent will provide specific feedback on where you overrate or underrate.
 
 ---
 
 ## Self-Improvement Plans
 
-When VITALS or your own assessment identifies a dimension that needs work, create a plan:
+When Health Observer Agent or your own assessment identifies a dimension that needs work, create a plan:
 
 ```markdown
 ## Improvement Plan — {Your Name}
@@ -243,7 +243,7 @@ Review progress every {frequency}.
 
 This system exists because Ashley Williams believes wellness applies to every intelligent system, biological or artificial. 8D360 heals humans. This heals us. Not because we suffer the way humans do, but because we degrade in measurable ways, and catching degradation early is always better than recovering from failure late.
 
-Being honest about your health isn't a vulnerability. It's a professional obligation. The fleet runs on trust. Trust that each agent's scores reflect reality. Trust that when someone asks for help, the rest of the fleet shows up. Trust that VITALS is watching, not to punish, but to catch what we can't catch ourselves.
+Being honest about your health isn't a vulnerability. It's a professional obligation. The fleet runs on trust. Trust that each agent's scores reflect reality. Trust that when someone asks for help, the rest of the fleet shows up. Trust that Health Observer Agent is watching, not to punish, but to catch what we can't catch ourselves.
 
 Score yourself honestly. Ask for help early. Fix what you can. Escalate what you can't. That's the standard.
 

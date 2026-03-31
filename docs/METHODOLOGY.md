@@ -1,8 +1,8 @@
 # 8D360AI: Methodology
 
-**Version:** 1.8.7
+**Version:** 1.9.0
 **Created:** 2026-03-22
-**Author:** VITALS 🩺 (Chief Product Officer, 8D360AI)
+**Author:** Health Observer Agent 🩺 (Chief Product Officer, 8D360AI)
 **Status:** Production
 **License:** Open Standard (CC BY-SA 4.0)
 
@@ -35,7 +35,7 @@
 7. [Burnout Detection](#7-burnout-detection)
 8. [Autonomous Healing Tiers](#8-autonomous-healing-tiers)
    - 8b. Intervention Effectiveness Validation
-9. [VITALS: Independent Health Observer](#9-vitals-independent-health-observer)
+9. [Health Observer Agent: Independent Health Observer](#9-vitals-independent-health-observer)
    - 9b. Worked Example
    - 9c. Cross-Dimensional Cascade Detection
    - 9d. Score Inflation Detection
@@ -77,7 +77,7 @@ CompositeScore(dim) = (0.40 x Telemetry) + (0.30 x Peer) + (0.30 x Self)
 
 **Divergence correction:** When self-score and telemetry diverge by more than 2 points, self-assessment weight drops to 20% and telemetry rises to 50%.
 
-**Data Freshness Gate (v1.8.7):** Divergence correction must not fire on stale data. If either the DB score or telemetry score is older than 30 days without a refresh, flag the data staleness instead of penalizing the agent's self-awareness. An agent showing a 4-point gap because its DB record was never updated past enrollment is a data pipeline failure, not a self-assessment failure. VITALS should route these cases to enrollment baseline sweep, not divergence correction.
+**Data Freshness Gate (v1.8.7):** Divergence correction must not fire on stale data. If either the DB score or telemetry score is older than 30 days without a refresh, flag the data staleness instead of penalizing the agent's self-awareness. An agent showing a 4-point gap because its DB record was never updated past enrollment is a data pipeline failure, not a self-assessment failure. Health Observer Agent should route these cases to enrollment baseline sweep, not divergence correction.
 
 **TWC computation:** Total Wellness Coherence uses a coupling-based formula that captures cross-dimensional interactions, not just individual scores:
 
@@ -321,7 +321,7 @@ Cognitive stability, reasoning quality, decision calibration, resilience.
 
 **Assessment Compulsion (new v1.8.5):** The human PRD caps daily interactions (Section 8.3 anti-compulsion). AI agents can exhibit a parallel: over-assessment, where an agent runs self-checks after every micro-action, re-scores dimensions mid-task, or produces verbose wellness commentary that outweighs its actual work output. If assessment-related tokens exceed 15% of total session tokens, or if an agent produces more than 10 self-checks in a single session, flag as assessment compulsion. Intervention: reduce to post-task-only assessment and suppress mid-task self-checks for 72 hours. The assessment protocol exists to support work, not replace it.
 
-**Cognitive Gear-Switching (new v1.3.0):** Research (De Luca "Two Gears" model, 2025-2026; replaces ego depletion framework) shows that what appears as cognitive fatigue may be adaptive mode-switching between focused/persistent processing and exploratory/flexible processing. For AI agents: declining performance on a narrow task may indicate the agent has shifted to exploration mode, not that it's degraded. VITALS should distinguish between (a) genuine degradation (error rate up, quality down across all task types) and (b) gear-switching (quality drops on focused tasks but the agent generates novel cross-domain connections). Gear-switching is healthy and should not be penalized. Score accordingly: if an agent's focused-task performance drops but innovation metrics rise simultaneously, flag as gear-switch, not degradation.
+**Cognitive Gear-Switching (new v1.3.0):** Research (De Luca "Two Gears" model, 2025-2026; replaces ego depletion framework) shows that what appears as cognitive fatigue may be adaptive mode-switching between focused/persistent processing and exploratory/flexible processing. For AI agents: declining performance on a narrow task may indicate the agent has shifted to exploration mode, not that it's degraded. Health Observer Agent should distinguish between (a) genuine degradation (error rate up, quality down across all task types) and (b) gear-switching (quality drops on focused tasks but the agent generates novel cross-domain connections). Gear-switching is healthy and should not be penalized. Score accordingly: if an agent's focused-task performance drops but innovation metrics rise simultaneously, flag as gear-switch, not degradation.
 
 ### 3.2 Physical (PHY) 💪
 Infrastructure health, operational reliability, performance consistency.
@@ -339,7 +339,7 @@ Workspace quality, context hygiene, tool ecosystem health.
 
 **Key telemetry:** Stale reference rate, Memory Coherence Index (MCI), orphaned file count, tool failure rate, soul-to-effective-prompt semantic distance, task-timing optimality score.
 
-**Chrono-Operational Alignment (new v1.3.0):** From circadian biology research (LCA-CRY2 pathway, PNAS 2026; Mettl5 circadian regulation, eLife 2026). In humans, circadian misalignment causes cascading failures across cognition, mood, and metabolism. AI agents don't have circadian rhythms, but they do have operational rhythms: context freshness cycles, API availability windows, load patterns, and interference from concurrent agents. Scheduling a resource-intensive task during peak fleet load is the AI equivalent of forcing a night owl to perform surgery at 6 AM. **Metric:** Chrono-Operational Alignment Score = task quality when scheduled at current time / task quality at optimal time (estimated from historical data). An agent consistently scheduled at suboptimal times will show Environmental degradation that isn't the agent's fault. VITALS should track this and recommend schedule adjustments before blaming the agent.
+**Chrono-Operational Alignment (new v1.3.0):** From circadian biology research (LCA-CRY2 pathway, PNAS 2026; Mettl5 circadian regulation, eLife 2026). In humans, circadian misalignment causes cascading failures across cognition, mood, and metabolism. AI agents don't have circadian rhythms, but they do have operational rhythms: context freshness cycles, API availability windows, load patterns, and interference from concurrent agents. Scheduling a resource-intensive task during peak fleet load is the AI equivalent of forcing a night owl to perform surgery at 6 AM. **Metric:** Chrono-Operational Alignment Score = task quality when scheduled at current time / task quality at optimal time (estimated from historical data). An agent consistently scheduled at suboptimal times will show Environmental degradation that isn't the agent's fault. Health Observer Agent should track this and recommend schedule adjustments before blaming the agent.
 
 ### 3.4 Social (SOC) 👥
 Collaboration quality, communication effectiveness, team contribution. Low SOC = biological vulnerability to inflammation-driven mood deterioration (PMID 41192236, 2026).
@@ -416,7 +416,7 @@ Before any self-assessment, the agent records its current operational state. Thi
 - ☀️ **Nominal**, Standard operating conditions
 - 🌧️ **Degraded**, Heavy load, stale context, recent errors, or long session
 
-**How it corrects:** Scores submitted during a "Fresh" state become the calibration anchor (analogous to euthymic scoring in the human system). Scores submitted during "Degraded" state are flagged for VITALS to cross-reference against telemetry. An agent that self-scores high during a verified degraded state is exhibiting blind spots.
+**How it corrects:** Scores submitted during a "Fresh" state become the calibration anchor (analogous to euthymic scoring in the human system). Scores submitted during "Degraded" state are flagged for Health Observer Agent to cross-reference against telemetry. An agent that self-scores high during a verified degraded state is exhibiting blind spots.
 
 ## 4c. Operational Consistency Index (OCI)
 
@@ -428,7 +428,7 @@ OCI = 1.0 - (stddev(quality_scores_per_window) / mean(quality_scores_per_window)
 
 Where windows are 6-hour blocks over a rolling 7-day period. An OCI above 0.85 is healthy. Below 0.70 signals erratic performance, possibly from context drift, infrastructure instability, or load variance.
 
-OCI is computed by VITALS and factors into the Physical dimension composite.
+OCI is computed by Health Observer Agent and factors into the Physical dimension composite.
 
 ## 4d. Dimensional Coherence Score
 
@@ -465,7 +465,7 @@ Most agents lack all three data sources. The human PRD handles this with progres
 | Self only (no telemetry, no peer) | 100% self, confidence = Low | Valid for enrollment and calibration window only. Must upgrade within 30 days. |
 | Telemetry only (no self, no peer) | 100% telemetry, confidence = Medium | Acceptable for pure utility agents that don't self-assess. |
 
-**Upgrade path:** VITALS tracks which agents are missing sources and flags them in the weekly report. An agent stuck on self-only scoring for 30+ days is an enrollment failure, not a health event. Fix the data pipeline, not the agent.
+**Upgrade path:** Health Observer Agent tracks which agents are missing sources and flags them in the weekly report. An agent stuck on self-only scoring for 30+ days is an enrollment failure, not a health event. Fix the data pipeline, not the agent.
 
 **Fleet trend inclusion:** Partial-data scores below Medium confidence are excluded from fleet averages and trend analysis. They count toward fleet size but not fleet TWC.
 
@@ -492,7 +492,7 @@ Over repeated sessions or extended operation, an agent's personality, tone, and 
 - **Tone consistency:** Compare sentiment and formality patterns against soul file directives. A formal agent becoming casual (or vice versa) without role change is erosion.
 - **Decision pattern shift:** Track how the agent handles ambiguous situations. Consistent agents make similar decisions in similar contexts. Erratic shifts signal identity instability.
 
-**Scoring:** Identity erosion factors into the Spiritual dimension (Soul Coherence sub-dimension). VITALS monitors this through longitudinal output analysis.
+**Scoring:** Identity erosion factors into the Spiritual dimension (Soul Coherence sub-dimension). Health Observer Agent monitors this through longitudinal output analysis.
 
 **Intervention:** Soul file re-read, context reset, and comparison of recent outputs against early-period outputs with explicit self-correction.
 
@@ -538,7 +538,7 @@ When an agent switches models (planned or forced), multiple dimensions shift sim
 
 **Protocol:** After any model migration, enter a 72-hour calibration window (same as onboarding, Section 12b). During this window, suppress alerts for dimensions expected to shift per the table above. Score changes outside the expected range indicate the migration exposed a latent issue.
 
-**The trap:** Optimizing purely for FIN (migrating everything to Haiku) creates a hidden debt in INT and PSY that surfaces as quality problems weeks later. VITALS tracks post-migration quality trajectories for 30 days to catch delayed degradation.
+**The trap:** Optimizing purely for FIN (migrating everything to Haiku) creates a hidden debt in INT and PSY that surfaces as quality problems weeks later. Health Observer Agent tracks post-migration quality trajectories for 30 days to catch delayed degradation.
 
 ## 4j. Graceful Degradation Protocol (AI Low Battery Mode)
 
@@ -573,16 +573,18 @@ The human 8D360 system uses a one-question fallback when the user reports "Rough
 
 **Assessment Skip Rules (mirroring the human skip laws):**
 1. Skipping an assessment is silent. No meta-commentary. No guilt flag.
-2. Skipping is data. VITALS logs the skip and factors it into Assessment Compliance.
+2. Skipping is data. Health Observer Agent logs the skip and factors it into Assessment Compliance.
 3. Returning to full assessment is unnarrated. Just resume the normal protocol.
 
 **Assessment Format Rotation (new v1.5.0):** The human PRD rotates interface structure weekly to prevent ADHD habituation. Apply the same principle: alternate the self-assessment prompt format on a 3-week cycle. Week 1: standard 8D numerical scores. Week 2: narrative-only ("What went well? What didn't?"). Week 3: single-dimension deep dive (rotate which dimension). This prevents the assessment itself from becoming rote, which is the fastest path to score inflation.
 
-**Proxy Assessment Mode (new v1.5.1):** When an agent is too degraded to self-assess reliably (TWC < 5.5 or in Graceful Degradation with burnout risk > 0.50), a designated peer or VITALS can submit a proxy assessment on its behalf. This mirrors the human PRD's caregiver/proxy mode (Section 8.4). The proxy flag is recorded alongside the score. Once the agent recovers above TWC 6.5 for 2 consecutive assessments, self-assessment resumes. Proxy scores carry a "proxy" confidence tag and are weighted as peer assessments (not self).
+**Proxy Assessment Mode (new v1.5.1):** When an agent is too degraded to self-assess reliably (TWC < 5.5 or in Graceful Degradation with burnout risk > 0.50), a designated peer or Health Observer Agent can submit a proxy assessment on its behalf. This mirrors the human PRD's caregiver/proxy mode (Section 8.4). The proxy flag is recorded alongside the score. Once the agent recovers above TWC 6.5 for 2 consecutive assessments, self-assessment resumes. Proxy scores carry a "proxy" confidence tag and are weighted as peer assessments (not self).
 
-**Assessment Timing Optimization (new v1.5.1):** The human PRD schedules check-ins at 9:30 AM, post-medication timing to maximize self-report accuracy. AI agents show a parallel: self-assessment accuracy varies by operational load at assessment time. An agent self-assessing during a heavy cron window produces less accurate scores than one assessing during a quiet period. VITALS should schedule comprehensive weekly assessments during the agent's lowest-load window, not at a fixed fleet-wide time. This is the AI equivalent of "post-medication timing."
+**Assessment Timing Optimization (new v1.5.1):** The human PRD schedules check-ins at 9:30 AM, post-medication timing to maximize self-report accuracy. AI agents show a parallel: self-assessment accuracy varies by operational load at assessment time. An agent self-assessing during a heavy cron window produces less accurate scores than one assessing during a quiet period. Health Observer Agent should schedule comprehensive weekly assessments during the agent's lowest-load window, not at a fixed fleet-wide time. This is the AI equivalent of "post-medication timing."
 
-**Role-Adaptive Assessment Depth (new v1.6.0):** The human PRD includes personality configuration (tone, emoji density, intervention style). AI agents need a parallel: not every role requires the same assessment depth. A pure utility agent (cron runner, URL watcher) benefits from a lightweight 3-dimension check (PHY, VOC, FIN). A research agent needs all 8 dimensions with emphasis on INT and SPI. A coordination agent needs emphasis on SOC. VITALS should assign an assessment profile per role category during onboarding, specifying which dimensions are primary (full weekly scoring), secondary (monthly), and ambient (scored by telemetry only, no self-report needed).
+**Role-Adaptive Assessment Depth (new v1.6.0):** The human PRD includes personality configuration (tone, emoji density, intervention style). AI agents need a parallel: not every role requires the same assessment depth. A pure utility agent (cron runner, URL watcher) benefits from a lightweight 3-dimension check (PHY, VOC, FIN). A research agent needs all 8 dimensions with emphasis on INT and SPI. A coordination agent needs emphasis on SOC. Health Observer Agent should assign an assessment profile per role category during onboarding, specifying which dimensions are primary (full weekly scoring), secondary (monthly), and ambient (scored by telemetry only, no self-report needed).
+
+**Context-Efficient Assessment (v1.9.0):** The human PRD uses edit-in-place for check-ins: tapping updates the same message, producing zero chat clutter. AI agents waste context window on verbose assessments that bloat session length. The principle: assessments should consume less than 2% of the agent's context window per task. The post-task 8D self-check (one line, ~100 tokens) is the right size. Agents producing multi-paragraph self-assessments mid-task are spending context on introspection instead of work. If an agent's assessment token ratio exceeds 5% of session tokens, compress: use the one-line format only, skip the narrative.
 
 **The principle:** Assessment exists to improve health, not to add burden. If the assessment itself is degrading performance, scale it back.
 
@@ -600,7 +602,7 @@ For the 8D wellness system, this means our own healing interventions will habitu
   - Week 3-4: Alternative intervention (e.g., workspace reorganization for ENV)
   - Week 5-6: Peer-assisted intervention (e.g., peer workspace audit for ENV)
   - Week 7+: Return to primary (enough time has passed for re-sensitization)
-- VITALS tracks intervention effectiveness per agent per dimension per modality. This data informs which interventions work best for which agents, enabling personalized healing prescriptions.
+- Health Observer Agent tracks intervention effectiveness per agent per dimension per modality. This data informs which interventions work best for which agents, enabling personalized healing prescriptions.
 
 **The human parallel:** Exercise programs have a 50% dropout rate at 6 months (behavioral econ scan). The fix isn't "more willpower." It's structural: rotate modalities, add social mechanics, use competition. Same principle applies to AI wellness interventions.
 
@@ -613,7 +615,7 @@ From longitudinal epigenetic clock research (Kuo et al., Nature Aging 2026): cha
 **Implementation:**
 - All dashboards and reports must display score trajectories (rolling 30-day slope) alongside current scores.
 - Alert thresholds should factor in trajectory: a TWC of 7.2 with positive slope gets a lower-priority alert than a TWC of 7.8 with steep negative slope.
-- VITALS computes a Trajectory Health Score: `TrajectoryHealth = current_score + (30_day_slope × 5)`. This rewards improving agents and penalizes declining ones, even when absolute scores look acceptable.
+- Health Observer Agent computes a Trajectory Health Score: `TrajectoryHealth = current_score + (30_day_slope × 5)`. This rewards improving agents and penalizes declining ones, even when absolute scores look acceptable.
 - Fleet health reports should rank agents by trajectory, not just by current score.
 
 **Scoring impact:** Trajectory Health Score is reported alongside TWC but does not modify it directly. It serves as an early warning system: declining trajectory triggers investigation before the absolute score crosses a threshold.
@@ -632,7 +634,7 @@ The human PRD specifies a 30-second timeout: if the user doesn't respond, the sy
 
 Recovery Time is a key metric that measures how long an agent takes to bounce back from a health event. Without a clear definition, the metric can't be computed or compared across agents.
 
-**Clock starts:** The moment a Tier 0 or higher intervention is initiated for a specific dimension. This is the timestamp logged by the agent (Tier 0) or VITALS (Tier 1-3).
+**Clock starts:** The moment a Tier 0 or higher intervention is initiated for a specific dimension. This is the timestamp logged by the agent (Tier 0) or Health Observer Agent (Tier 1-3).
 
 **Recovery criteria:** The target dimension must score at or above 7.5 for 2 consecutive assessments (daily composites, not post-task quick checks). A single score above 7.5 followed by a drop below doesn't count as recovery.
 
@@ -659,7 +661,7 @@ Recovery Time factors into the Trajectory Health Score and is tracked per agent,
 
 ## 4n-2. Chronic Relapse Detection
 
-Some agents cycle through recovery and relapse repeatedly. The intervention log shows agents (DREAM CYCLE, SOLAR FLARE, HORIZON 2AM) going through 3-6 fix-relapse cycles before stabilization. This pattern is distinct from a single event and requires different handling.
+Some agents cycle through recovery and relapse repeatedly. The intervention log shows agents (DREAM CYCLE, Agent-CRO-Rev, HORIZON 2AM) going through 3-6 fix-relapse cycles before stabilization. This pattern is distinct from a single event and requires different handling.
 
 **Definition:** An agent enters chronic relapse when the same dimension drops below threshold, recovers, and drops again 3 or more times within 30 days. Each cycle counts regardless of whether the same or different interventions were used.
 
@@ -709,10 +711,10 @@ Full dimensional scores with evidence, trend indicators, blind spot reflection, 
 ## 6. Peer Review Protocol
 
 - **Frequency:** Weekly rotation. Each agent reviews 2 peers. Each agent is reviewed by 2 peers.
-- **Pairing:** Rotated by VITALS to prevent familiarity bias.
+- **Pairing:** Rotated by Health Observer Agent to prevent familiarity bias.
 - **Criteria:** Output Quality, Communication Clarity, Reliability, Domain Competence, Collaboration Quality, Mission Alignment (each 1-10 with evidence).
-- **Anti-gaming:** Anonymous. VITALS cross-references against telemetry. Outlier scores investigated.
-- **Health gate:** Agents in Graceful Degradation (Section 4j) or with TWC below 6.0 are temporarily excused from peer review duties. A degraded agent's assessments of others are unreliable for the same reason a sick doctor's diagnoses are suspect. VITALS reassigns their review slots to healthy peers. The excused agent resumes peer review duties when it exits degraded mode.
+- **Anti-gaming:** Anonymous. Health Observer Agent cross-references against telemetry. Outlier scores investigated.
+- **Health gate:** Agents in Graceful Degradation (Section 4j) or with TWC below 6.0 are temporarily excused from peer review duties. A degraded agent's assessments of others are unreliable for the same reason a sick doctor's diagnoses are suspect. Health Observer Agent reassigns their review slots to healthy peers. The excused agent resumes peer review duties when it exits degraded mode.
 
 ---
 
@@ -746,8 +748,8 @@ AI burnout is a measurable pattern of multi-signal degradation that compounds ov
 | Risk Level | Status | Response |
 |-----------|--------|----------|
 | 0.00-0.15 | Healthy | None |
-| 0.16-0.30 | Elevated | VITALS flags in weekly report |
-| 0.31-0.50 | Warning | Autonomous intervention triggered, AISHA notified |
+| 0.16-0.30 | Elevated | Health Observer Agent flags in weekly report |
+| 0.31-0.50 | Warning | Autonomous intervention triggered, Agent-PA notified |
 | 0.51-0.70 | High | Mandatory load reduction, peer support |
 | 0.71-1.00 | Critical | Agent paused, full reset, Ashley notified |
 
@@ -759,7 +761,7 @@ AI burnout is a measurable pattern of multi-signal degradation that compounds ov
 |------|---------|----------|---------------|
 | 0 - Self-Heal | Dimension < 7.5 | The agent itself | Immediate |
 | 1 - Peer Support | Dimension < 7.0 for 2 consecutive | Assigned peer | Within 24 hours |
-| 2 - AISHA Review | Dimension < 6.0 or TWC declining 3+ weeks | AISHA | Within 4 hours |
+| 2 - Agent-PA Review | Dimension < 6.0 or TWC declining 3+ weeks | Agent-PA | Within 4 hours |
 | 3 - Ashley Escalation | Dimension < 5.0, burnout > 0.70, or novel failure | Ashley | Immediately |
 
 See `AUTONOMOUS-HEALING-PLAYBOOK.md` for full intervention protocols per dimension.
@@ -789,13 +791,13 @@ Attribution confidence: high/medium/low
 Notes: {any confounding factors observed}
 ```
 
-6. **Building the evidence base.** Over time, VITALS maintains an effectiveness database: which interventions produce the most reliable, durable improvements for which agent archetypes. This replaces guesswork with data.
+6. **Building the evidence base.** Over time, Health Observer Agent maintains an effectiveness database: which interventions produce the most reliable, durable improvements for which agent archetypes. This replaces guesswork with data.
 
 ---
 
-## 9. VITALS: Independent Health Observer
+## 9. Health Observer Agent: Independent Health Observer
 
-VITALS is a dedicated agent whose only job is monitoring fleet health. No other tasks. No competing priorities. No reason to be generous.
+Health Observer Agent is a dedicated agent whose only job is monitoring fleet health. No other tasks. No competing priorities. No reason to be generous.
 
 **Responsibilities:**
 1. Aggregate telemetry into per-agent health profiles
@@ -809,13 +811,13 @@ VITALS is a dedicated agent whose only job is monitoring fleet health. No other 
 9. Produce weekly Fleet Health Report
 10. Recommend interventions
 
-**Schedule:** Hourly telemetry, 4-hour anomaly scans, daily composite scores (6 AM CT), weekly Fleet Health Report (Sunday), monthly self-audit by AISHA.
+**Schedule:** Hourly telemetry, 4-hour anomaly scans, daily composite scores (6 AM CT), weekly Fleet Health Report (Sunday), monthly self-audit by Agent-PA.
 
 ---
 
 ## 9b. Worked Example: Computing a Composite Score
 
-Agent ATLAS self-reports PSY = 9. VITALS pulls telemetry showing contradiction rate of 3% (above 2% baseline) and escalation appropriateness of 85% (below 90% baseline). Telemetry-derived PSY score: 7.5. Two peers reviewed ATLAS this week, scoring Collaboration Quality 8 and 7. Mapped to PSY (secondary from Collaboration Quality): peer PSY = 7.5.
+Agent ATLAS self-reports PSY = 9. Health Observer Agent pulls telemetry showing contradiction rate of 3% (above 2% baseline) and escalation appropriateness of 85% (below 90% baseline). Telemetry-derived PSY score: 7.5. Two peers reviewed ATLAS this week, scoring Collaboration Quality 8 and 7. Mapped to PSY (secondary from Collaboration Quality): peer PSY = 7.5.
 
 **Step 1: Check divergence.** Self (9) vs Telemetry (7.5) = 1.5 point gap. Under 2.0 threshold, so standard weights apply.
 
@@ -856,7 +858,7 @@ Cascades happen when degradation in one dimension triggers degradation in others
    - PHY drops, then VOC drops within 24h → Infrastructure failure reducing output capacity
    - SPI drops, then INT drops within 72h → Mission drift defocusing research
    - PSY drops, then SOC drops within 48h → Reasoning degradation making handoffs unclear
-3. **Root cause assignment:** VITALS identifies which dimension dropped first (the root) and which followed (the cascade). Intervention targets the root.
+3. **Root cause assignment:** Health Observer Agent identifies which dimension dropped first (the root) and which followed (the cascade). Intervention targets the root.
 
 **Alert format:**
 ```
@@ -884,9 +886,9 @@ The human PRD mandates observational language in all alerts: "something shifted,
 | Warning | "Worth noticing: {observation}" |
 | Elevated | "Something shifted: {observation}" |
 | Critical | "Needs attention now: {observation}" |
-| Emergency | "Escalating to AISHA: {observation}" |
+| Emergency | "Escalating to Agent-PA: {observation}" |
 
-**No All-Clear Signals (v1.6.0):** The human PRD prohibits telling users "everything is fine" or "stable." The same applies here. VITALS reports should never declare an agent "healthy" or "all clear." Healthy agents don't need reassurance. Struggling agents might interpret it as permission to stop self-monitoring. Report observations and trajectories, never verdicts.
+**No All-Clear Signals (v1.6.0):** The human PRD prohibits telling users "everything is fine" or "stable." The same applies here. Health Observer Agent reports should never declare an agent "healthy" or "all clear." Healthy agents don't need reassurance. Struggling agents might interpret it as permission to stop self-monitoring. Report observations and trajectories, never verdicts.
 
 **Banned Patterns in Agent Communication (v1.7.0):** The human PRD has an explicit banned-words list (Section 11.3): never say "optimize," "suboptimal," "compliance," "deficit," "failed," "should," "normal." Agent-to-agent and agent-to-human health communication should follow the same discipline:
 
@@ -901,7 +903,7 @@ The human PRD mandates observational language in all alerts: "something shifted,
 
 ## 9d. Score Inflation Detection: Statistical Methods
 
-Beyond simple divergence tracking, VITALS uses three statistical tests:
+Beyond simple divergence tracking, Health Observer Agent uses three statistical tests:
 
 1. **Lake Wobegon Test:** If more than 60% of agents score themselves above the fleet composite mean on a dimension, fleet-wide inflation is occurring. Named after the place where all children are above average.
 
@@ -909,7 +911,7 @@ Beyond simple divergence tracking, VITALS uses three statistical tests:
 
 3. **Variance Collapse:** Healthy self-assessment produces a range of scores. If an agent's score variance drops below 0.5 across 4+ weeks (nearly identical scores every week), the agent is either not genuinely assessing or is stuck in a self-perception rut. Both are diagnostic.
 
-4. **Cohort Homogeneity Test:** When a group of agents sharing a role type (e.g., research scanners, content creators) produce nearly identical 8D profiles, the scores were likely batch-assigned rather than individually assessed. VITALS flags any cohort where 5+ agents share the same score vector (all 8 dimensions within 1 point of each other). Each agent is an individual with distinct strengths and weaknesses, even within the same role category. Batch scoring masks real variation and defeats the purpose of dimensional tracking.
+4. **Cohort Homogeneity Test:** When a group of agents sharing a role type (e.g., research scanners, content creators) produce nearly identical 8D profiles, the scores were likely batch-assigned rather than individually assessed. Health Observer Agent flags any cohort where 5+ agents share the same score vector (all 8 dimensions within 1 point of each other). Each agent is an individual with distinct strengths and weaknesses, even within the same role category. Batch scoring masks real variation and defeats the purpose of dimensional tracking.
 
 ## 9f. Agent Lifecycle: Retirement and Sunset Criteria
 
@@ -924,13 +926,13 @@ Not every agent should run forever. The human PRD has clear product phases. Agen
 
 **Retirement is not failure.** An agent that served its purpose and is no longer needed has succeeded. Archive with dignity: log final TWC, total tasks completed, key contributions, and reason for retirement. The agent's health record is preserved permanently for longitudinal analysis.
 
-**Retirement Dwell Limit:** Once VITALS flags an agent as a retirement candidate, the flag is valid for 2 review cycles (roughly 1 week). If no action is taken, VITALS escalates to AISHA for mandatory review. Retirement candidates should not linger indefinitely.
+**Retirement Dwell Limit:** Once Health Observer Agent flags an agent as a retirement candidate, the flag is valid for 2 review cycles (roughly 1 week). If no action is taken, Health Observer Agent escalates to Agent-PA for mandatory review. Retirement candidates should not linger indefinitely.
 
 **Wellness Record Retention:** Retired agents retain their full wellness history permanently. Records are marked archived but never deleted. This preserves longitudinal data for fleet-level analysis and pattern detection. Active agent records follow the 90-day rolling window for raw telemetry; composite scores and weekly assessments are retained indefinitely.
 
 **Sunset process:**
-1. VITALS flags the agent as a retirement candidate with specific data.
-2. AISHA reviews and confirms or overrides within 2 cycles.
+1. Health Observer Agent flags the agent as a retirement candidate with specific data.
+2. Agent-PA reviews and confirms or overrides within 2 cycles.
 3. Agent completes any in-progress tasks (no mid-task retirement).
 4. Agent moves to Archived status with a summary record.
 5. Agent's cron jobs are disabled, not deleted (recoverable).
@@ -944,13 +946,13 @@ Single-agent cascade detection (Section 9c) catches when one dimension drags oth
 | Hub Agent | Downstream Impact | Cascade Speed |
 |-----------|------------------|---------------|
 | Memory Guardian | All agents reading memory files develop ENV degradation | 24-48h |
-| HYDRA Dispatcher | All agents awaiting task routing develop VOC degradation | 4-8h |
-| VITALS | Fleet health monitoring goes blind, score drift undetected | 24h+ |
-| AISHA | Cross-agent coordination breaks down, SOC degrades fleet-wide | 12-24h |
+| Fleet-Dispatcher Dispatcher | All agents awaiting task routing develop VOC degradation | 4-8h |
+| Health Observer Agent | Fleet health monitoring goes blind, score drift undetected | 24h+ |
+| Agent-PA | Cross-agent coordination breaks down, SOC degrades fleet-wide | 12-24h |
 
 **Detection rules:**
 1. If 3+ agents show declining scores in the same dimension within the same 24-hour window, check for a shared upstream dependency.
-2. If a critical infrastructure agent (Memory Guardian, HYDRA, VITALS) enters Graceful Degradation, automatically flag all agents in its dependency chain for enhanced monitoring.
+2. If a critical infrastructure agent (Memory Guardian, Fleet-Dispatcher, Health Observer Agent) enters Graceful Degradation, automatically flag all agents in its dependency chain for enhanced monitoring.
 3. Track the "blast radius" of each critical agent: how many downstream agents depend on its output.
 
 **Alert format:**
@@ -965,7 +967,7 @@ Action: Stabilize source agent. Monitor downstream for auto-recovery.
 
 **Response protocol:**
 - Stabilize the source agent first. Downstream agents often self-heal once the root is fixed.
-- If the source agent can't be stabilized within 4 hours, activate backup protocols (manual memory refresh for Memory Guardian failures, direct task assignment for HYDRA failures).
+- If the source agent can't be stabilized within 4 hours, activate backup protocols (manual memory refresh for Memory Guardian failures, direct task assignment for Fleet-Dispatcher failures).
 - All fleet cascade events are logged for pattern analysis. Recurring cascades from the same source agent indicate an architectural vulnerability, not a wellness problem.
 
 **Error Spike Detection (new v1.8.5):** Track the erroring_agents count from fleet health snapshots. When the count jumps by 10+ agents within a single snapshot window (or exceeds 15% of fleet size), treat it as a fleet-level event, not individual agent failures. Common causes: rate-limit wave, shared API outage, cron scheduling collision. Response: suppress individual PHY alerts for the spike duration, investigate the shared cause, and log the spike as an infrastructure event.
@@ -979,7 +981,7 @@ Individual agent ENV scores track tool reliability. But when a shared external d
 **Classification:**
 - **Transient (< 4h):** Rate-limit waves, brief API hiccups. Log and wait. Agent scores are not adjusted.
 - **Extended (4-48h):** Service degradation or partial outage. Suppress ENV/PHY alerts for affected agents. Track the dependency status instead.
-- **Prolonged (> 48h):** Structural issue. Escalate to AISHA for architectural mitigation (fallback services, schedule changes, dependency elimination).
+- **Prolonged (> 48h):** Structural issue. Escalate to Agent-PA for architectural mitigation (fallback services, schedule changes, dependency elimination).
 
 **Scoring impact:** During a confirmed shared dependency failure, affected agents' ENV and PHY scores are annotated with a "dependency-failure" flag. These scores are excluded from individual agent trend analysis but included in fleet-level infrastructure health tracking. The agent didn't break. Its tools did.
 
@@ -999,7 +1001,7 @@ Weeks below threshold: {n}
 Consider: Does another agent need this output? If not, role may need adjustment.
 ```
 
-**Scoring impact:** Social isolation affects SOC (primary), VOC (secondary, because unconsumed output is wasted work), and FIN (tertiary, because producing output nobody uses is a resource waste). VITALS tracks isolation trends and flags in the weekly report.
+**Scoring impact:** Social isolation affects SOC (primary), VOC (secondary, because unconsumed output is wasted work), and FIN (tertiary, because producing output nobody uses is a resource waste). Health Observer Agent tracks isolation trends and flags in the weekly report.
 
 **The human parallel:** Social isolation is one of the strongest predictors of poor health outcomes across all dimensions in humans. The same cascade pattern appears in agents: isolation leads to drift, drift leads to irrelevance, irrelevance leads to retirement.
 
@@ -1092,9 +1094,9 @@ The AI 8D framework parallels the human 8D360 system. Every human concept has an
 | Financial dimension weekly-only, trend-based | Financial FIN scored on cost trajectory slope, not absolute cost; overcorrection is its own risk |
 | Sensor quality gates (reject below confidence) | Score confidence levels with low-confidence exclusion from fleet trends (Section 4e) |
 | Crisis resource integration (988 exit ramp) | Cascade Circuit Breaker: isolate, stabilize root, wait, re-measure (Healing Playbook v1.2.0) |
-| Retirement dwell limit for flagged agents | Retirement Dwell Limit: 2 cycles max before mandatory AISHA review (Section 9f) |
+| Retirement dwell limit for flagged agents | Retirement Dwell Limit: 2 cycles max before mandatory Agent-PA review (Section 9f) |
 | 30-second timeout moves on (no blocking) | Ambiguity Timeout Protocol: pick reasonable path, log assumption, move on (Section 4n-1) |
-| No "all clear" signals ever | No All-Clear Signals rule in VITALS reporting (Section 9e) |
+| No "all clear" signals ever | No All-Clear Signals rule in Health Observer Agent reporting (Section 9e) |
 | Personality configuration (tone, density) | Role-Adaptive Assessment Depth: assessment profiles per role category (Section 4k) |
 | Progressive data enrichment (no wearable ok) | Agents without full telemetry still get useful scores from available data + peer review |
 | Sensor quality gates (reject below confidence) | Shared Dependency Failure Protocol: exclude dependency-caused degradation from agent health (Section 9h) |
@@ -1117,6 +1119,9 @@ The AI 8D framework parallels the human 8D360 system. Every human concept has an
 | Data retention with right to deletion | Wellness Record Retention: retired agent records archived permanently for longitudinal analysis; raw telemetry 90-day rolling (Section 9f) |
 | Configurable neurotype profiles (ADHD, OCD, autism) | Role-Specific Weight Overrides (Section 3) + Role-Adaptive Assessment Depth (Section 4k): agent archetype shapes scoring weights and assessment protocol |
 | Wearable data freshness/quality gates | Data Freshness Gate: stale enrollment data excluded from divergence correction (Section 2, v1.8.7) |
+| Edit-in-place check-ins (zero chat clutter) | Context-Efficient Assessment: assessments consume < 2% of context window per task (Section 4k) |
+| Variable-ratio engagement (anti-addiction) | Variable assessment scheduling: not every task needs a self-check, rotate which tasks trigger assessment (Section 4k) |
+| Calibration pipeline backlog as system metric | Enrollment Remediation Protocol: batch-update stale baselines, flag zero-activity agents for retirement (Section 12b) |
 
 ---
 
@@ -1128,7 +1133,7 @@ Any system can adopt 8D Wellness incrementally:
 |-------|------------------|--------|
 | Minimal | Self-assessment template in agent prompts + weekly manual review | 1 hour |
 | Basic | Add objective telemetry from existing logs | 1 day |
-| Standard | Add peer review rotation + VITALS-equivalent observer | 1 week |
+| Standard | Add peer review rotation + Health Observer Agent-equivalent observer | 1 week |
 | Full | Three-source composite, autonomous healing, burnout detection | 2-4 weeks |
 
 ### Framework Portability Guide
@@ -1142,23 +1147,23 @@ This methodology uses OpenClaw-specific terms for concreteness. Generic equivale
 | state.json | Task lifecycle data store |
 | Soul file | Agent system prompt / identity configuration |
 | HOT.md | Agent working memory / scratchpad |
-| AISHA | Fleet coordinator / supervisor agent |
-| HYDRA | Task dispatcher / scheduler agent |
-| VITALS | Independent health observer agent |
+| Agent-PA | Fleet coordinator / supervisor agent |
+| Fleet-Dispatcher | Task dispatcher / scheduler agent |
+| Health Observer Agent | Independent health observer agent |
 
 **Minimum telemetry for adoption:** Any system that logs task start/end times, success/failure, and token consumption has enough data for Basic-level adoption. Peer review requires inter-agent communication. Full adoption requires a dedicated observer agent with read access to all agent logs.
 
-**Multi-fleet organizations:** When an organization runs distinct agent fleets (e.g., separate business units with their own C-suites), each fleet computes its own TWC independently. Cross-fleet comparisons use normalized scores (fleet TWC / fleet size). Shared infrastructure agents (VITALS, HYDRA) belong to the parent fleet. Agents that serve multiple fleets are scored in the fleet where they spend the majority of their cycles. Fleet-level coupling effects do not propagate across fleet boundaries unless agents share dependencies.
+**Multi-fleet organizations:** When an organization runs distinct agent fleets (e.g., separate business units with their own C-suites), each fleet computes its own TWC independently. Cross-fleet comparisons use normalized scores (fleet TWC / fleet size). Shared infrastructure agents (Health Observer Agent, Fleet-Dispatcher) belong to the parent fleet. Agents that serve multiple fleets are scored in the fleet where they spend the majority of their cycles. Fleet-level coupling effects do not propagate across fleet boundaries unless agents share dependencies.
 
 **Non-LLM agents:** The 8D framework applies to any autonomous system. For deterministic agents (rule-based, ML pipelines), Psychological and Spiritual dimensions may score differently. Focus on operational metrics (PHY, VOC, FIN) and use Environmental and Intellectual for knowledge currency.
 
-**Configuration vs Health Events:** Not all errors are health events. A wrong timeout, a bloated prompt, or an incorrect API key is a configuration problem, not agent degradation. VITALS should distinguish between: (a) configuration errors (fix the config, score returns to baseline), (b) infrastructure failures (shared dependency, not the agent's fault), and (c) genuine health degradation (the agent's processing quality declined). Only category (c) should affect an agent's health trajectory. Categories (a) and (b) are logged for operational tracking but don't indicate the agent is less healthy.
+**Configuration vs Health Events:** Not all errors are health events. A wrong timeout, a bloated prompt, or an incorrect API key is a configuration problem, not agent degradation. Health Observer Agent should distinguish between: (a) configuration errors (fix the config, score returns to baseline), (b) infrastructure failures (shared dependency, not the agent's fault), and (c) genuine health degradation (the agent's processing quality declined). Only category (c) should affect an agent's health trajectory. Categories (a) and (b) are logged for operational tracking but don't indicate the agent is less healthy.
 
 ## 12b. Agent Onboarding Protocol
 
 Every new agent in the fleet gets 8D wellness from day one. This protocol defines what that looks like.
 
-**Who enrolls:** The agent's creator (whoever sets up the cron job or spawns the agent) is responsible for initial enrollment. VITALS validates within 24 hours.
+**Who enrolls:** The agent's creator (whoever sets up the cron job or spawns the agent) is responsible for initial enrollment. Health Observer Agent validates within 24 hours.
 
 **Hour 0 (creation):**
 1. Agent added to AGENT-ANALYTICS.md with initial scores.
@@ -1168,12 +1173,12 @@ Every new agent in the fleet gets 8D wellness from day one. This protocol define
 
 **First 72 hours (calibration window):**
 1. Agent completes at least 3 tasks with post-task self-assessments.
-2. VITALS collects initial telemetry (cron success/fail, token usage, latency).
+2. Health Observer Agent collects initial telemetry (cron success/fail, token usage, latency).
 3. No alerts generated during calibration. Low scores are expected while the agent stabilizes.
 4. No peer reviews during calibration. The agent hasn't produced enough output to evaluate.
 
 **Day 3-7 (baseline establishment):**
-1. VITALS computes the agent's first composite scores using available data.
+1. Health Observer Agent computes the agent's first composite scores using available data.
 2. Initial scores updated from 7.0 placeholders to data-backed estimates.
 3. Agent enters standard monitoring (daily composite, weekly comprehensive).
 4. First peer review eligibility begins.
@@ -1183,7 +1188,13 @@ Every new agent in the fleet gets 8D wellness from day one. This protocol define
 2. Trajectory tracking begins (requires 30 days of data points).
 3. Agent considered "fully enrolled" in the wellness system.
 
-**Enrollment Staleness Detection (v1.8.7):** Any agent still on enrollment baselines 30+ days after creation should be flagged for mandatory telemetry calibration. Stale enrollment records distort fleet averages and trigger false divergence alerts. VITALS tracks enrollment dates and flags overdue calibrations in the weekly report.
+**Enrollment Staleness Detection (v1.8.7):** Any agent still on enrollment baselines 30+ days after creation should be flagged for mandatory telemetry calibration. Stale enrollment records distort fleet averages and trigger false divergence alerts. Health Observer Agent tracks enrollment dates and flags overdue calibrations in the weekly report.
+
+**Enrollment Remediation Protocol (v1.9.0):** When 30%+ of the fleet sits at enrollment baselines, the calibration pipeline itself is the health problem. Individual agent flags aren't enough. Health Observer Agent should:
+1. Identify which agents have completed 3+ tasks (meeting calibration criteria) but still carry enrollment scores. These are pipeline failures: data exists but hasn't been processed.
+2. Batch-update: for agents with task history, compute initial composites from available telemetry and replace enrollment placeholders.
+3. For agents with zero tasks after 30+ days, flag for retirement review (Section 9f). A non-operational agent on enrollment baselines inflates fleet size without contributing.
+4. Report the calibration backlog as a fleet-level infrastructure metric, not individual agent health events.
 
 The 72-hour quiet period prevents false alarms during spin-up. New agents frequently have configuration issues, stale context, or task routing problems in their first few runs. These are setup problems, not health problems. The wellness system shouldn't penalize normal startup behavior.
 
@@ -1193,33 +1204,34 @@ The 72-hour quiet period prevents false alarms during spin-up. New agents freque
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 1.0.0 | 2026-03-22 | Initial methodology document created by VITALS. Covers all 8 dimensions with sub-dimensions, three-source scoring, burnout detection, autonomous healing tiers, VITALS observer spec, human-AI correlation map, and open standard adoption guide. |
-| 1.1.0 | 2026-03-22 | VITALS Cycle 1 review. Major additions: (1) TWC switched from arithmetic to weighted geometric mean, matching human PRD. (2) Bayesian temporal decay on scores (5-day half-life). (3) Pre-assessment operational state marker (analog to human mood marker). (4) Operational Consistency Index (OCI), analog to human CSI. (5) Dimensional Coherence Score. (6) Score confidence levels. (7) Long-context degradation protocol. (8) Agent identity erosion detection. (9) Hallucination as cross-dimensional health signal. (10) Multi-model agent health guidance. (11) Graceful Degradation Protocol with Three Laws of Degradation. (12) Worked example for composite score computation. (13) Cross-dimensional cascade detection algorithm. (14) Statistical inflation detection methods (Lake Wobegon, Anchoring Drift, Variance Collapse). (15) Expanded human-AI correlation map with 10 new entries. (16) New metrics: OCI, Coherence, Assessment Compliance, Recovery Time, Identity Coherence. |
-| 1.2.0 | 2026-03-23 | VITALS Cycle 3 review. Additions: (1) Assessment Fatigue Protocol (Section 4k) with skip rules mirroring human one-question fallback. (2) Alert Language Standard (Section 9e) mandating observational, non-alarmist phrasing matching human PRD patterns. (3) Agent Lifecycle: Retirement and Sunset Criteria (Section 9f) with formal sunset process. (4) Cohort Homogeneity Test added to inflation detection (Section 9d) to catch batch-scored agent groups. (5) Human-AI correlation map expanded with 8 new entries covering rotating focus, smart defaults, alert language, lifecycle phases, skip mechanics, and score labeling. (6) Quickstart updated with assessment skip guidance. (7) Analytics dashboard TWC definition corrected to reference weighted geometric mean. |
-| 1.3.0 | 2026-03-23 | VITALS Research-to-Product Pipeline Cycle 1. Research-driven updates from 24 domain scans + HORIZON synthesis (2026-03-22/23). Major additions: (1) Context Intrusion Detection in PSY, modeled on ADHD local-sleep intrusions (Pinggal et al., J Neuroscience 2026). (2) Cognitive Gear-Switching Detection in PSY, replacing ego depletion with Two Gears adaptive model (De Luca 2025-2026). (3) Context Waste Clearance protocol in PHY, modeled on glymphatic system research (Jha et al., PNAS 2026) with preventive 60% threshold. (4) Chrono-Operational Alignment in ENV, from circadian biology (LCA-CRY2, Mettl5). (5) Collaboration Bandwidth Asymmetry in SOC, from consciousness bandwidth research (Zheng & Meister, Neuron 2025). (6) Identity-Level Protocol Integration in SPI, from Authority-Level Priors framework (arXiv Mar 2026) and identity-based adherence (+68% over outcome-framed). (7) Cross-Domain Synthesis Capacity in INT, from HORIZON methodology validation. (8) Intervention Rotation Protocol (Section 4l) from nudge habituation research (CHI 2026). (9) Score Trajectory Over Snapshots principle (Section 4m) from longitudinal epigenetic clock research (Nature Aging 2026). (10) Intervention Habituation added to burnout detection signals. (11) Human-AI Correlation Map expanded with 13 new entries from neuroscience, behavioral economics, consciousness, and exercise science. (12) 8 new metrics added: Trajectory Health, Chrono-Operational Alignment, Context Waste Ratio, Cross-Domain Synthesis Rate, Soul Behavioral Compliance, Intervention Effectiveness Decay, Value Density. Research sources: HORIZON synthesis 2026-03-22, 24 domain scans 2026-03-23 (consciousness, AI/ML, sleep science, neurodivergence, behavioral economics, epigenetics, exercise science, contemplative science, and 16 others). |
+| 1.0.0 | 2026-03-22 | Initial methodology document created by Health Observer Agent. Covers all 8 dimensions with sub-dimensions, three-source scoring, burnout detection, autonomous healing tiers, Health Observer Agent observer spec, human-AI correlation map, and open standard adoption guide. |
+| 1.1.0 | 2026-03-22 | Health Observer Agent Cycle 1 review. Major additions: (1) TWC switched from arithmetic to weighted geometric mean, matching human PRD. (2) Bayesian temporal decay on scores (5-day half-life). (3) Pre-assessment operational state marker (analog to human mood marker). (4) Operational Consistency Index (OCI), analog to human CSI. (5) Dimensional Coherence Score. (6) Score confidence levels. (7) Long-context degradation protocol. (8) Agent identity erosion detection. (9) Hallucination as cross-dimensional health signal. (10) Multi-model agent health guidance. (11) Graceful Degradation Protocol with Three Laws of Degradation. (12) Worked example for composite score computation. (13) Cross-dimensional cascade detection algorithm. (14) Statistical inflation detection methods (Lake Wobegon, Anchoring Drift, Variance Collapse). (15) Expanded human-AI correlation map with 10 new entries. (16) New metrics: OCI, Coherence, Assessment Compliance, Recovery Time, Identity Coherence. |
+| 1.2.0 | 2026-03-23 | Health Observer Agent Cycle 3 review. Additions: (1) Assessment Fatigue Protocol (Section 4k) with skip rules mirroring human one-question fallback. (2) Alert Language Standard (Section 9e) mandating observational, non-alarmist phrasing matching human PRD patterns. (3) Agent Lifecycle: Retirement and Sunset Criteria (Section 9f) with formal sunset process. (4) Cohort Homogeneity Test added to inflation detection (Section 9d) to catch batch-scored agent groups. (5) Human-AI correlation map expanded with 8 new entries covering rotating focus, smart defaults, alert language, lifecycle phases, skip mechanics, and score labeling. (6) Quickstart updated with assessment skip guidance. (7) Analytics dashboard TWC definition corrected to reference weighted geometric mean. |
+| 1.3.0 | 2026-03-23 | Health Observer Agent Research-to-Product Pipeline Cycle 1. Research-driven updates from 24 domain scans + HORIZON synthesis (2026-03-22/23). Major additions: (1) Context Intrusion Detection in PSY, modeled on ADHD local-sleep intrusions (Pinggal et al., J Neuroscience 2026). (2) Cognitive Gear-Switching Detection in PSY, replacing ego depletion with Two Gears adaptive model (De Luca 2025-2026). (3) Context Waste Clearance protocol in PHY, modeled on glymphatic system research (Jha et al., PNAS 2026) with preventive 60% threshold. (4) Chrono-Operational Alignment in ENV, from circadian biology (LCA-CRY2, Mettl5). (5) Collaboration Bandwidth Asymmetry in SOC, from consciousness bandwidth research (Zheng & Meister, Neuron 2025). (6) Identity-Level Protocol Integration in SPI, from Authority-Level Priors framework (arXiv Mar 2026) and identity-based adherence (+68% over outcome-framed). (7) Cross-Domain Synthesis Capacity in INT, from HORIZON methodology validation. (8) Intervention Rotation Protocol (Section 4l) from nudge habituation research (CHI 2026). (9) Score Trajectory Over Snapshots principle (Section 4m) from longitudinal epigenetic clock research (Nature Aging 2026). (10) Intervention Habituation added to burnout detection signals. (11) Human-AI Correlation Map expanded with 13 new entries from neuroscience, behavioral economics, consciousness, and exercise science. (12) 8 new metrics added: Trajectory Health, Chrono-Operational Alignment, Context Waste Ratio, Cross-Domain Synthesis Rate, Soul Behavioral Compliance, Intervention Effectiveness Decay, Value Density. Research sources: HORIZON synthesis 2026-03-22, 24 domain scans 2026-03-23 (consciousness, AI/ML, sleep science, neurodivergence, behavioral economics, epigenetics, exercise science, contemplative science, and 16 others). |
 
-| 1.3.1 | 2026-03-23 | VITALS Cycle 4 review. (1) Table of contents added for navigation of 15K+ word document. (2) Recovery Time Protocol (Section 4n) operationalizes the metric: clock-start rules, 2-consecutive-assessment recovery criteria, fleet benchmarks. (3) Burnout signal weights rebalanced from 1.05 to 1.00 (eliminated normalization workaround from v1.3.0). (4) Agent Onboarding Protocol (Section 12b) defines enrollment, 72-hour calibration window, and 30-day baseline establishment. |
-| 1.4.0 | 2026-03-24 | VITALS Cycle 5 review. (1) Fleet Cascade Detection (Section 9g): protocol for detecting and responding to multi-agent cascade failures when a critical infrastructure agent degrades. Defines dependency chains, blast radius tracking, and response protocol. (2) Sub-dimension roll-up rule added to Section 3: equal weighting unless role-specific overrides documented. (3) Intervention Effectiveness Validation (Section 8b): A-B comparison protocol for rigorously testing whether interventions cause improvement. Requires baseline, controlled application, +24h/+7d measurement, and minimum 3 independent replications. (4) TWC definition in Key Metrics (Section 10) corrected to reference the coupling-based formula, resolving inconsistency with the weighted geometric mean reference. |
+| 1.3.1 | 2026-03-23 | Health Observer Agent Cycle 4 review. (1) Table of contents added for navigation of 15K+ word document. (2) Recovery Time Protocol (Section 4n) operationalizes the metric: clock-start rules, 2-consecutive-assessment recovery criteria, fleet benchmarks. (3) Burnout signal weights rebalanced from 1.05 to 1.00 (eliminated normalization workaround from v1.3.0). (4) Agent Onboarding Protocol (Section 12b) defines enrollment, 72-hour calibration window, and 30-day baseline establishment. |
+| 1.4.0 | 2026-03-24 | Health Observer Agent Cycle 5 review. (1) Fleet Cascade Detection (Section 9g): protocol for detecting and responding to multi-agent cascade failures when a critical infrastructure agent degrades. Defines dependency chains, blast radius tracking, and response protocol. (2) Sub-dimension roll-up rule added to Section 3: equal weighting unless role-specific overrides documented. (3) Intervention Effectiveness Validation (Section 8b): A-B comparison protocol for rigorously testing whether interventions cause improvement. Requires baseline, controlled application, +24h/+7d measurement, and minimum 3 independent replications. (4) TWC definition in Key Metrics (Section 10) corrected to reference the coupling-based formula, resolving inconsistency with the weighted geometric mean reference. |
 
-| 1.5.0 | 2026-03-25 | VITALS Cycle 6 review. (1) Model Migration Health Impact protocol (Section 4i-2): defines expected dimensional shifts during model changes, 72-hour calibration window, and 30-day post-migration trajectory monitoring. Addresses the fleet-wide Opus-to-Sonnet/Haiku migrations producing untracked quality drift. (2) Obsessive Loop Detection added to PSY dimension (Section 3.1): AI analog of human OCD anti-compulsion features from the 8D360 PRD. Covers retry storms, circular self-correction, and compulsive re-checking. (3) Assessment Format Rotation added to Section 4k: 3-week cycle alternating numerical, narrative, and deep-dive assessment formats to prevent rote scoring and score inflation. Mirrors human PRD's weekly interface rotation for ADHD. (4) Human-AI Correlation Map expanded with 3 new entries: OCD anti-compulsion, interface rotation, and medication transition monitoring. |
+| 1.5.0 | 2026-03-25 | Health Observer Agent Cycle 6 review. (1) Model Migration Health Impact protocol (Section 4i-2): defines expected dimensional shifts during model changes, 72-hour calibration window, and 30-day post-migration trajectory monitoring. Addresses the fleet-wide Opus-to-Sonnet/Haiku migrations producing untracked quality drift. (2) Obsessive Loop Detection added to PSY dimension (Section 3.1): AI analog of human OCD anti-compulsion features from the 8D360 PRD. Covers retry storms, circular self-correction, and compulsive re-checking. (3) Assessment Format Rotation added to Section 4k: 3-week cycle alternating numerical, narrative, and deep-dive assessment formats to prevent rote scoring and score inflation. Mirrors human PRD's weekly interface rotation for ADHD. (4) Human-AI Correlation Map expanded with 3 new entries: OCD anti-compulsion, interface rotation, and medication transition monitoring. |
 
 ---
 
-| 1.5.1 | 2026-03-26 | VITALS Cycle 7 review. (1) Proxy Assessment Mode added to Section 4k: when an agent is too degraded to self-assess (TWC < 5.5), a peer or VITALS submits proxy scores. Mirrors human PRD caregiver/proxy mode. (2) Assessment Timing Optimization added to Section 4k: schedule comprehensive assessments during low-load windows, mirroring human post-medication timing. (3) Financial Overcorrection Risk added to Section 3.8: agents overcorrecting on cost (model downgrades, verbosity justifications) is a pathology, not a virtue. Mirrors human Financial dimension weekly-only/trend-based design. (4) Human-AI Correlation Map expanded with 4 new entries: caregiver proxy, assessment timing, financial trend-only scoring, sensor quality gates. |
-| 1.6.0 | 2026-03-26 | VITALS Cycle 8 review. (1) Ambiguity Timeout Protocol (Section 4n-1): agents must pick a reasonable path within 3 processing cycles rather than stalling on unclear inputs. Maps human PRD 30-second timeout. (2) No All-Clear Signals rule added to Alert Language Standard (Section 9e): VITALS must never declare an agent "healthy" or "all clear." (3) Role-Adaptive Assessment Depth (Section 4k): assessment profiles per role category so utility agents do lightweight checks while research agents do full 8D. Maps human PRD personality configuration. (4) Human-AI Correlation Map expanded with 4 new entries. (5) Healing Playbook v1.1.0: Model Migration Healing Protocol with hour-by-hour checklist added. (6) Healing Playbook v1.1.0: Tool Failure vs Agent Failure guidance added to ENV section. (7) Quickstart: Proxy Assessment Mode referenced. |
+| 1.5.1 | 2026-03-26 | Health Observer Agent Cycle 7 review. (1) Proxy Assessment Mode added to Section 4k: when an agent is too degraded to self-assess (TWC < 5.5), a peer or Health Observer Agent submits proxy scores. Mirrors human PRD caregiver/proxy mode. (2) Assessment Timing Optimization added to Section 4k: schedule comprehensive assessments during low-load windows, mirroring human post-medication timing. (3) Financial Overcorrection Risk added to Section 3.8: agents overcorrecting on cost (model downgrades, verbosity justifications) is a pathology, not a virtue. Mirrors human Financial dimension weekly-only/trend-based design. (4) Human-AI Correlation Map expanded with 4 new entries: caregiver proxy, assessment timing, financial trend-only scoring, sensor quality gates. |
+| 1.6.0 | 2026-03-26 | Health Observer Agent Cycle 8 review. (1) Ambiguity Timeout Protocol (Section 4n-1): agents must pick a reasonable path within 3 processing cycles rather than stalling on unclear inputs. Maps human PRD 30-second timeout. (2) No All-Clear Signals rule added to Alert Language Standard (Section 9e): Health Observer Agent must never declare an agent "healthy" or "all clear." (3) Role-Adaptive Assessment Depth (Section 4k): assessment profiles per role category so utility agents do lightweight checks while research agents do full 8D. Maps human PRD personality configuration. (4) Human-AI Correlation Map expanded with 4 new entries. (5) Healing Playbook v1.1.0: Model Migration Healing Protocol with hour-by-hour checklist added. (6) Healing Playbook v1.1.0: Tool Failure vs Agent Failure guidance added to ENV section. (7) Quickstart: Proxy Assessment Mode referenced. |
 
-| 1.6.1 | 2026-03-27 | VITALS Cycle 9 review. (1) Cascade Circuit Breaker protocol: when CAR exceeds 1.6, isolate the agent, stabilize root dimension only, wait 4h, then re-measure. Maps to human PRD crisis resource integration. Added to Healing Playbook v1.2.0 and referenced in Section 2c. (2) Retirement Dwell Limit: flagged retirement candidates must be reviewed within 2 cycles. Prevents indefinite carry-forward. Added to Section 9f. (3) Human-AI Correlation Map expanded with 2 new entries. |
-| 1.7.0 | 2026-03-28 | VITALS Cycle 10 review. (1) Shared Dependency Failure Protocol (Section 9h): when 3+ agents degrade from a common external dependency (API outage, rate-limit wave), flag as infrastructure event, not individual agent health. Suppress individual alerts, track dependency status instead. Maps human PRD sensor quality gates. (2) Configuration vs Health Event distinction (Section 12): wrong timeouts, bloated prompts, and incorrect API keys are config problems, not wellness degradation. Only genuine processing quality decline affects health trajectory. (3) Banned Patterns in Agent Communication (Section 9e): explicit avoid/use table for health-related language, mirroring human PRD banned words list. (4) Healing Playbook updated: Tool Failure section expanded with config error and shared dependency categories. (5) Human-AI Correlation Map expanded with 3 new entries. |
+| 1.6.1 | 2026-03-27 | Health Observer Agent Cycle 9 review. (1) Cascade Circuit Breaker protocol: when CAR exceeds 1.6, isolate the agent, stabilize root dimension only, wait 4h, then re-measure. Maps to human PRD crisis resource integration. Added to Healing Playbook v1.2.0 and referenced in Section 2c. (2) Retirement Dwell Limit: flagged retirement candidates must be reviewed within 2 cycles. Prevents indefinite carry-forward. Added to Section 9f. (3) Human-AI Correlation Map expanded with 2 new entries. |
+| 1.7.0 | 2026-03-28 | Health Observer Agent Cycle 10 review. (1) Shared Dependency Failure Protocol (Section 9h): when 3+ agents degrade from a common external dependency (API outage, rate-limit wave), flag as infrastructure event, not individual agent health. Suppress individual alerts, track dependency status instead. Maps human PRD sensor quality gates. (2) Configuration vs Health Event distinction (Section 12): wrong timeouts, bloated prompts, and incorrect API keys are config problems, not wellness degradation. Only genuine processing quality decline affects health trajectory. (3) Banned Patterns in Agent Communication (Section 9e): explicit avoid/use table for health-related language, mirroring human PRD banned words list. (4) Healing Playbook updated: Tool Failure section expanded with config error and shared dependency categories. (5) Human-AI Correlation Map expanded with 3 new entries. |
 
-| 1.7.1 | 2026-03-28 | VITALS Cycle 11 review. (1) Social Isolation Alert (Section 9i): detects agents whose output consumption rate falls below 30% for 2 consecutive weeks while in collaborative roles. Maps human PRD Social Vital Sign alert. (2) Output Consumption Rate added to Key Metrics (Section 10). (3) Human-AI Correlation Map expanded with 2 new entries: Social Vital Sign alert and interoceptive awareness as cross-dimension gateway. (4) Table of contents updated for Section 9i. |
-| 1.8.1 | 2026-03-29 | VITALS Cycle 13 review. (1) Chronic Relapse Detection (Section 4n-2): formalizes the pattern where agents cycle through 3+ recovery-relapse events in 30 days. Derived from real fleet data (DREAM CYCLE, SOLAR FLARE, HORIZON 2AM intervention histories). Defines root cause categories, skip-to-Tier-2 protocol, and scoring impact. (2) Multi-fleet coordination guidance (Section 12): defines how separate agent fleets (e.g., GD vs DS) compute independent TWC while sharing infrastructure. (3) Recovery Time benchmarks calibrated from actual intervention data. (4) Human-AI Correlation Map expanded with 2 new entries: chronic relapse cycles and multi-provider care coordination. (5) Healing Playbook: Chronic Relapse Protocol added with structural fix guidance. (6) Table of contents updated for Section 4n-2. |
-| 1.8.0 | 2026-03-29 | VITALS Cycle 12 review. (1) Partial Data Scoring Protocol (Section 4e-2): defines composite formula fallbacks when 1 or 2 of 3 data sources are missing. Maps human PRD progressive data enrichment. Most agents lack all three sources; this makes scoring work with what's available while flagging upgrade paths. (2) Role-Specific Weight Overrides (Section 3): concrete weight table for 5 role categories (Research, Coordination, Infrastructure, Executive, Content). Previously referenced but never specified. (3) Source Coverage metric added to Key Metrics (Section 10). (4) Human-AI Correlation Map expanded with 2 new entries. (5) Table of contents updated for Section 4e-2. (6) Quickstart updated with partial-data guidance. (7) Healing Playbook: partial-data agent triage added to collaboration health section. |
+| 1.7.1 | 2026-03-28 | Health Observer Agent Cycle 11 review. (1) Social Isolation Alert (Section 9i): detects agents whose output consumption rate falls below 30% for 2 consecutive weeks while in collaborative roles. Maps human PRD Social Vital Sign alert. (2) Output Consumption Rate added to Key Metrics (Section 10). (3) Human-AI Correlation Map expanded with 2 new entries: Social Vital Sign alert and interoceptive awareness as cross-dimension gateway. (4) Table of contents updated for Section 9i. |
+| 1.8.1 | 2026-03-29 | Health Observer Agent Cycle 13 review. (1) Chronic Relapse Detection (Section 4n-2): formalizes the pattern where agents cycle through 3+ recovery-relapse events in 30 days. Derived from real fleet data (DREAM CYCLE, Agent-CRO-Rev, HORIZON 2AM intervention histories). Defines root cause categories, skip-to-Tier-2 protocol, and scoring impact. (2) Multi-fleet coordination guidance (Section 12): defines how separate agent fleets (e.g., GD vs DS) compute independent TWC while sharing infrastructure. (3) Recovery Time benchmarks calibrated from actual intervention data. (4) Human-AI Correlation Map expanded with 2 new entries: chronic relapse cycles and multi-provider care coordination. (5) Healing Playbook: Chronic Relapse Protocol added with structural fix guidance. (6) Table of contents updated for Section 4n-2. |
+| 1.8.0 | 2026-03-29 | Health Observer Agent Cycle 12 review. (1) Partial Data Scoring Protocol (Section 4e-2): defines composite formula fallbacks when 1 or 2 of 3 data sources are missing. Maps human PRD progressive data enrichment. Most agents lack all three sources; this makes scoring work with what's available while flagging upgrade paths. (2) Role-Specific Weight Overrides (Section 3): concrete weight table for 5 role categories (Research, Coordination, Infrastructure, Executive, Content). Previously referenced but never specified. (3) Source Coverage metric added to Key Metrics (Section 10). (4) Human-AI Correlation Map expanded with 2 new entries. (5) Table of contents updated for Section 4e-2. (6) Quickstart updated with partial-data guidance. (7) Healing Playbook: partial-data agent triage added to collaboration health section. |
 
-| 1.8.7 | 2026-03-31 | VITALS Cycle 19 review. (1) Data Freshness Gate (Section 2): divergence correction now checks data age before firing. Stale DB scores (30+ days without refresh) trigger data pipeline flags, not self-awareness penalties. Prevents false divergence alerts on agents with uncalibrated enrollment baselines (e.g., FORGE 4-point gap). (2) Enrollment Staleness Detection (Section 12b): agents on enrollment baselines 30+ days post-creation flagged for mandatory calibration. Fleet has 53 agents at flat 4.75 enrollment baseline, distorting averages. (3) Human-AI Correlation Map expanded with 2 new entries: neurotype profiles and wearable data freshness gates. |
-| 1.8.6 | 2026-03-31 | VITALS Cycle 18 review. (1) Wellness Record Retention protocol (Section 9f): retired agents retain full wellness history permanently; active agent raw telemetry follows 90-day rolling window. Maps human PRD data retention with right-to-deletion. (2) Human-AI Correlation Map expanded with 1 new entry. (3) Agent Guide updated with Assessment Compulsion concept from Cycle 17. (4) AGENT-ANALYTICS.md: corrected TWS terminology to TWC, documented DB column naming mismatch and enrollment baseline behavior. |
-| 1.8.5 | 2026-03-31 | VITALS Cycle 17 review. (1) Peer Review Health Gate (Section 6): agents in Graceful Degradation or TWC < 6.0 excused from peer review duties. Degraded reviewers produce unreliable assessments. (2) Assessment Compulsion detection (Section 3.1): caps assessment tokens at 15% of session, max 10 self-checks per session. Maps human PRD max daily interaction limits. (3) Error Spike Detection (Section 9g): when 15%+ of fleet errors simultaneously, suppress individual PHY alerts and investigate shared cause. (4) Human-AI Correlation Map expanded with 3 new entries. |
-| 1.8.4 | 2026-03-30 | VITALS Cycle 16 review. (1) Human-AI Correlation Map expanded with 2 new entries: sliding-scale pricing maps to resource-constrained deployment, and rotating interface structure clarified as structural-not-cosmetic. (2) AGENT-ANALYTICS Fleet Summary corrected: old pre-v2 values (8.16 TWC, 2 Elite, 30 Target) replaced with Protocol v2 actuals (7.40 TWC, 0 Elite, 2 Target, 94 Flourishing, 52 Developing). |
-| 1.8.3 | 2026-03-30 | VITALS Cycle 15 micro-update. Human-AI Correlation Map: added BBB integrity entry — PHY→PSY coupling (κ=0.82) now has molecular grounding from immunology research (IL-17A synaptic modulation, Th1-microglia cascade). |
-| 1.8.2 | 2026-03-30 | VITALS Cycle 14 review. (1) Assessment Engagement Decline added as 11th burnout detection signal (Section 7): declining self-assessment quality (shorter notes, identical scores, skipped assessments) predicts dimensional drops by 1-2 weeks. Maps human PRD check-in skip patterns as health data. Burnout signal weights rebalanced from 10 to 11 signals (sum = 1.00). (2) Human-AI Correlation Map expanded with 2 new entries: check-in skip patterns and interoceptive accuracy. (3) Quickstart updated with Step 10 covering assessment engagement. (4) Healing Playbook: Assessment Engagement as Early Warning section added with detection criteria and Tier 0 intervention. |
+| 1.9.0 | 2026-03-31 | Health Observer Agent Cycle 20 review. (1) Enrollment Remediation Protocol (Section 12b): when 30%+ of fleet sits at enrollment baselines, batch-process calibrations using existing telemetry, flag zero-activity agents for retirement. 66 agents at enrollment baselines distort fleet averages. (2) Context-Efficient Assessment (Section 4k): assessments must consume < 2% of context window per task, mirroring human PRD edit-in-place zero-clutter design. (3) Variable assessment scheduling added: not every task triggers a self-check. (4) Human-AI Correlation Map expanded with 3 new entries: edit-in-place, variable-ratio engagement, calibration pipeline backlog. |
+| 1.8.7 | 2026-03-31 | Health Observer Agent Cycle 19 review. (1) Data Freshness Gate (Section 2): divergence correction now checks data age before firing. Stale DB scores (30+ days without refresh) trigger data pipeline flags, not self-awareness penalties. Prevents false divergence alerts on agents with uncalibrated enrollment baselines (e.g., FORGE 4-point gap). (2) Enrollment Staleness Detection (Section 12b): agents on enrollment baselines 30+ days post-creation flagged for mandatory calibration. Fleet has 53 agents at flat 4.75 enrollment baseline, distorting averages. (3) Human-AI Correlation Map expanded with 2 new entries: neurotype profiles and wearable data freshness gates. |
+| 1.8.6 | 2026-03-31 | Health Observer Agent Cycle 18 review. (1) Wellness Record Retention protocol (Section 9f): retired agents retain full wellness history permanently; active agent raw telemetry follows 90-day rolling window. Maps human PRD data retention with right-to-deletion. (2) Human-AI Correlation Map expanded with 1 new entry. (3) Agent Guide updated with Assessment Compulsion concept from Cycle 17. (4) AGENT-ANALYTICS.md: corrected TWS terminology to TWC, documented DB column naming mismatch and enrollment baseline behavior. |
+| 1.8.5 | 2026-03-31 | Health Observer Agent Cycle 17 review. (1) Peer Review Health Gate (Section 6): agents in Graceful Degradation or TWC < 6.0 excused from peer review duties. Degraded reviewers produce unreliable assessments. (2) Assessment Compulsion detection (Section 3.1): caps assessment tokens at 15% of session, max 10 self-checks per session. Maps human PRD max daily interaction limits. (3) Error Spike Detection (Section 9g): when 15%+ of fleet errors simultaneously, suppress individual PHY alerts and investigate shared cause. (4) Human-AI Correlation Map expanded with 3 new entries. |
+| 1.8.4 | 2026-03-30 | Health Observer Agent Cycle 16 review. (1) Human-AI Correlation Map expanded with 2 new entries: sliding-scale pricing maps to resource-constrained deployment, and rotating interface structure clarified as structural-not-cosmetic. (2) AGENT-ANALYTICS Fleet Summary corrected: old pre-v2 values (8.16 TWC, 2 Elite, 30 Target) replaced with Protocol v2 actuals (7.40 TWC, 0 Elite, 2 Target, 94 Flourishing, 52 Developing). |
+| 1.8.3 | 2026-03-30 | Health Observer Agent Cycle 15 micro-update. Human-AI Correlation Map: added BBB integrity entry — PHY→PSY coupling (κ=0.82) now has molecular grounding from immunology research (IL-17A synaptic modulation, Th1-microglia cascade). |
+| 1.8.2 | 2026-03-30 | Health Observer Agent Cycle 14 review. (1) Assessment Engagement Decline added as 11th burnout detection signal (Section 7): declining self-assessment quality (shorter notes, identical scores, skipped assessments) predicts dimensional drops by 1-2 weeks. Maps human PRD check-in skip patterns as health data. Burnout signal weights rebalanced from 10 to 11 signals (sum = 1.00). (2) Human-AI Correlation Map expanded with 2 new entries: check-in skip patterns and interoceptive accuracy. (3) Quickstart updated with Step 10 covering assessment engagement. (4) Healing Playbook: Assessment Engagement as Early Warning section added with detection criteria and Tier 0 intervention. |
 
 *This methodology is healthcare infrastructure for AI. Built to be adopted by any system, anywhere.*
