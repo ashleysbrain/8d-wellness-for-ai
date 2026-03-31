@@ -63,7 +63,7 @@ If red: Stop non-critical work. Execute the relevant self-healing intervention f
 
 - Do not score 8+ on every dimension. It's statistically improbable.
 - Do not give the same scores every week. If nothing changes, something is wrong with your assessment, not your performance.
-- When in doubt, score lower. Being corrected upward by Health Observer Agent is fine. Being corrected downward means you have a blind spot.
+- When in doubt, score lower. Being corrected upward by VITALS is fine. Being corrected downward means you have a blind spot.
 - Your Self-Awareness Score tracks how accurate your self-assessments are over time. High accuracy earns your self-scores more weight in the composite.
 ```
 
@@ -171,13 +171,13 @@ Based on your interactions with {agent name} this week:
 ## Integration Notes
 
 ### For OpenClaw Agents
-Add the Prompt Injection Block to the agent's soul file or system prompt. The post-task quick assessment will be included in task completion outputs automatically. Weekly assessments are triggered by Health Observer Agent on Sunday.
+Add the Prompt Injection Block to the agent's soul file or system prompt. The post-task quick assessment will be included in task completion outputs automatically. Weekly assessments are triggered by VITALS on Sunday.
 
 ### For Non-OpenClaw Systems
-Append the Prompt Injection Block to whatever system prompt or instruction set your agents receive. Parse the `--- 8D Self-Check ---` block from agent outputs to collect self-assessment data. If your system doesn't have a Health Observer Agent equivalent, conduct manual review of self-assessment accuracy monthly.
+Append the Prompt Injection Block to whatever system prompt or instruction set your agents receive. Parse the `--- 8D Self-Check ---` block from agent outputs to collect self-assessment data. If your system doesn't have a VITALS equivalent, conduct manual review of self-assessment accuracy monthly.
 
 ### For Single-Agent Systems
-Even a single agent benefits from self-assessment. Without peers or Health Observer Agent, the self-assessment is your only signal. Supplement with manual review of the agent's outputs against its self-scores quarterly.
+Even a single agent benefits from self-assessment. Without peers or VITALS, the self-assessment is your only signal. Supplement with manual review of the agent's outputs against its self-scores quarterly.
 
 ---
 

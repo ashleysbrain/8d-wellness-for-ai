@@ -2,7 +2,7 @@
 
 **Version:** 1.0.0
 **Created:** 2026-03-22
-**Owner:** Health Observer Agent
+**Owner:** VITALS
 **Purpose:** Every AI agent is profiled across ALL scientifically validated personality frameworks, not just OCEAN.
 
 ---
