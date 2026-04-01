@@ -44,3 +44,8 @@
 - PERSONALITY-FRAMEWORKS.md: Updated personality frameworks
 - PERFORMANCE-DATABASE.md: Updated performance database
 - SELF-ASSESSMENT-TEMPLATE.md: Updated self-assessment template
+
+## 2026-04-01 — v1.3.7
+- **METHODOLOGY.md**: Added Fleet Data Quality Index metric, dual-layer terminology correlation (Not Yet Assessed state), and Error Regression Tracking for fleet infrastructure monitoring
+- **PLATFORM-ARCHITECTURE.md**: Sanitized reference implementation path
+- All docs re-sanitized with latest agent name anonymization

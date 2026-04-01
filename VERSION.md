@@ -1,5 +1,10 @@
 # Version History
 
+## v1.3.7 — 2026-04-01
+- Methodology: added Fleet Data Quality Index metric, Not Yet Assessed state correlation, Error Regression Tracking
+- Platform Architecture: sanitized reference implementation path
+- Agent names anonymized to role identifiers across all docs
+
 ## v1.3.6 — 2026-03-31
 - Docs sync: all 8 core docs refreshed from workspace
 - Agent names anonymized to role identifiers across all docs
